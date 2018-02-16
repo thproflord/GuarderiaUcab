@@ -74,19 +74,20 @@
                     <th>Eliminar</th>
                   </thead>
                   <tbody>
-                  {% for r in representantes %}
+                  {% for r in Ninos %}
                       <tr>
-                          <td>{{ r.cedula_representante }}</td>
-                          <td>{{ r.nombre }} {{ r.apellido }}</td>
-                          <td>{{ r.apellido }}</td>
-                          <td>{{ r.telefono }}</td>
+                          <td>{{ r.cedula_repre }}</td>
+                          <td>{{ r.nombre }}</td>
+                          <td>{{ r.apellidos }}</td>
+                          <td>{{ r.fecha_nac }}</td>
+                          <td>{{ r.sexo }}</td>
                           <td><a type="button" data-toggle="modal" data-target="#modal_editar_representante" onclick="edit_representante('{{ r.nombre }}','{{ r.apellido }}','{{ r.cedula_representante }}','{{ r.telefono_oficina }}','{{ r.telefono_casa }}','{{ r.telefono_celular }}','{{ r.sexo }}','{{ r.direccion }}','{{ r.parentesco }}','{{ r.profesion }}')"><i class="fa fa-edit"></i></a></td>
                           <td><a type="button" href="representantes/eliminar/{{ r.cedula_representante }}"><i class="fa fa-trash"></i></a></td>
                       </tr>
                   {% endfor %}
                   </tbody>
                 </table>
-                <button type="button" class="btn btn-block btn-primary btn-flat" data-toggle="modal" data-target="#modal_crear_representante"><i class="fa fa-plus-circle"></i> CREAR NUEVO NIÑO</button>
+                <button type="button" class="btn btn-block btn-primary btn-flat" data-toggle="modal" data-target="#modal_crear_nino"><i class="fa fa-plus-circle"></i> CREAR NUEVO NIÑO</button>
               </div>
             </div>
             <!-- /.box-body -->
@@ -97,7 +98,7 @@
       </div>
       <!-- /.row -->
       {# Creación de producto #}
-      {% include 'representantes/crear' %}
+      {% include 'ninos/crear' %}
       {% include 'representantes/editar' %}
       {#% include 'colegios/eliminar' %#}
     </section>
@@ -107,8 +108,8 @@
 {% endblock %}
 
 {% block appFooter %}
-<script src="views/app/js/niños/crear.js"></script>
-<script src="views/app/js/niños/editar.js"></script>
+<script src="views/app/js/ninos/crear.js"></script>
+<script src="views/app/js/representantes/editar.js"></script>
 <!-- DataTables -->
 <script src="views/theme/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="views/theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>

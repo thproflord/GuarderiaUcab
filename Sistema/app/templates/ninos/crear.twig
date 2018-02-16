@@ -1,0 +1,46 @@
+<div class="modal fade" id="modal_crear_nino">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Crear Niño</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form" id="crear_nino_form">
+          <!-- text input -->
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" class="form-control" placeholder="Nombre" name="nombre">
+
+            <label>Apellido</label>
+            <input type="text" class="form-control" placeholder="Apellido" name="apellido">
+
+            <label>Fecha de nacimiento</label>
+            <input type="date" class="form-control" placeholder="Fecha de nacimiento" name="fecha_nac">
+
+            <div class="form-group col-xs-12 col-sm-12 col-md-12">
+                <label>Sexo</label>
+                <input type="radio" id="id_sexo_hombre" name="sexo" value="M">
+                <label for="id_sexo_hombre">Hombre</label>
+                <input type="radio" id="id_sexo_mujer" checked="true" name="sexo" value="F">
+                <label for="id_sexo_mujer">Mujer</label>
+            </div>
+
+            <label>Cedula del representante</label>
+            <input type="text" class="form-control" placeholder="Cedula" name="cedula_repre">
+
+          </div>
+         </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+          <button type="button" id="crear_nino" class="btn btn-primary">Crear Niño</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+

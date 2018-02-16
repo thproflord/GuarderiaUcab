@@ -25,10 +25,26 @@ use Ocrend\Kernel\Controllers\IControllers;
 class medicinasController extends Controllers implements IControllers {
 
     public function __construct(IRouter $router) {
-        parent::__construct($router);   
-        $m = new Model\Medicinas;
-		echo $this->template->render('medicinas/medicinas');
-
+      parent::__construct($router);  
+      global $config; 
+      $r = new Model\Medicinas($router);
+      switch ($this->method) {
+        case 'crear':
+          echo $this->template->render('medicinas/crear');
+        break;
+        case 'editar':
+          $r->editar();
+        break;
+        case 'eliminar':
+          # code...
+        break;
+        default:
+          echo $this->template->render('medicinas/medicinas',array(
+          'medicinas' => $r->get()
+          ));
+          break;
+      }
+      
     }
 
 }

@@ -138,6 +138,75 @@ $app->post('/representantes/editar', function() use($app) {
 });
 
 /**
+  * Acción vía ajax de Niños en api/ninos/crear
+  *
+  * @return json
+*/
+$app->post('/ninos/crear', function() use($app) {
+  $r = new Model\Ninos; 
+
+  return $app->json($r->add());   
+});
+
+
+/**
+  * Acción vía ajax de Representantes en api/Ninos/editar
+  *
+  * @return json
+*/
+$app->post('/ninos/editar', function() use($app) {
+  $r = new Model\Ninos; 
+
+  return $app->json($r->edit());   
+});
+
+/**
+  * Acción vía ajax de Niños en api/autorizados/crear
+  *
+  * @return json
+*/
+$app->post('/autorizados/crear', function() use($app) {
+  $r = new Model\Autorizados; 
+
+  return $app->json($r->add());   
+});
+
+
+/**
+  * Acción vía ajax de Representantes en api/autorizados/editar
+  *
+  * @return json
+*/
+$app->post('/autorizados/editar', function() use($app) {
+  $r = new Model\Autorizados; 
+
+  return $app->json($r->edit());   
+});
+
+/**
+  * Acción vía ajax de Niños en api/medicinas/crear
+  *
+  * @return json
+*/
+$app->post('/medicinas/crear', function() use($app) {
+  $r = new Model\Medicinas; 
+
+  return $app->json($r->add());   
+});
+
+
+/**
+  * Acción vía ajax de Representantes en api/medicinas/editar
+  *
+  * @return json
+*/
+$app->post('/medicinas/editar', function() use($app) {
+  $r = new Model\Medicinas; 
+
+  return $app->json($r->edit());   
+});
+
+/**
   * Acción vía ajax de Personal en api/personal/crear
   *
   * @return json

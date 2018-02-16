@@ -25,10 +25,26 @@ use Ocrend\Kernel\Controllers\IControllers;
 class ninosController extends Controllers implements IControllers {
 
     public function __construct(IRouter $router) {
-        parent::__construct($router);   
-        $n = new Model\Ninos;
-		echo $this->template->render('ninos/ninos');
-
+      parent::__construct($router);  
+      global $config; 
+      $r = new Model\Ninos($router);
+      switch ($this->method) {
+        case 'crear':
+          echo $this->template->render('ninos/crear');
+        break;
+        case 'editar':
+          $r->editar();
+        break;
+        case 'eliminar':
+          # code...
+        break;
+        default:
+          echo $this->template->render('ninos/ninos',array(
+          'Ninos' => $r->get()
+          ));
+          break;
+      }
+      
     }
 
 }

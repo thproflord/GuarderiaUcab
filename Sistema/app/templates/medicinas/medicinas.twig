@@ -71,7 +71,7 @@
                     <th>Eliminar</th>
                   </thead>
                   <tbody>
-                  {% for r in representantes %}
+                  {% for r in medicinas %}
                       <tr>
                           <td>{{ r.codigo }}</td>
                           <td>{{ r.descripcion }}</td>
@@ -92,7 +92,7 @@
       </div>
       <!-- /.row -->
       {# Creación de producto #}
-      {% include 'representantes/crear' %}
+      {% include 'medicinas/crear' %}
       {% include 'representantes/editar' %}
       {#% include 'colegios/eliminar' %#}
     </section>

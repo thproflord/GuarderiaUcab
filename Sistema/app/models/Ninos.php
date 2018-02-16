@@ -1,13 +1,5 @@
 <?php
 
-/*
- * This file is part of the Ocrend Framewok 2 package.
- *
- * (c) Ocrend Software <info@ocrend.com>
- *
- * For the full copyright and license information, please view the LICENSE
- * file that was distributed with this source code.
- */
 
 namespace app\models;
 
@@ -19,23 +11,91 @@ use Ocrend\Kernel\Models\Traits\DBModel;
 use Ocrend\Kernel\Router\IRouter;
 
 /**
- * Modelo Ninos
+ * Modelo Categoria
  *
- * @author Ramon García, Fernando Gomes y Alexander De Azevedo <oeneikaphotos@gmail.com>
+ * @author Alexander De Azevedo, Sergio García y Greg Gómez <oeneikaphotos@gmail.com>
  */
 
 class Ninos extends Models implements IModels {
+    /**
+      * Característica para establecer conexión con base de datos. 
+    */
+    use DBModel;
+
+    private $nombre;
+    private $apellido;
+    private $sexo;
+    private $fecha_nac;
+    private $cedula_repre;
     
+    /**
+      * Controla los errores de entrada del formulario
+      *
+      * @throws ModelsException
+    */
 
-    // Contenido del modelo... 
+    final private function errors(bool $edit = false) {
+      global $http;
 
+      $this->nombre = $http->request->get('nombre');
+      $this->apellido = $http->request->get('apellido');
+      $this->sexo = $http->request->get('sexo');
+      $this->fecha_nac = $http->request->get('fecha_nac');
+      $this->cedula_repre = $http->request->get('cedula_repre');
+
+      if($this->functions->e($this->nombre)){
+        throw new ModelsException('El campo nombre es obligatorio');
+      }
+      if($this->functions->e($this->apellido)){
+        throw new ModelsException('El campo apellido es obligatorio');
+      }
+      if($this->functions->e($this->sexo)){
+        throw new ModelsException('El campo sexo es obligatorio');
+      }
+
+      if($this->functions->e($this->fecha_nac)){
+        throw new ModelsException('Por favor seleccione una fecha de nacimiento');
+      }      
+
+      if($this->functions->e($this->cedula_repre)){
+        throw new ModelsException('Por favor introduzca la cedula del representante');
+      }
+      
+    }
+
+    final public function add(){
+      try {
+        global $http;
+                  
+        # Controlar errores de entrada en el formulario
+        $this->errors();
+
+        # Insertar elementos
+        $this->db->query("INSERT INTO Ninos
+        (nombre,apellidos,sexo,fecha_nac,cedula_repre)
+        VALUES ('$this->nombre','$this->apellido','$this->sexo','$this->fecha_nac','$this->cedula_repre');");
+
+        return array('success' => 1, 'message' => 'Creado con éxito.');
+      } catch(ModelsException $e) {
+        return array('success' => 0, 'message' => $e->getMessage());
+      }
+    }
+
+    final public function editar(){
+      $this->db->update('ninos', array(
+      ),"cedula=");
+    }
+
+    final public function get(bool $multi = true, string $select = '*') {
+        return $this->db->query_select("SELECT * FROM Ninos;");
+    }
 
     /**
       * __construct()
     */
     public function __construct(IRouter $router = null) {
         parent::__construct($router);
-        
+        $this->startDBConexion();
     }
 
     /**
@@ -43,6 +103,6 @@ class Ninos extends Models implements IModels {
     */ 
     public function __destruct() {
         parent::__destruct();
-        
+        $this->endDBConexion();
     }
 }
