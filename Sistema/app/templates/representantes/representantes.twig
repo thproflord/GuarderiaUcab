@@ -69,8 +69,6 @@
                     <th>Nombre</th>
                     <th>Sexo</th>
                     <th>Profesión</th>
-                    <th>Direccion</th>
-                    <th>Parentesco</th>
                     <th>Teléfono Oficina</th>
                     <th>Teléfono Casa</th>
                     <th>Teléfono Celular</th>
@@ -79,19 +77,17 @@
 
                   </thead>
                   <tbody>
-                  {% for r in representantes %}
+                  {% for r in representante %}
                       <tr>
-                          <td>{{ r.cedula_representante }}</td>
+                          <td>{{ r.cedula }}</td>
                           <td>{{ r.nombre }} {{ r.apellido }}</td>
                           <td>{{ r.sexo }}</td>
                           <td>{{ r.profesion }}</td>
-                          <td>{{ r.direccion }}</td>
-                          <td>{{ r.parentesco }}</td>
-                          <td>{{ r.telefono_oficina }}</td>
-                          <td>{{ r.telefono_casa }}</td>
-                          <td>{{ r.telefono_celular }}</td>
-                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_representante" onclick="edit_representante('{{ r.nombre }}','{{ r.apellido }}','{{ r.cedula_representante }}','{{ r.telefono_oficina }}','{{ r.telefono_casa }}','{{ r.telefono_celular }}','{{ r.sexo }}','{{ r.direccion }}','{{ r.parentesco }}','{{ r.profesion }}')"><i class="fa fa-edit"></i></a></td>
-                          <td><a type="button" href="representantes/eliminar/{{ r.cedula_representante }}"><i class="fa fa-trash"></i></a></td>
+                          <td>{{ r.tlf_ofic }}</td>
+                          <td>{{ r.tlf_casa }}</td>
+                          <td>{{ r.tlf_celular }}</td>
+                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_representante" onclick="edit_representante('{{ r.nombre }}','{{ r.apellido }}','{{ r.cedula_representante }}','{{ r.telefono_oficina }}','{{ r.telefono_casa }}','{{ r.telefono_celular }}','{{ r.sexo }}','{{ r.direccion }}','{{ r.profesion }}')"><i class="fa fa-edit"></i></a></td>
+                          <td><a type="button" href="representantes/eliminar/{{ r.cedula }}"><i class="fa fa-trash"></i></a></td>
                       </tr>
                   {% endfor %}
                   </tbody>
