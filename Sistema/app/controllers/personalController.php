@@ -15,22 +15,22 @@ use app\models as Model;
 use Ocrend\Kernel\Router\IRouter;
 use Ocrend\Kernel\Controllers\Controllers;
 use Ocrend\Kernel\Controllers\IControllers;
-  
+
 /**
  * Controlador personal/
  *
  * @author Alexander De Azevedo, Sergio García y Greg Gómez <oeneikaphotos@gmail.com>
 */
-  
+
 class personalController extends Controllers implements IControllers {
 
     public function __construct(IRouter $router) {
-        parent::__construct($router);   
+        parent::__construct($router);
         global $config;
-        
-        $p = new Model\Personal($router);
 
-        switch($this->method) {
+        $p = new Model\Personal($router);
+        echo $this->template->render('personal/personal');
+        /*switch($this->method) {
           case 'eliminar':
             $p->delete();
           break;
@@ -54,7 +54,7 @@ class personalController extends Controllers implements IControllers {
               'personal' => $p->get()
             ));
           break;
-        }
+        }*/
     }
 
 }
