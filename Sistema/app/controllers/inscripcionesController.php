@@ -15,29 +15,32 @@ use app\models as Model;
 use Ocrend\Kernel\Router\IRouter;
 use Ocrend\Kernel\Controllers\Controllers;
 use Ocrend\Kernel\Controllers\IControllers;
-  
+
 /**
  * Controlador inscripciones/
  *
  * @author Alexander De Azevedo, Sergio García y Greg Gómez <oeneikaphotos@gmail.com>
 */
-  
+
 class inscripcionesController extends Controllers implements IControllers {
 
     public function __construct(IRouter $router) {
-        parent::__construct($router);   
+        parent::__construct($router);
         $i = new Model\Inscripciones;
         $j = new Model\Jugadores;
         $p = new Model\Pagos;
         $s = new Model\Sedes;
 
-        $tres=$p->getCostos('plan_3dias')[0]["plan_3dias"];
-        $cinco=$p->getCostos('plan_5dias')[0]["plan_5dias"];
 
 
         switch($this->method) {
-            default:
-            echo $this->template->render('inscripciones/inscripciones',array(
+          case 'inscripciones':
+            echo $this->template->render('inscripciones/inscripciones');
+          break;
+          case 'actividad':
+            echo $this->template->render('inscripciones/actividad');
+          break;
+            /*echo $this->template->render('inscripciones/inscripciones',array(
                 'inscripciones' => $i->get(),
                 'jugadores' => $j->get(),
                 'dias_inscritos' => $i->getDiasInscritos(),
@@ -46,9 +49,9 @@ class inscripcionesController extends Controllers implements IControllers {
                 'costo_5dias' => $cinco,
                 'sedes' => $s->get(),
                 'tipo' => 2
-            ));
+            ));*/
 
-            break;
+
           }
 
 
