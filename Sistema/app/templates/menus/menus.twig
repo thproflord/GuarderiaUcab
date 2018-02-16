@@ -1,4 +1,195 @@
 {% extends 'overall/layout' %}
+{% block appHeader %}
+  <!-- DataTables -->
+  <link rel="stylesheet" href="views/theme/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <style>
+    .example-modal .modal {
+      position: relative;
+      top: auto;
+      bottom: auto;
+      right: auto;
+      left: auto;
+      display: block;
+      z-index: 1;
+    }
+
+    .example-modal .modal {
+      background: transparent !important;
+    }
+  </style>
+{% endblock %}
+
 {% block appBody %}
-    ¡Hola Mundo!
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        ARMAR MENU
+        <small>Escuela de fútbol 'Pasión de vida'</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="#">Armar Menu</a></li>
+        <li class="active">Armar Menu</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Listado de Armar Menu</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+
+
+
+                <div class="row">
+                    <form id="criterios_mensualidades_form">
+                         <div class="col-xs-12 col-sm-6 col-md-4">
+                          <input type="text" class="form-control" placeholder="Cedula representante" id="id_criterio_mensualidades_1" name="criterio_mensualidades_1">
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-4">
+                          <input type="text" class="form-control" placeholder="ID Jugador" id="id_criterio_mensualidades_2" name="criterio_mensualidades_2">
+                        </div>
+                      
+                        <div class="col-xs-12 col-sm-2 col-md-4">
+                           <button type="button" id="busqueda_criterios_mensualidades" class="btn btn-primary btn-lacra">Buscar</button>  
+                        </div>
+                    </form>
+                    </div>
+
+
+
+              <div class="table-responsive">
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th></th>
+                    <th>Monto a pagar</th>
+                    <th>Representante</th>
+                    <th>Representado</th>
+                    <th>Acciones</th>
+                  </thead>
+                  <tbody id="mensualidades_body">
+                  {% for m in mensualidades %}
+                      <tr>
+                          <td>{{ m.codigo_consecutivo }}</td>
+                          <td>{{ m.precio_mensualidad }}</td>                       
+                          <td>{{ m.nombre }} {{ m.apellido }} {{ m.cedula_representante }}</td>
+                          <td>{{ m.nombrej }} {{ m.apellidoj }} {{ m.id_jugador }}</td>    
+                       
+                          {% set foo = 0 %} 
+                          {% for ppc in pagos_por_codigo %}
+                              {% if ppc.codigo_mensualidad == m.codigo_consecutivo and ppc.cedula_representante == m.cedula_representante and ppc.id_jugador == m.id_jugador %}
+                                {% set fua = m.precio_mensualidad %}
+                                  {% if ppc.monto_pagos >= m.precio_mensualidad  %}
+                                  {% set foo = 1 %}
+                                  {% endif %}
+                              {% endif %}
+                          {% endfor %}
+                          {% if foo == 0 %}
+                          <td><button type="button" class="btn btn-block btn-primary btn-flat" data-toggle="modal" data-target="#modal_crear_pago" onclick="create_pago({{ m.cedula_representante }},{{ m.codigo_consecutivo }},{{ 1 }},'{{ m.id_jugador }}',{{ m.precio_mensualidad }})"><i class="fa fa-plus-circle"></i> Pagar</button></td>
+                          {% else %}
+                          <td><button type="button" class="btn btn-block btn-primary btn-flat"  ><i class="fa fa-plus-circle"></i> Pagada</button></td>
+                          {% endif %}
+                          
+                      </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+                <button type="button" class="btn btn-block btn-primary btn-flat" data-toggle="modal" data-target="#modal_crear_mensualidad" onclick="create_mensualidad({{ costo_mensualidad }})" ><i class="fa fa-plus-circle"></i> CREAR MENU</button>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      {% include 'mensualidades/crear' %}
+      {% include 'pagos/crear' %}
+      {#% include 'colegios/eliminar' %#}
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+{% endblock %}
+
+{% block appFooter %}
+<script src="views/app/js/mensualidades/crear.js"></script>
+<script src="views/app/js/pagos/crear.js"></script>
+
+<!-- DataTables -->
+<script src="views/theme/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="views/theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- page script -->
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+
+<script>
+    /*Evento ejecutado al realizar click sobre el button "busqueda_criterio" */
+    $('#busqueda_criterios_mensualidades').click(function(e) {
+    e.defaultPrevented;
+    
+    $.ajax({
+      type : "GET",
+      url : "api/mensualidades/criterios",
+      data : $("#criterios_mensualidades_form").serialize(),
+      success: function(json){
+        $("#mensualidades_body").empty();
+        for (var i = 0; i < json.length; i++){
+
+
+          if( json[i].pagado == null ){
+            $("#mensualidades_body").append(`
+            <tr>
+                <td>${ json[i].codigo_consecutivo }</td>
+                <td>${ json[i].precio_mensualidad }</td>                       
+                <td>${ json[i].nombre } ${ json[i].apellido } ${ json[i].cedula_representante }</td>
+                <td>${ json[i].nombrej } ${ json[i].apellidoj } ${ json[i].id_jugador }</td>    
+
+                <td><button type="button" class="btn btn-block btn-primary btn-flat" data-toggle="modal" data-target="#modal_crear_pago" onclick="create_pago(${ json[i].cedula_representante },${ json[i].codigo_consecutivo },${ 1 },'${ json[i].id_jugador }',${ json[i].precio_mensualidad })"><i class="fa fa-plus-circle"></i> Pagar</button></td>
+        
+            </tr>
+            `);
+          }else{
+            $("#mensualidades_body").append(`
+            <tr>
+                <td>${ json[i].codigo_consecutivo }</td>
+                <td>${ json[i].precio_mensualidad }</td>                       
+                <td>${ json[i].nombre } ${ json[i].apellido } ${ json[i].cedula_representante }</td>
+                <td>${ json[i].nombrej } ${ json[i].apellidoj } ${ json[i].id_jugador }</td>    
+             
+                <td><button type="button" class="btn btn-block btn-primary btn-flat"  ><i class="fa fa-plus-circle"></i> Pagada</button></td>
+                
+            </tr>
+            `);
+          }
+
+        }
+
+      },
+      error : function(xhr, status) {
+        alert('Ha ocurrido un problema.');
+      }
+    })
+    });
+    </script>
 {% endblock %}
