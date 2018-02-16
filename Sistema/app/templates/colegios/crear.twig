@@ -1,0 +1,44 @@
+<section class="content">
+    <div class="modal fade" id="modal-default">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Crear Colegio</h4>
+              </div>
+              <div class="modal-body">
+                <form role="form" id="crear_colegio_form">
+                <!-- text input -->
+                <div class="form-group">
+                  <label>Nombre del colegio</label>
+                  <input type="text" class="form-control" name="nombre" placeholder="Introduzca el nombre del colegio">
+                </div>
+                <div class="form-group">
+                  <label>Tipo de colegio</label>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="tipocolegio" id="tipo_colegio1" value="1" checked>
+                      Publico
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="tipocolegio" id="tipo_colegio2" value="2">
+                      Privado
+                    </label>
+                  </div>
+                </div>
+              </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="crear_colegio">Crear Colegio</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</section>

@@ -1,0 +1,212 @@
+{% extends 'overall/layout' %}
+{% block appHeader %}
+  <style>
+    .example-modal .modal {
+      position: relative;
+      top: auto;
+      bottom: auto;
+      right: auto;
+      left: auto;
+      display: block;
+      z-index: 1;
+    }
+
+    .example-modal .modal {
+      background: transparent !important;
+    }
+  </style>
+{% endblock %}
+
+{% block appBody %}
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        RESULTADOS Y PUNTAJES
+        <small>Escuela de fútbol 'Pasión de vida'</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="home"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li class="active">Estadisticas por equipo y jugador</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+              <form id="temporada_form">
+                  <label>Temporada</label>
+                      <select name="anio_ini" class="form-control select2">
+                        {% for i in 1999..2030 %}
+                        <option value="{{ i }}">{{ i }}</option>
+                        {% endfor %}
+                      </select>
+                    </br>
+                      <select name="anio_fin" class="form-control select2">
+                          {% for i in 1999..2030 %}
+                          <option value="{{ i }}">{{ i }}</option>
+                          {% endfor %}
+                      </select>  
+                      <button type="button" class="btn btn-primary" onclick="getAll()">Buscar</button>               
+              </form>
+            <div class="box-header">
+              <h3 class="box-title">Estadisticas por equipo</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              </br>
+                <h4>Top 5 Equipos</h4>
+              </br>
+              <table class="table table-bordered">
+                <thead>
+                    <tr>
+                      <th>Equipo</th>
+                      <th>Categoría</th>
+                      <th>Goles hechos</th>
+                      <th>Goles recibidos</th>
+                      <th>Puntos</th>
+                    </tr>
+                </thead>
+                <tbody id="body-topequipos">
+                    {% for e in topequipos %}
+                    <tr>
+                      <td>{{ e.nombre_equipo }}</td>
+                      <td>Infantil A</td>
+                      <td>{{ e.hechos }}</td>
+                      <td>{{ e.recibidos }}</td>
+                      <td>56</td>
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            </br>
+            <h4>Top 5 Equipos por promedio de goles</h4>
+          </br>
+          <table class="table table-bordered">
+            <thead>
+                <tr>
+                  <th>Equipo</th>
+                  <th>Categoría</th>
+                  <th>Promedio de goles hechos por partido</th>
+                  <th>Goles recibidos</th>
+                  <th>Puntos</th>
+                </tr>
+            </thead>
+            <tbody id="body-topequipos-promedio">
+                {% for e in topequipospromedio %}
+                <tr>
+                  <td>{{ e.nombre_equipo }}</td>
+                  <td>Infantil A</td>
+                  <td>{{ e.hechos }}</td>
+                  <td>{{ e.recibidos }}</td>
+                  <td>56</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+              </br>
+                <h4>Top 5 por goles hechos</h4>
+              </br>
+              <table class="table table-bordered">
+                <thead>
+                    <tr>
+                      <th>Jugador</th>
+                      <th>Apellido</th>
+                      <th>Goles</th>
+                    </tr>
+                </thead>
+                <tbody id="body-topjugadores">
+                    {% for j in topjugadoreshechos %}
+                    <tr>
+                      <td>{{ j.nombre }}</td>
+                      <td>{{ j.apellido }}</td>
+                      <td>{{ j.goles }}</td>
+                    </tr>
+                    {% endfor %}
+                </tbody>
+                
+              </table>
+            </br>
+            <h4>Top 5 por goles detenidos</h4>
+          </br>
+          <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>Jugador</th>
+                    <th>Apellido</th>
+                    <th>Goles</th>
+                  </tr>
+            </thead>
+            <tbody id="body-topporteros">
+                {% for j in topjugadoresrecibidos %}
+                <tr>
+                  <td>{{ j.nombre }}</td>
+                  <td>{{ j.apellido }}</td>
+                  <td>{{ j.goles }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+      {# Creación de colegio #}
+      {% include 'categorias/crear' %}
+      {% include 'categorias/editar' %}
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+{% endblock %}
+
+{% block appFooter %}
+<!-- page script -->
+<script src="views/app/js/estadisticas/get.js"></script>
+<script src="views/app/js/categorias/editar.js"></script>
+<!-- DataTables -->
+<script src="views/theme/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="views/theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script>
+  $(function () {
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+
+
+
+<script>
+  /*Evento ejecutado al realizar click sobre el button "busqueda_criterio" */
+  $('#busqueda_criterio_categorias').click(function(e) {
+  e.defaultPrevented;
+  
+  /*Nombre del crud*/
+  var crud = "categorias/";
+  
+  /*Criterio de busqueda , definido en el select "criterio" */
+  var criterio = $("#criterio_categorias").val().concat("/");
+  
+  /*Valor a buscar , escrito en el input "data"*/
+  var valor = $("#data_categorias").val();
+  
+  /*Link con todos los datos*/
+  var busqueda=crud.concat(criterio).concat(valor);
+  
+  /*Redireccion al link*/
+  location.href = busqueda;
+  });
+  </script>
+{% endblock %}

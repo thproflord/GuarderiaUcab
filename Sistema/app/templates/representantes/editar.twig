@@ -1,0 +1,54 @@
+<div class="modal fade" id="modal_editar_representante">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Editar Representante</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form" id="editar_representante_form">
+          <!-- text input -->
+          <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="id_nombre">
+                <label>Apellido</label>
+                <input type="text" class="form-control" placeholder="Apellido" name="apellido" id="id_apellido">
+                <input type="hidden" class="form-control" placeholder="Cedula" name="cedula" id="id_cedula">
+                <label>Teléfono de Casa</label>
+                <input type="tel" class="form-control" placeholder="" name="tlf_casa" id="id_tlf_casa">
+                <label>Teléfono de Oficina</label>
+                <input type="tel" class="form-control" placeholder="" name="tlf_oficina" id="id_tlf_oficina">
+                <label>Teléfono Celular</label>
+                <input type="tel" class="form-control" placeholder="" name="tlf_celular" id="id_tlf_celular">
+                <label>Direccion</label>
+                <input type="text" class="form-control" placeholder="" name="direccion" id="id_direccion">
+                <label>Profesion</label>
+                <input type="text" class="form-control" placeholder="" name="profesion" id="id_profesion">
+    
+                 <div class="form-group col-xs-12 col-sm-12 col-md-12">
+                    <label>Sexo</label>
+                    <input type="radio" id="id_sexo_hombre_edit" name="sexo" value="m">
+                    <label for="id_sexo_hombre_edit">Hombre</label>
+                    <input type="radio" id="id_sexo_mujer_edit" name="sexo" value="f">
+                    <label for="id_sexo_mujer_edit">Mujer</label>
+                </div>
+    
+    
+                <label>Parentesco</label>
+                <input type="text" class="form-control" placeholder="" name="parentesco" id="id_parentesco">
+          </div>
+       
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+          <button type="button" id="editar_representante" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+

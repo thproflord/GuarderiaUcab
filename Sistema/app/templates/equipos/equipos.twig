@@ -1,0 +1,145 @@
+{% extends 'overall/layout' %}
+{% block appHeader %}
+  <style>
+    .example-modal .modal {
+      position: relative;
+      top: auto;
+      bottom: auto;
+      right: auto;
+      left: auto;
+      display: block;
+      z-index: 1;
+    }
+
+    .example-modal .modal {
+      background: transparent !important;
+    }
+  </style>
+{% endblock %}
+
+{% block appBody %}
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        EQUIPOS
+        <small>Escuela de fútbol 'Pasión de vida'</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="home/"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="#">Equipos</a></li>
+        <li class="active">Listado de Equipos</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Listado de Equipos</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+                <div class="row">
+                    <form id="busqueda_form">
+                        <div class="col-xs-12 col-sm-6 col-md-3">
+                          <input type="text" class="form-control" placeholder="Numero de Jugadores" id="jugadores_criterio" name="jugadores_criterio">
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-3">
+                          <input type="text" class="form-control" placeholder="Partidos Jugados" id="partidos_criterio" name="partidos_criterio">
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-3">
+                          <input type="text" class="form-control" placeholder="Posicion Faltante" id="posicion_criterio" name="posicion_criterio">
+                        </div>
+                        <div class="col-xs-12 col-sm-2 col-md-2">
+                           <button type="button" id="busqueda_criterio" class="btn btn-primary btn-lacra" onclick="busqueda()">Buscar</button>  
+                        </div>
+                    </form>
+                </div>
+              <div class="table-responsive">
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th style="width: 40%;">Nombre</th>
+                    <th>Jugadores del equipo</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                  </tr>
+                  </thead>
+                  <tbody id="equipos_body">
+                  {% for e in equipos %}
+                    <tr>
+                      <td> {{ e.nombre_equipo }} </td>
+                      <td><a href="#" type="button" data-toggle="modal" data-target="#modal-mostrar-jug" onclick="mostrar_jugadores('{{ e.nombre_equipo }}')">{{ e.tot_jugadores }}</a></td>
+                      <td><a type="button" data-toggle="modal" data-target="#modal-equipos-editar" onclick="editar_equipo('{{ p.nombre }}')"><i class="fa fa-edit"></i></a></td>
+                      <td><a type="button" href="equipos/eliminar/{{ p.nombre }}"><i class="fa fa-trash"></i></a></td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+                <button type="button" class="btn btn-block btn-primary btn-flat" data-toggle="modal" data-target="#modal-crear-equipos"><i class="fa fa-plus-circle"></i> CREAR NUEVO EQUIPO</button>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+      {# Creación de colegio #}
+      {% include 'equipos/crear' %}
+      {% include 'equipos/editar' %}
+      {% include 'equipos/mostrar_jug' %}
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+{% endblock %}
+
+{% block appFooter %}
+<!-- page script -->
+<script src="views/app/js/equipos/crear.js"></script>
+<script src="views/app/js/equipos/editar.js"></script>
+<script src="views/app/js/equipos/mostrar_jug.js"></script>
+<!-- DataTables -->
+<script src="views/theme/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="views/theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script>
+  $(function () {
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+
+
+<script>
+  /*Evento ejecutado al realizar click sobre el button "busqueda_criterio" */
+  $('#busqueda_criterio_colegios').click(function(e) {
+  e.defaultPrevented;
+  
+  /*Nombre del crud*/
+  var crud = "colegios/";
+  
+  /*Criterio de busqueda , definido en el select "criterio" */
+  var criterio = $("#criterio_colegios").val().concat("/");
+  
+  /*Valor a buscar , escrito en el input "data"*/
+  var valor = $("#data_colegios").val();
+  
+  /*Link con todos los datos*/
+  var busqueda=crud.concat(criterio).concat(valor);
+  
+  /*Redireccion al link*/
+  location.href = busqueda;
+  });
+  </script>
+{% endblock %}

@@ -1,0 +1,53 @@
+<div class="modal fade" id="modal_crear_ordencompra">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Crear Orden de Compra</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form" id="crear_ordencompra_form">
+          <!-- text input -->
+          <div class="form-group">  
+            
+            <label>Proveedor</label>
+            <select class="form-control select2" name="rif_proveedor" >
+              <option disabled selected value></option>
+              {% for p in proveedores %}
+              <option value="{{ p.rif }}">{{ p.nombre }} {{ p.rif }}</option>
+              {% endfor %}
+            </select>
+
+            <label>Sede</label>
+            <select class="form-control select2" name="codigo_sede" id="id_codigo_sede" onchange="reset_productos()">
+              <option disabled selected value></option>
+              {% for s in sedes %}
+              <option value="{{ s.codigo_sede }}">{{ s.nombre }}</option>
+              {% endfor %}
+            </select>
+
+            <label>Productos</label>
+            <div class="clase_productos">
+
+            </div>
+
+            <input type="hidden" id="contador">
+
+            <a onclick="agregar_producto()" data-toggle="tooltip" title="Crear Proveedor" class="btn bg-blue lacra"><i class="fa fa-plus"></i></a>
+
+       
+          </div>
+         </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+          <button type="button" id="crear_ordencompra" class="btn btn-primary">Crear Orden de Compra</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+

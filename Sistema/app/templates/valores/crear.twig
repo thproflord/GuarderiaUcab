@@ -1,0 +1,50 @@
+<div class="modal fade" id="modal_crear_valor">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Crear valor</h4>
+            </div>
+            <div class="modal-body">
+              <form role="form" id="crear_valor_form">
+              <!-- text input -->
+              <div class="form-group">
+                <label>Peso</label>
+                <input type="text" class="form-control" placeholder="" name="peso">
+                <label>Talla</label>
+                <input type="text" class="form-control" placeholder="" name="talla">
+                <label>Imc</label>
+                <input type="text" class="form-control" placeholder="" name="imc">
+                <label>Flexiones por minuto</label>
+                <input type="tel" class="form-control" placeholder="" name="flexiones_x_minuto">
+                <label>Abdominales por 5 minutos</label>
+                <input type="tel" class="form-control" placeholder="" name="ab_x5_min">
+                <label>Tiempo en 200 metros</label>
+                <input type="tel" class="form-control" placeholder="" name="tiempo_200m">
+                <label>Tiempo en 600 metros</label>
+                <input type="text" class="form-control" placeholder="" name="tiempo_600m">
+                <label>Tiempo en 1 kilometro</label>
+                <input type="text" class="form-control" placeholder="" name="tiempo_1k">
+                <label>Cedula Jugador</label>
+                <select class="form-control select2" name="id_jugador"  data-placeholder="">
+                    <option disabled selected value></option>
+                {% for j in jugadores %}
+                    <option value="{{ j.id_jugador }}">{{ j.nombre }}, {{ j.apellido }}</option>
+                {% endfor %}
+                </select>
+              </div>
+             </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+              <button type="button" id="crear_valor" class="btn btn-primary">Crear valor</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    
+    

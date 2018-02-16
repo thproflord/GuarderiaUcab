@@ -1,0 +1,50 @@
+<div class="modal fade" id="modal_crear_plan">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Crear plan</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form" id="crear_plan_form">
+          <!-- text input -->
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" class="form-control" placeholder="" name="nombre">
+            <label>Duración</label>
+            <input type="number" min="1" max="4" class="form-control" placeholder="" name="duracion">
+            <label>Tipo</label>
+            <select class="form-control select2" name="tipo"  data-placeholder="">
+                <option disabled selected value></option>
+                <option value="G">General</option>
+                <option value="P">Particular</option>
+            </select>
+            <label>Horario</label>
+            <select class="form-control select2" name="horario"  data-placeholder="">
+                    <option disabled selected value></option>
+                {% for h in horarios %}
+                    <option value="{{ h.id_horario }}">{{ h.anio_ini_horario }},{{ h.anio_fin_horario }},{{ h.dia }},{{ h.nombre_sede }}</option>
+                {% endfor %}
+            </select>
+            <label>Entrenador</label>
+            <select class="form-control select2" name="entrenador"  data-placeholder="">
+                    <option disabled selected value></option>
+                {% for e in entrenadores %}
+                    <option value="{{ e.cedula_empleado }}">{{ e.nombre }},{{ e.apellido }}</option>
+                {% endfor %}
+            </select>
+          </div>
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+          <button type="button" id="crear_plan" class="btn btn-primary">Crear plan</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+

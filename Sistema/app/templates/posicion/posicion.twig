@@ -1,0 +1,129 @@
+{% extends 'overall/layout' %}
+{% block appHeader %}
+{% endblock %}
+
+{% block appBody %}
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        POSICIONES
+        <small>Escuela de fútbol 'Pasión de vida'</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="#">Posiciones</a></li>
+        <li class="active">Listado de Posiciones</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Listado de Posiciones</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+              <div class="row">
+                <div class="col-xs-12 col-sm-4 col-md-3">
+                 <select id="criterio_posicion" class="select">
+                  <option value="descripcion">Descripcion</option> 
+                  <option value="posicion">Posiciones con x cantidad de jugadores</option> 
+                  <option value="menor">Cantidad de alumnos menores a</option>
+               </select>
+                </div>
+
+                <div class="col-xs-12 col-sm-6 col-md-7">
+                  <input type="text" class="form-control" placeholder="Introduce los datos a buscar" id="data_posicion">
+                </div>
+
+                <div class="col-xs-12 col-sm-2 col-md-2">
+                  <button type="button" id="busqueda_criterio_posicion" class="btn btn-primary btn-lacra">Buscar</button> 
+                </div>
+              </div>
+              <div class="table-responsive">
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>Codigo</th>
+                    <th>Descripción</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+                  </tr>
+                  </thead>
+                  <tbody>
+                  {% for p in posicion %}
+                    <tr>
+                      <td>{{ p.codigo_posicion }}</td>
+                      <td>{{ p.descripcion }}</td>
+                      <td><a type="button" data-toggle="modal" data-target="#modal-default-editar" onclick="editar_posicion({{ p.codigo_posicion }},'{{ p.descripcion }}')"><i class="fa fa-edit"></i></a></td>
+                      <td><a type="button" href="posicion/eliminar/{{ p.codigo_posicion }}"><i class="fa fa-trash"></i></a></td>
+                    </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+                <button type="button" class="btn btn-block btn-primary btn-flat" data-toggle="modal" data-target="#modal-default" onclick="crear_posicion()"><i class="fa fa-plus-circle"></i> CREAR NUEVA POSICIÓN</button>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+      {# Creación de colegio #}
+      {% include 'posicion/crear' %}
+      {% include 'posicion/editar' %}
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+{% endblock %}
+
+{% block appFooter %}
+<!-- page script -->
+<script src="views/app/js/posicion/crear.js"></script>
+<script src="views/app/js/posicion/editar.js"></script>
+<script>
+  $(function () {
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+
+
+<script>
+  /*Evento ejecutado al realizar click sobre el button "busqueda_criterio" */
+  $('#busqueda_criterio_posicion').click(function(e) {
+  e.defaultPrevented;
+  
+  /*Nombre del crud*/
+  var crud = "posicion/";
+  
+  /*Criterio de busqueda , definido en el select "criterio" */
+  var criterio = $("#criterio_posicion").val().concat("/");
+  
+  /*Valor a buscar , escrito en el input "data"*/
+  var valor = $("#data_posicion").val();
+  
+  /*Link con todos los datos*/
+  var busqueda=crud.concat(criterio).concat(valor);
+  
+  /*Redireccion al link*/
+  location.href = busqueda;
+  });
+  </script>
+{% endblock %}
+
+
+

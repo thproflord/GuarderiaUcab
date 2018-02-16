@@ -1,0 +1,42 @@
+<div class="modal fade" id="modal_crear_nota">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Crear notas</h4>
+            </div>
+            <div class="modal-body">
+              <form role="form" id="crear_nota_form">
+              <!-- text input -->
+              <div class="form-group">
+                <label>Año inicio</label>
+                <input type="text" class="form-control" placeholder="" name="año_ini">
+                <label>Año final</label>
+                <input type="text" class="form-control" placeholder="" name="año_fin">
+                <label>Promedio</label>
+                <input type="text" class="form-control" placeholder="" name="promedio">
+                <label>Lapso</label>
+                <input type="number" class="form-control" placeholder="" name="lapso">
+                <label>Jugador</label>
+                <select class="form-control select2" name="cedula_jugador"  data-placeholder="">
+                    <option disabled selected value></option>
+                {% for j in jugadores %}
+                    <option value="{{ j.id_jugador }}">{{ j.nombre }}, {{ j.apellido }}</option>
+                {% endfor %}
+                </select>
+              </div>
+             </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+              <button type="button" id="crear_nota" class="btn btn-primary">Crear notas</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    
+    

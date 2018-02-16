@@ -1,0 +1,54 @@
+
+    <div class="modal fade" id="modal_editar_sede">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Editar Sede</h4>
+            </div>
+            <div class="modal-body">
+              <form role="form" id="editar_sede_form">
+              <!-- text input -->
+              <div class="form-group">
+                <input type="hidden" class="form-control" placeholder="Nombre..." name="codigo" id="codigo_editar">
+                <label>Nombre</label>
+                <input type="text" class="form-control" placeholder="Nombre..." name="nombre" id="nombre_editar">
+                <label>Dirección</label>
+                <input type="text" class="form-control" placeholder="Dirección..." name="direccion" id="direccion_editar">
+                <label>Fecha de Apertura</label>
+                <input type="date" class="form-control" placeholder="" name="fecha_apertura" id="fecha_apertura_editar">
+                <label>Costo por 3 días</label>
+                <input type="number" class="form-control" placeholder="" name="costo_3dias" value='0' id="costo_3dias_editar">
+                <label>Costo por 5 días</label>
+                <input type="number" class="form-control" placeholder="" name="costo_5dias" value='0' id="costo_5dias_editar">
+                <label>Urbanización</label>
+                <input type="text" class="form-control" placeholder="Urbanización..." name="urbanizacion" id="urbanizacion_editar">
+                <label>Calle</label>
+                <input type="text" class="form-control" placeholder="Calle..." name="calle" id="calle_editar">
+                <label>Coordinador Técnico</label>
+                <select class="form-control select2" name="coord_tecnico"  data-placeholder="" id="coord_tecni_editar">
+                {% for t in tecnicos %}
+                    <option value="{{ t.cedula_empleado }}">{{ t.nombre }} {{ t.apellido }}</option>
+                {% endfor %}
+                </select>
+                <label>Coordinador Administrativo</label>
+                <select class="form-control select2" name="coord_admin"  data-placeholder="" id="coord_admin_editar">
+                {% for a in administrativos %}
+                    <option value="{{ a.cedula_empleado }}">{{ a.nombre }} {{ a.apellido }}</option>
+                {% endfor %}
+                </select>
+              </div>
+            </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+              <button type="button" id="editar_sede" class="btn btn-primary">editar sede</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+

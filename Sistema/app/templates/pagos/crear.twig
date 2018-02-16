@@ -1,0 +1,92 @@
+<div class="modal fade" id="modal_crear_pago">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Crear Pago</h4>
+            </div>
+            <div class="modal-body">
+              <form role="form" id="crear_pago_form">
+              <!-- text input -->
+              <div class="form-group"> 
+                  <label>Metodo de pago</label>
+                  <br>   
+                  <select name="metodo_pago">
+                      {% if tipo == 0 %}
+                      <option value="transferencia">Transferencia</option> 
+                      {% else %}  
+                      <option value="transferencia">Transferencia</option>
+                      <option value="efectivo" selected>Efectivo</option>
+                      <option value="debito">Debito</option>
+                      <option value="credito">Credito</option>
+                      {% endif %}
+                   </select>   <i>**Si el pago se hace con tarjeta de credito se hara un recargo de 10%</i>
+                <br>               
+
+
+                {% if tipo == 2 %}
+                
+                <label>Monto</label>
+                <input type="number" class="form-control" placeholder="Monto" name="monto" id="id_monto" readonly="readonly">
+
+                {% elseif tipo == 1 %} 
+                <label>Monto</label>
+                <input type="number" class="form-control" placeholder="Monto" name="monto" id="id_monto" readonly="readonly">
+
+                {% else %}  
+
+                <label>Monto a abonar</label>
+                <input type="number" class="form-control" placeholder="Monto" name="monto" id="id_monto">
+
+                {% endif %}
+
+
+                <label>Ref bancaria</label>
+                <input type="text" class="form-control" placeholder="Ref bancaria" name="ref_bancaria">              
+                <label>Representante</label>
+                <input type="text" class="form-control" placeholder="Representante" name="id_representante" id="id_id_representante" readonly="readonly"> 
+                <label>Jugador</label>
+                <input type="text" class="form-control" placeholder="Representado" name="id_jugador" id="id_id_jugadore" readonly="readonly" >
+
+
+                <!-- Ventas(facturas) -->
+                {% if tipo == 0 %}
+
+                <label>Numero Factura</label>
+                <input type="text" class="form-control" placeholder="Numero factura" name="numero_factura" id="id_numero_factura" readonly="readonly"> 
+
+                <input type="hidden" class="form-control"  id="id_cantidad_pagos" >             
+                <input type="hidden" class="form-control"  id="id_suma_pagos" > 
+                <input type="hidden" class="form-control"  id="id_costo_compra" >
+                <input type="hidden" class="form-control"  name="cantidad_ajuste" id="id_cantidad_ajuste" >
+                <input type="hidden" class="form-control"  name="tipo_unif" id="id_tipo_unif" >
+
+                <!-- Mensualidades-->
+                {% elseif tipo == 1 %}
+
+                <label>Codigo Mensualidad</label>
+                <input type="text" class="form-control" placeholder="Codigo Mensualidad" name="codigo_mensualidad" id="id_codigo_mensualidad" readonly="readonly"> 
+
+                <!-- Inscripciones-->
+                {% else %}  
+
+                <label>Temporada</label>
+                <input type="text" class="form-control" placeholder="Año inicio" name="año_ini" id="id_año_ini" readonly="readonly" >             
+                <input type="text" class="form-control" placeholder="Año fin" name="año_fin" id="id_año_fin"  readonly="readonly"> 
+
+                {% endif %}
+             </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+              <button type="button" id="crear_pago" class="btn btn-primary">Crear Pago</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    
+    

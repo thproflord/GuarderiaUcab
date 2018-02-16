@@ -1,0 +1,209 @@
+{% extends 'overall/layout' %}
+{% block appHeader %}
+  <!-- DataTables -->
+  <link rel="stylesheet" href="views/theme/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <style>
+    .example-modal .modal {
+      position: relative;
+      top: auto;
+      bottom: auto;
+      right: auto;
+      left: auto;
+      display: block;
+      z-index: 1;
+    }
+
+    .example-modal .modal {
+      background: transparent !important;
+    }
+  </style>
+{% endblock %}
+
+{% block appBody %}
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        ORDENES DE COMPRAS
+        <small>Escuela de fútbol 'Pasión de vida'</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="#">Orden de compra</a></li>
+        <li class="active">Listado de ordenes de compras</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Listado de ordenes de compra</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+
+
+                <div class="row">
+                    <form id="criterios_ordencompra_form">
+                         <div class="col-xs-12 col-sm-6 col-md-3">
+                          <input type="text" class="form-control" placeholder="Nombre Sede" id="id_criterio_ordencompra_1" name="criterio_ordencompra_1">
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-3">
+                          <input type="text" class="form-control" placeholder="Nombre Proveedor" id="id_criterio_ordencompra_2" name="criterio_ordencompra_2">
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-3">
+                          <input type="text" class="form-control"  placeholder="Descripcion Producto" id="id_criterio_ordencompra_3" name="criterio_ordencompra_3">
+                        </div>
+                        <div class="col-xs-12 col-sm-2 col-md-2">
+                           <button type="button" id="busqueda_criterios_ordencompra" class="btn btn-primary btn-lacra">Buscar</button>  
+                        </div>
+                    </form>
+                    </div>
+
+
+
+              <div class="table-responsive">
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>Numero</th>
+                    <th>Fecha compra</th>
+                    <th>Monto</th>
+                    <th>Fecha pago</th>
+                    <th>Ref bancaria</th>
+                    <th>Proveedor</th>
+                    <th>Sede</th>  
+                    <th>Pagar</th>            
+                    <th>Eliminar</th>
+
+                  </thead>
+                  <tbody id="ordencompra_body">
+                  {% for o in ordenes %}
+                      <tr>
+                          <td>{{ o.numero_orden }}</td>
+                          <td>{{ fecha('D, d F, Y', o.fecha_compra) }}</td>                       
+                          <td>Bs {{ o.monto }}</td>
+
+                          {% if o.fecha_pago == NULL %}
+                          <td>Sin pagar</td>
+                          {% else %}
+                          <td>{{ fecha('D, d F, Y', o.fecha_pago) }}</td>
+                          {% endif %}
+                          
+
+
+                          <td>{{ o.ref_bancaria }}</td>
+                          <td>{{ o.nombre_proveedor }}  {{ o.rif_proveedor }}</td>
+                          <td>{{ o.nombre_sede }}</td>
+
+                          {% if o.fecha_pago == NULL %}
+                          <td><a type="button" data-toggle="modal" data-target="#modal_pagar_ordencompra" onclick="pay_ordencompra({{ o.numero_orden }})"><i class="fa fa-money"></i>Pagar</a></td>                          
+                          {% else %}
+                          <td><a type="button" ><i class="fa fa-money"></i>Pagada</a></td>                          
+                          {% endif %}
+
+                          <td><a type="button" href="ordencompra/eliminar/{{ o.numero_orden }}"><i class="fa fa-trash"></i></a></td>
+                      </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+                <button type="button" class="btn btn-block btn-primary btn-flat" data-toggle="modal" data-target="#modal_crear_ordencompra" onclick="create_ordencompra()"><i class="fa fa-plus-circle"></i> CREAR NUEVA ORDEN DE COMPRA</button>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+      {# Creación de producto #}
+      {% include 'ordencompra/crear' %}
+      {% include 'ordencompra/pagar' %}
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+{% endblock %}
+
+{% block appFooter %}
+<script src="views/app/js/ordencompra/crear.js"></script>
+<script src="views/app/js/ordencompra/pagar.js"></script>
+<!-- DataTables -->
+<script src="views/theme/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="views/theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- page script -->
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+
+<script>
+    /*Evento ejecutado al realizar click sobre el button "busqueda_criterio" */
+    $('#busqueda_criterios_ordencompra').click(function(e) {
+    e.defaultPrevented;
+    
+    $.ajax({
+      type : "GET",
+      url : "api/ordencompra/criterios",
+      data : $("#criterios_ordencompra_form").serialize(),
+      success: function(json){
+        $("#ordencompra_body").empty();
+        for (var i = 0; i < json.length; i++){
+
+
+          if(json[i].fecha_pago == null){
+            $("#ordencompra_body").append(`
+            <tr>
+                <td>${ json[i].numero_orden }</td>
+                <td>${ json[i].fecha_compra }</td>                       
+                <td>Bs ${ json[i].monto }</td>
+                <td>${ json[i].fecha_pago }</td>
+                <td>${ json[i].ref_bancaria }</td>
+                <td>${ json[i].nombre_proveedor }  ${ json[i].rif_proveedor }</td>
+                <td>${ json[i].nombre_sede }</td>
+
+                <td><a type="button" data-toggle="modal" data-target="#modal_pagar_ordencompra" onclick="pay_ordencompra(${ json[i].numero_orden })"><i class="fa fa-money"></i>Pagar</a></td>                          
+                <td><a type="button" href="ordencompra/eliminar/${ json[i].numero_orden }"><i class="fa fa-trash"></i></a></td>
+            </tr>
+            `);
+          }else{
+            $("#ordencompra_body").append(`
+            <tr>
+                <td>${ json[i].numero_orden }</td>
+                <td>${ json[i].fecha_compra }</td>                       
+                <td>Bs ${ json[i].monto }</td>
+                <td>${ json[i].fecha_pago }</td>
+                <td>${ json[i].ref_bancaria }</td>
+                <td>${ json[i].nombre_proveedor }  ${ json[i].rif_proveedor }</td>
+                <td>${ json[i].nombre_sede }</td>
+
+                <td><a type="button" ><i class="fa fa-money"></i>Pagada</a></td> 
+                <td><a type="button" href="ordencompra/eliminar/${ json[i].numero_orden }"><i class="fa fa-trash"></i></a></td>
+            </tr>
+            `);
+          }
+
+        }
+
+      },
+      error : function(xhr, status) {
+        alert('Ha ocurrido un problema.');
+      }
+    })
+    });
+    </script>
+
+{% endblock %}

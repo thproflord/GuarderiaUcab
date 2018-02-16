@@ -1,0 +1,45 @@
+
+    <div class="modal fade" id="modal_editar_producto">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Editar producto</h4>
+                </div>
+                <div class="modal-body">
+                  <form role="form" id="editar_producto_form">
+                  <!-- text input -->
+                  <div class="form-group">
+                    <input type="hidden" class="form-control" placeholder="Descripcion..." name="codigo" id="codigo_editar">
+                    <label>Descripcion</label>
+                    <input type="text" class="form-control" placeholder="Descripcion..." name="descripcion" id="descripcion_editar">
+                    <label>Cantidad Minima</label>
+                    <input type="number" class="form-control" placeholder="" name="cantidad_minima" id="cantidad_minima_editar">
+                    <label>Cantidad Teórica</label>
+                    <input type="number" class="form-control" placeholder="" name="cantidad_teorica" id="cantidad_teorica_editar">
+                    <label>Cantidad Física</label>
+                    <input type="number" class="form-control" placeholder="" name="cantidad" id="cantidad_editar">
+                    <label>Precio</label>
+                    <input type="number" class="form-control" placeholder="" name="precio" id="precio_editar">
+                    <label>Sede</label>
+                    <select class="form-control select2" name="sede"  data-placeholder="" id="sede_editar">
+                    {% for s in sedes %}
+                        <option value="{{ s.codigo_sede }}">{{ s.nombre }}</option>
+                    {% endfor %}
+                    </select>
+                  </div>
+                </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+                  <button type="button" id="editar_producto" class="btn btn-primary">editar producto</button>
+                </div>
+              </div>
+              <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+    
+    

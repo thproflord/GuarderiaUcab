@@ -1,0 +1,51 @@
+
+    <div class="modal fade" id="modal_crear_producto">
+            <div class="modal-dialog">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span></button>
+                  <h4 class="modal-title">Crear producto</h4>
+                </div>
+                <div class="modal-body">
+                  <form role="form" id="crear_producto_form">
+                  <!-- text input -->
+                  <div class="form-group">
+                    <label>Descripcion</label>
+                    <input type="text" class="form-control" placeholder="Descripcion..." name="descripcion">
+                    <label>Tipo</label>
+                    <select class="form-control select2" name="tipo"  data-placeholder="">
+                        <option disabled selected value></option>
+                        <option value="Uniforme">Uniforme</option>
+                        <option value="Material">Material</option>
+                    </select>
+                    <label>Cantidad Minima</label>
+                    <input type="number" class="form-control" placeholder="" name="cantidad_minima">
+                    <label>Cantidad Teorica</label>
+                    <input type="number" class="form-control" placeholder="" name="cantidad_teorica">
+                    <label>Cantidad Fisica</label>
+                    <input type="number" class="form-control" placeholder="" name="cantidad">
+                    <label>Precio</label>
+                    <input type="number" class="form-control" placeholder="" name="precio">
+                    <label>Sede</label>
+                    <select class="form-control select2" name="sede"  data-placeholder="">
+                        <option disabled selected value></option>
+                    {% for s in sedes %}
+                        <option value="{{ s.codigo_sede }}">{{ s.nombre }}</option>
+                    {% endfor %}
+                    </select>
+                  </div>
+                </form>
+                </div>
+                <div class="modal-footer">
+                  <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+                  <button type="button" id="crear_producto" class="btn btn-primary">Crear producto</button>
+                </div>
+              </div>
+              <!-- /.modal-content -->
+          </div>
+          <!-- /.modal-dialog -->
+      </div>
+      <!-- /.modal -->
+    
+    

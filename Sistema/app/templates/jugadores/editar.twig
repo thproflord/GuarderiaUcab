@@ -1,0 +1,68 @@
+<div class="modal fade" id="modal_editar_jugador">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Editar jugador</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form" id="editar_jugador_form">
+          <!-- text input -->
+          <div class="form-group">
+            <input type="hidden" name="cedula" value="" id="id_cedula_editar">
+              <label>Celular</label>
+              <input type="text" class="form-control" placeholder="Celular" name="celular" id="id_celular_editar">
+              <label>Año de estudio</label>
+              <input type="text" class="form-control" placeholder="Año de estudio" name="año_estudio" id="id_año_estudio_editar">
+              <label>Posicion del jugador</label>
+              <select class="form-control select2" name="posicion"  data-placeholder="" id="id_id_posicion">
+                <option disabled selected value></option>
+                {% for p in posiciones %}
+                <option value="{{ p.codigo_posicion }}">{{ p.descripcion }}</option>
+                {% endfor %}
+              </select>
+              <label>Colegio</label>
+              <select class="form-control select2" name="codigo_colegio"  data-placeholder="" id="id_codigo_colegio_editar">
+                <option disabled selected value></option>
+                {% for c in colegios %}
+                <option value="{{ c.codigo_colegio }}">{{ c.nombre }}</option>
+                {% endfor %}
+              </select>
+              <label>Categoria</label>
+              <select class="form-control select2" name="categoria"  data-placeholder="" id="id_categoria_editar">
+                <option disabled selected value></option>
+                {% for c in categorias %}
+                <option value="{{ c.nombre_categoria }}">{{ c.nombre_categoria }}</option>
+                {% endfor %}
+              </select>
+              <label>Nombre del equipo</label>
+              <select class="form-control select2" name="nombre_equipo"  data-placeholder="" id="id_nombre_equipo">
+                <option disabled selected value></option>
+                {% for e in equipos %}
+                <option value="{{ e.nombre_equipo }}">{{ e.nombre_equipo }}</option>
+                {% endfor %}
+              </select>
+              <label>Goles marcados</label>
+              <input type="text" class="form-control" placeholder="Goles marcado" name="goles_marcados_torneo" id="id_goles_marcados_torneo_editar">
+              <label>Goles detenidos</label>
+              <input type="text" class="form-control" placeholder="Goles detenidos" name="goles_detenidos_torneo" id="id_goles_detenidos_torneo">
+              <label>Morosidad</label>
+              <input type="text" class="form-control" placeholder="Morosidad" name="morosidad" id="id_morosidad">
+          </div>
+       
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+          <button type="button" id="editar_jugador" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+
+
+

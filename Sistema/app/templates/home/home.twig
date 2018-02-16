@@ -1,0 +1,57 @@
+{% extends 'overall/layout' %}
+{% block appBody %}
+<!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        INICIO
+      </h1>
+      <ol class="breadcrumb">
+        <li class="active">Inicio</li>
+      </ol>
+    </section>
+<!--Si lees esto es que me quieres-->
+    <section class="content">
+      <div class="box box-default collapsed-box">
+        <div class="box-header with-border">
+          <h3 class="box-title">Enunciado del proyecto</h3>
+
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+              </button>
+            </div>
+            <!-- /.box-tools -->
+        </div>
+        <!-- /.box-header -->
+          <div class="box-body">
+            {% include 'textos/texto' %}
+          </div>
+          <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+
+      <div class="box box-default collapsed-box">
+        <div class="box-header with-border">
+          <h3 class="box-title">Requerimientos Minimos</h3>
+
+            <div class="box-tools pull-right">
+              <button type="button" class="btn btn-box-tool" data-widget="collapse"><i class="fa fa-plus"></i>
+              </button>
+            </div>
+            <!-- /.box-tools -->
+        </div>
+        <!-- /.box-header -->
+          <div class="box-body">
+            {% include 'textos/requerimientos' %}
+          </div>
+          <!-- /.box-body -->
+      </div>
+      <!-- /.box -->
+    </section>
+  </div>
+  <!-- /.content-wrapper -->
+{% endblock %}
+
+{% block appFooter %}
+{% endblock %}

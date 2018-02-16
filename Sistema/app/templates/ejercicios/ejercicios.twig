@@ -1,0 +1,128 @@
+{% extends 'overall/layout' %}
+{% block appHeader %}
+  <!-- DataTables -->
+  <link rel="stylesheet" href="views/theme/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <style>
+    .example-modal .modal {
+      position: relative;
+      top: auto;
+      bottom: auto;
+      right: auto;
+      left: auto;
+      display: block;
+      z-index: 1;
+    }
+
+    .example-modal .modal {
+      background: transparent !important;
+    }
+  </style>
+{% endblock %}
+
+{% block appBody %}
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        JUGADORES
+        <small>Escuela de fútbol 'Pasión de vida'</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="#">Jugadores</a></li>
+        <li class="active">Listado de Jugadores</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Listado de Jugadores</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+
+                <div class="row">
+                  <form id="busqueda_form">
+                      <div class="col-xs-12 col-sm-6 col-md-3">
+                        <input type="text" class="form-control" placeholder="Nombre del Ejercicio" id="nombre_criterio" name="nombre_criterio">
+                      </div>
+                      <div class="col-xs-12 col-sm-6 col-md-3">
+                        <input type="text" class="form-control" placeholder="Sede" id="sede_criterio" name="sede_criterio">
+                      </div>
+                      <div class="col-xs-12 col-sm-6 col-md-3">
+                        <input type="text" class="form-control" placeholder="Entrenador" id="entrenador_criterio" name="entrenador_criterio">
+                      </div>
+                      <div class="col-xs-12 col-sm-2 col-md-2">
+                         <button type="button" id="busqueda_criterio_colegios" class="btn btn-primary btn-lacra" onclick="busqueda()">Buscar</button>  
+                      </div>
+                  </form>
+                  </div>
+                  
+                </br>
+              <div class="table-responsive">
+                <table id="example2" class="table table-bordered table-hover">
+                    <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Descripción</th>
+                        <th>Editar</th>
+                        <th>Eliminar</th>
+    
+                    </thead>
+                    <tbody id="ejercicios_body">
+                    {% for e in ejercicios %}
+                        <tr>
+                            <td>{{ e.id_ejercicio }}</td>
+                            <td>{{ e.descripcion }}</td>
+                                                                                                                           
+                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_ejercicio" onclick="edit_ejercicios('{{ e.descripcion }}',{{ e.id_ejercicio }})"><i class="fa fa-edit"></i></a></td>        
+                          <td><a type="button" href="ejercicios/eliminar/{{ e.id_ejercicio }}"><i class="fa fa-trash"></i></a></td>  
+                          
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+                  </table>
+                  <button type="button" class="btn btn-block btn-primary btn-flat" data-toggle="modal" data-target="#modal_crear_ejercicio"><i class="fa fa-plus-circle"></i> CREAR NUEVO JUGADOR</button>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+      {% include 'ejercicios/crear' %}
+      {% include 'ejercicios/editar' %}
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+{% endblock %}
+
+{% block appFooter %}
+<script src="views/app/js/ejercicios/crear.js"></script>
+<script src="views/app/js/ejercicios/editar.js"></script>
+<!-- DataTables -->
+<script src="views/theme/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="views/theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- page script -->
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+
+{% endblock %}

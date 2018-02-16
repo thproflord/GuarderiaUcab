@@ -1,0 +1,46 @@
+<div class="modal fade" id="modal_editar_valor">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Editar valor</h4>
+            </div>
+            <div class="modal-body">
+              <form role="form" id="editar_valor_form">
+              <!-- text input -->
+              <div class="form-group">
+                    <input type="hidden" class="form-control" placeholder="" name="id_jugador" id="id_id_jugador">
+
+                    <label>Peso</label>
+                    <input type="text" class="form-control" placeholder="" name="peso" id="id_peso">
+                    <label>Talla</label>
+                    <input type="text" class="form-control" placeholder="" name="talla" id="id_talla">
+                    <label>Imc</label>
+                    <input type="text" class="form-control" placeholder="" name="imc" id="id_imc">
+                    <label>Flexiones por minuto</label>
+                    <input type="tel" class="form-control" placeholder="" name="flexiones_x_minuto" id="id_flexiones_x_minuto">
+                    <label>Abdominales por 5 minutos</label>
+                    <input type="tel" class="form-control" placeholder="" name="ab_x5_min" id="id_ab_x5_min">
+                    <label>Tiempo en 200 metros</label>
+                    <input type="tel" class="form-control" placeholder="" name="tiempo_200m" id="id_tiempo_200m">
+                    <label>Tiempo en 600 metros</label>
+                    <input type="text" class="form-control" placeholder="" name="tiempo_600m" id="id_tiempo_600m">
+                    <label>Tiempo en 1 kilometro</label>
+                    <input type="text" class="form-control" placeholder="" name="tiempo_1k" id="id_tiempo_1k">
+              </div>
+           
+            </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+              <button type="button" id="editar_valor" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    
+    

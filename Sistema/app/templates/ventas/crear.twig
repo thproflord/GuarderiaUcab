@@ -1,0 +1,61 @@
+<div class="modal fade" id="modal_crear_venta">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Crear Venta</h4>
+            </div>
+            <div class="modal-body">
+              <form role="form" id="crear_venta_form">
+              <!-- text input -->
+              <div class="form-group">                   
+                <label>Cantidad</label>
+                <input type="number" class="form-control" placeholder="Cantidad" name="cantidad">
+                <div class="form-group col-xs-12 col-sm-12 col-md-12">
+                    <label>Tipo uniforme</label>
+                    <input type="radio" id="id_uniforme_entrenamiento" name="tipo_uniforme" value="1" onchange="buscar_cantidad()">
+                    <label for="id_sexo_hombre">Entrenamiento</label>
+                    <input type="radio" id="id_uniforme_partido" checked="true" name="tipo_uniforme" value="2" onchange="buscar_cantidad()">
+                    <label for="id_sexo_mujer">Partido</label>
+                </div>
+                
+                <label>Representante</label>
+                <select class="form-control select2" name="id_representante" id="id_ci_representante" onchange="traerrepresentado()">
+                <option disabled selected value></option>
+                {% for r in representantes %}
+                <option value="{{ r.cedula_representante }}">{{ r.nombre }} {{ r.apellido }} {{ r.cedula_representante }}</option>
+                {% endfor %}
+                </select>
+
+                <label>Jugador</label>
+                <select class="form-control selector_representado" name="id_jugador" id="id_id_jugador"  onchange="buscarSedeInscripcion()" >
+                <option disabled selected value></option>
+                </select>
+
+                <label>Sede</label>
+                <select class="form-control selector_sede" name="sede" id="id_sede" onchange="buscar_cantidad()">
+                <option disabled selected value></option>
+                </select>             
+
+                 <div class="cantidad_stock">
+
+                 </div>
+
+                 <input type="hidden" id="id_stock" name="stock">
+                 <input type="hidden" id="id_stock_minimo" name="stock_minimo">
+              </div>
+             </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+              <button type="button" id="crear_venta" class="btn btn-primary">Crear Venta</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+    
+    

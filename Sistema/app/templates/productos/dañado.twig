@@ -1,0 +1,27 @@
+<div class="modal fade" id="modal_producto_dañado">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Productos dañados</h4>
+            </div>
+            <div class="modal-body">
+              <form role="form" id="producto_dañado_form">
+                  <input type="hidden" name="cantidad" id='cantidad_dañada' value="">
+                  <input type="hidden" name="id_producto" id='id_producto_dañado' value="">
+                  <label>Cantidad de equipos dañados</label>
+                  <input type="number" name="equipo" class="form-control">
+              </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+              <button type="button" id="producto_dañado" class="btn btn-primary">Guardar Cambios</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+

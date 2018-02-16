@@ -1,0 +1,112 @@
+<div class="modal fade" id="modal_crear_inscripcion">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Crear Inscripcion</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form" id="crear_inscripcion_form">
+          <!-- text input -->
+          <div class="form-group">   
+
+            <input type="hidden" class="form-control" value="{{ costo_3dias }}" name="costo_3dias" >
+            <input type="hidden" class="form-control" value="{{ costo_5dias }}" name="costo_5dias" >
+
+            <label>Temporada</label>
+            <select name="anio_ini_inscripcion">
+            <option value="2000" selected>2000</option> 
+            <option value="2001">2001</option>
+            <option value="2002">2002</option>
+            <option value="2003">2003</option>
+            <option value="2004">2004</option>
+            <option value="2005">2005</option>
+            <option value="2006">2006</option>
+            <option value="2007">2007</option>
+            <option value="2008">2008</option>
+            <option value="2009">2009</option>
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            </select>
+
+            <select name="anio_fin_inscripcion">
+            <option value="2000">2000</option> 
+            <option value="2001" selected>2001</option>
+            <option value="2002">2002</option>
+            <option value="2003">2003</option>
+            <option value="2004">2004</option>
+            <option value="2005">2005</option>
+            <option value="2006">2006</option>
+            <option value="2007">2007</option>
+            <option value="2008">2008</option>
+            <option value="2009">2009</option>
+            <option value="2010">2010</option>
+            <option value="2011">2011</option>
+            <option value="2012">2012</option>
+            <option value="2013">2013</option>
+            <option value="2014">2014</option>
+            <option value="2015">2015</option>
+            <option value="2016">2016</option>
+            <option value="2017">2017</option>
+            <option value="2018">2018</option>
+            <option value="2019">2019</option>
+            </select>
+
+            <br>
+            <br><label>Dias a Inscribir</label><br>
+            <input type="checkbox" name="dias_inscripcion[]" value="1" checked>Lunes
+            <input type="checkbox" name="dias_inscripcion[]" value="2" checked>Martes
+            <input type="checkbox" name="dias_inscripcion[]" value="3" checked>Miercoles
+            <input type="checkbox" name="dias_inscripcion[]" value="4">Jueves
+            <input type="checkbox" name="dias_inscripcion[]" value="5">Viernes
+            <br>
+            <br>
+
+            <label>%Descuento</label>  <i>**Descuento de 10% por dos hermanos y 15% por más de dos hermanos</i>
+            <br>
+            <select name="descuento">
+            <option value="0"selected>0%</option> 
+            <option value="10">10%</option>
+            <option value="15">15%</option>
+            </select>
+            <br>
+            <br>
+            <label>Jugador</label>
+            <select class="form-control select2" name="id_jugador" >
+            <option disabled selected value></option>
+            {% for j in jugadores %}
+            <option value="{{ j.id_jugador }}">{{ j.nombre }} {{ j.apellido }} {{ j.id_jugador }}</option>
+            {% endfor %}
+            </select>
+
+            <label>Sede</label>
+            <select class="form-control select2" name="codigo_sede" >
+            <option disabled selected value></option>
+            {% for s in sedes %}
+            <option value="{{ s.codigo_sede }}">{{ s.nombre }} {{ s.codigo_sede }}</option>
+            {% endfor %}
+            </select>
+
+
+          </div>
+         </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+          <button type="button" id="crear_inscripcion" class="btn btn-primary">Crear Inscripcion</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

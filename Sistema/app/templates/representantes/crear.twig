@@ -1,0 +1,56 @@
+<div class="modal fade" id="modal_crear_representante">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Crear Representante</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form" id="crear_representante_form">
+          <!-- text input -->
+          <div class="form-group">
+            <label>Nombre</label>
+            <input type="text" class="form-control" placeholder="Nombre" name="nombre">
+            <label>Apellido</label>
+            <input type="text" class="form-control" placeholder="Apellido" name="apellido">
+            <label>Cedula</label>
+            <input type="text" class="form-control" placeholder="Cedula" name="cedula">
+            <label>Teléfono de Casa</label>
+            <input type="tel" class="form-control" placeholder="" name="tlf_casa" data-inputmask="'mask':['(999) 999-9999']" data-mask>
+            <label>Teléfono de Oficina</label>
+            <input type="tel" class="form-control" placeholder="" name="tlf_oficina" data-inputmask="'mask':['(999) 999-9999']" data-mask>
+            <label>Teléfono Celular</label>
+            <input type="tel" class="form-control" placeholder="" name="tlf_celular" data-inputmask="'mask':['(999) 999-9999']" data-mask>
+            <label>Direccion</label>
+            <input type="text" class="form-control" placeholder="" name="direccion" data-inputmask="'mask':['(999) 999-9999']" data-mask>
+            <label>Profesion</label>
+            <input type="text" class="form-control" placeholder="" name="profesion" >
+
+             <div class="form-group col-xs-12 col-sm-12 col-md-12">
+                <label>Sexo</label>
+                <input type="radio" id="id_sexo_hombre" name="sexo" value="m">
+                <label for="id_sexo_hombre">Hombre</label>
+                <input type="radio" id="id_sexo_mujer" checked="true" name="sexo" value="f">
+                <label for="id_sexo_mujer">Mujer</label>
+            </div>
+
+
+            <label>Parentesco</label>
+            <input type="text" class="form-control" placeholder="" name="parentesco">
+            <label>Morosidad</label>
+            <input type="number" class="form-control" placeholder="" name="morosidad" min="0" max="1">
+          </div>
+         </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+          <button type="button" id="crear_representante" class="btn btn-primary">Crear Representante</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+

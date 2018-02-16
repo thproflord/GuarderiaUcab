@@ -1,0 +1,45 @@
+<div class="modal fade" id="modal_crear_mensualidad">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Crear Mensualidad</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form" id="crear_mensualidad_form">
+          <!-- text input -->
+          <div class="form-group">                   
+            <label>Codigo consecutivo</label>
+            <input type="text" class="form-control" placeholder="Codigo" name="codigo_consecutivo" id="id_codigo_consecutivo">
+            <label>Precio </label>
+            <input type="text" class="form-control" placeholder="Precio" name="precio_mensualidad" id="id_precio_mensualidad">
+
+            <input type="hidden" class="form-control" id="id_precio_mensualidad_total">
+
+            <label>Representante</label>
+            <select class="form-control select2" name="ci_representante" id="id_ci_representante" onchange="traerrepresentado()">
+            <option disabled selected value></option>
+            {% for r in representantes %}
+            <option value="{{ r.cedula_representante }}">{{ r.nombre }} {{ r.apellido }} {{ r.cedula_representante }}</option>
+            {% endfor %}
+            </select>
+
+            <label>Jugador</label>
+            <select class="form-control select2 selector_representado" name="id_jugador" id="id_id_jugador" data-placeholder="Representado"  >
+              <option disabled selected value></option>
+            </select>
+            
+          </div>
+         </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+          <button type="button" id="crear_mensualidad" class="btn btn-primary">Crear Mensualidad</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

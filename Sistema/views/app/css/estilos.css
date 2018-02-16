@@ -1,0 +1,23 @@
+.basura-modal{
+	font-size: 130px;
+	margin-left: 42%;
+	margin-bottom: 15px;
+}
+
+.btn.btn-block.btn-primary.btn-flat{
+margin-bottom: 20px;
+}
+
+#busqueda_criterio_colores{
+float: right;
+margin-bottom: 5px;
+}
+
+.select{
+	height: 33px;
+	width: 100%;
+}
+
+.btn-lacra{
+width: 100%;
+}

@@ -1,0 +1,175 @@
+{% extends 'overall/layout' %}
+{% block appHeader %}
+  <!-- DataTables -->
+  <link rel="stylesheet" href="views/theme/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <style>
+    .example-modal .modal {
+      position: relative;
+      top: auto;
+      bottom: auto;
+      right: auto;
+      left: auto;
+      display: block;
+      z-index: 1;
+    }
+
+    .example-modal .modal {
+      background: transparent !important;
+    }
+  </style>
+{% endblock %}
+
+{% block appBody %}
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        COLEGIO
+        <small>Escuela de fútbol 'Pasión de vida'</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="#"></a></li>
+        <li class="active"></li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+
+            </div>
+            <!-- /.box-header -->
+
+
+
+            <div class="row">
+                <form id="criterios_ordenproductos_form">
+
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <select class="select" id="id_tipo_criterio_ordenproductos" name="tipo_criterio_ordenproductos">
+                           <option value="uno">Rif Proveedor</option> 
+                           <option value="dos">Producto - Sede</option> 
+                           <option value="tres">Rif Proveedor - Producto -  Fecha Compra(YYYY-MM-DD)</option>
+                        </select>
+                     </div>
+
+
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                      <input type="text" class="form-control" id="id_criterio_ordenproductos_1" name="criterio_ordenproductos_1">
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                      <input type="text" class="form-control" id="id_criterio_ordenproductos_2" name="criterio_ordenproductos_2">
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                      <input type="text" class="form-control"  id="id_criterio_ordenproductos_3" name="criterio_ordenproductos_3">
+                    </div>
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                       <button type="button" id="busqueda_criterios_ordenproductos" class="btn btn-primary btn-lacra">Buscar</button>  
+                    </div>
+                </form>
+                </div>
+
+
+
+
+
+
+
+            <div class="box-body">
+              <table id="example2" class="table table-bordered table-hover">
+                <thead>
+                    <tr>
+                      <th>Producto</th>
+                      <th>Codigo producto</th>
+                      <th>Sede</th>
+                      <th>Numero Orden</th>                     
+                      <th>Cantidad</th>
+                      <th>Precio</th>
+                    </tr>
+                    </thead>
+                    <tbody id="ordenproductos_body">
+                    {% for o in ordenproductos %}
+                        <tr>
+                        <td>{{ o.descripcion }}</td>
+                        <td>{{ o.codigo_producto }}</td>
+                        <td>{{ o.nombre_sede }}</td>
+                        <td>{{ o.numero_orden }}</td>
+                        <td>{{ o.cantidad }}</td>
+                        <td>{{ o.precio }}</td>
+                        </tr>
+                    {% endfor %}
+                    </tbody>
+
+
+              </table>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+   
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+{% endblock %}
+
+{% block appFooter %}
+
+<!-- DataTables -->
+<script src="views/theme/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="views/theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- page script -->
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+
+<script>
+/*Evento ejecutado al realizar click sobre el button "busqueda_criterio" */
+$('#busqueda_criterios_ordenproductos').click(function(e) {
+e.defaultPrevented;
+
+$.ajax({
+  type : "GET",
+  url : "api/ordenproductos/criterios",
+  data : $("#criterios_ordenproductos_form").serialize(),
+  success: function(json){
+    $("#ordenproductos_body").empty();
+    for (var i = 0; i < json.length; i++){
+      $("#ordenproductos_body").append(`
+         <tr>
+            <td>${ json[i].descripcion }</td>
+            <td>${ json[i].codigo_producto }</td>
+            <td>${ json[i].nombre_sede }</td>
+            <td>${ json[i].numero_orden }</td>
+            <td>${ json[i].cantidad }</td>
+            <td>${ json[i].precio }</td>
+         </tr>
+        `);
+    }
+  },
+  error : function(xhr, status) {
+    alert('Ha ocurrido un problema.');
+  }
+})
+});
+</script>
+{% endblock %}

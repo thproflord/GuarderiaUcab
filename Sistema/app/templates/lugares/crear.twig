@@ -1,0 +1,36 @@
+<section class="content">
+    <div class="modal fade" id="modal-default">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                  <span aria-hidden="true">&times;</span></button>
+                <h4 class="modal-title">Crear Lugares</h4>
+              </div>
+              <div class="modal-body">
+                <form role="form" id="crear_lugares_form">
+                <!-- text input -->
+                <div class="form-group">
+                  <label>Nombre del lugar</label>
+                  <input type="text" class="form-control" name="nombre" placeholder="Introduzca el nombre del lugar">
+                </div>
+                <label>Estado</label>
+                <select class="form-control select2" name="estado"  data-placeholder="">
+                  <option disabled selected value></option>
+                  {% for e in estados %}
+                  <option value="{{ e.codigo_estado }}">{{ e.nombre }}</option>
+                  {% endfor %}
+                </select>
+              </form>
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+                <button type="button" class="btn btn-primary" id="crear_lugares">Crear Lugares</button>
+              </div>
+            </div>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+    <!-- /.modal -->
+</section>

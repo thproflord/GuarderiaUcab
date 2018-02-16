@@ -1,0 +1,178 @@
+{% extends 'overall/layout' %}
+{% block appHeader %}
+  <!-- DataTables -->
+  <link rel="stylesheet" href="views/theme/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <style>
+    .example-modal .modal {
+      position: relative;
+      top: auto;
+      bottom: auto;
+      right: auto;
+      left: auto;
+      display: block;
+      z-index: 1;
+    }
+
+    .example-modal .modal {
+      background: transparent !important;
+    }
+  </style>
+{% endblock %}
+
+{% block appBody %}
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        PROVEEDORES
+        <small>Escuela de fútbol 'Pasión de vida'</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="#">proveedor</a></li>
+        <li class="active">Listado de Proveedores</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Listado de proveedor</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+
+
+              <div class="row">
+                <form id="criterios_proveedores_form">
+
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                        <select class="select" id="id_tipo_criterio_proveedores" name="tipo_criterio_proveedores">
+                           <option value="uno">Número OC</option> 
+                           <option value="dos">Producto - Precio menor a</option> 
+                           <option value="tres">Producto - Sede - Fecha Compra(YYYY-MM-DD)</option>
+                        </select>
+                     </div>
+
+
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                      <input type="text" class="form-control" id="id_criterio_proveedores_1" name="criterio_proveedores_1">
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                      <input type="text" class="form-control" id="id_criterio_proveedores_2" name="criterio_proveedores_2">
+                    </div>
+                    <div class="col-xs-12 col-sm-6 col-md-3">
+                      <input type="text" class="form-control"  id="id_criterio_proveedores_3" name="criterio_proveedores_3">
+                    </div>
+                    <div class="col-xs-12 col-sm-2 col-md-2">
+                       <button type="button" id="busqueda_criterios_proveedores" class="btn btn-primary btn-lacra">Buscar</button>  
+                    </div>
+                </form>
+                </div>
+
+
+              <div class="table-responsive">
+                <table id="example2" class="table table-bordered table-hover">
+                  <thead>
+                  <tr>
+                    <th>Rif</th>
+                    <th>Nombre</th>
+                    <th>Direccion</th>
+                    <th>Teléfono</th>
+                    <th>Persona de contacto</th>
+                    <th>Editar</th>
+                    <th>Eliminar</th>
+
+                  </thead>
+                  <tbody id="proveedores_body">
+                  {% for p in proveedores %}
+                      <tr>
+                          <td>{{ p.rif }}</td>
+                          <td>{{ p.nombre }}</td>                       
+                          <td>{{ p.direccion }}</td>
+                          <td>{{ p.telefono }}</td>
+                          <td>{{ p.persona_contacto }}</td>
+                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_proveedor" onclick="edit_proveedor('{{ p.rif }}','{{ p.nombre }}','{{ p.direccion }}','{{ p.telefono }}','{{ p.persona_contacto }}',)"><i class="fa fa-edit"></i></a></td>
+                          <td><a type="button" href="proveedores/eliminar/{{ p.rif }}"><i class="fa fa-trash"></i></a></td>
+                      </tr>
+                  {% endfor %}
+                  </tbody>
+                </table>
+                <button type="button" class="btn btn-block btn-primary btn-flat" data-toggle="modal" data-target="#modal_crear_proveedor" onclick="create_proveedor()"><i class="fa fa-plus-circle"></i> CREAR NUEVO PROVEEDOR</button>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+      {# Creación de producto #}
+      {% include 'proveedores/crear' %}
+      {% include 'proveedores/editar' %}
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+{% endblock %}
+
+{% block appFooter %}
+<script src="views/app/js/proveedores/crear.js"></script>
+<script src="views/app/js/proveedores/editar.js"></script>
+<!-- DataTables -->
+<script src="views/theme/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="views/theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- page script -->
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+
+
+<script>
+/*Evento ejecutado al realizar click sobre el button "busqueda_criterio" */
+$('#busqueda_criterios_proveedores').click(function(e) {
+e.defaultPrevented;
+
+$.ajax({
+  type : "GET",
+  url : "api/proveedores/criterios",
+  data : $("#criterios_proveedores_form").serialize(),
+  success: function(json){
+    $("#proveedores_body").empty();
+    for (var i = 0; i < json.length; i++){
+      $("#proveedores_body").append(`
+        <tr>
+            <td>${ json[i].rif }</td>
+            <td>${ json[i].nombre }</td>                       
+            <td>${ json[i].direccion }</td>
+            <td>${ json[i].telefono }</td>
+            <td>${ json[i].persona_contacto }</td>
+            <td><a type="button" data-toggle="modal" data-target="#modal_editar_proveedor" onclick="edit_proveedor('${ json[i].rif }','${ json[i].nombre }','${ json[i].direccion }','${ json[i].telefono }','${ json[i].persona_contacto }',)"><i class="fa fa-edit"></i></a></td>
+            <td><a type="button" href="proveedores/eliminar/${ json[i].rif }"><i class="fa fa-trash"></i></a></td> 
+        </tr>
+        `);
+    }
+  },
+  error : function(xhr, status) {
+    alert('Ha ocurrido un problema.');
+  }
+})
+});
+</script>
+
+
+{% endblock %}

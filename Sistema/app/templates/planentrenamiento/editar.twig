@@ -1,0 +1,45 @@
+<div class="modal fade" id="modal_editar_plan">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Editar plan</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form" id="editar_plan_form">
+          <!-- text input -->
+          <div class="form-group">
+            <input type="hidden" name="id_plan" id="id_edit" value="">
+            <label>Nombre</label>
+            <input type="text" class="form-control" placeholder="" name="nombre" id="nombre_edit">
+            <label>Duración</label>
+            <input type="number" min="1" max="4" class="form-control" placeholder="" name="duracion" id="duracion_edit">
+            <label>Tipo</label>
+            <select class="form-control select2" name="tipo"  data-placeholder="" id="tipo_edit">
+                <option disabled selected value></option>
+                <option value="G">General</option>
+                <option value="P">Particular</option>
+            </select>
+            <input type="hidden" name="horario" id="horario_edit">
+            <label>Entrenador</label>
+            <select class="form-control select2" name="entrenador"  data-placeholder="" id="entrenador_edit">
+                    <option disabled selected value></option>
+                {% for e in entrenadores %}
+                    <option value="{{ e.cedula_empleado }}">{{ e.nombre }},{{ e.apellido }}</option>
+                {% endfor %}
+            </select>
+          </div>
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+          <button type="button" id="editar_plan" class="btn btn-primary">editar plan</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+

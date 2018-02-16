@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <!-- Formato -->
+  {{ base_assets()|raw }}
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+
+    <!-- Título -->
+    <title>{{ config.site.name }}</title>
+
+  <!-- Bootstrap 3.3.7 -->
+  <link rel="stylesheet" href="views/theme/bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="views/theme/bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="views/theme/bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="views/theme/dist/css/AdminLTE.min.css">
+  <!-- AdminLTE Skins. Choose a skin from the css/skins
+       folder instead of downloading all of them to reduce the load. -->
+  <link rel="stylesheet" href="views/theme/dist/css/skins/_all-skins.min.css">
+  <!-- Morris chart -->
+  <link rel="stylesheet" href="views/theme/bower_components/morris.js/morris.css">
+  <!-- jvectormap -->
+  <link rel="stylesheet" href="views/theme/bower_components/jvectormap/jquery-jvectormap.css">
+  <!-- Date Picker -->
+  <link rel="stylesheet" href="views/theme/bower_components/bootstrap-datepicker/dist/css/bootstrap-datepicker.min.css">
+  <!-- Daterange picker -->
+  <link rel="stylesheet" href="views/theme/bower_components/bootstrap-daterangepicker/daterangepicker.css">
+  <!-- bootstrap wysihtml5 - text editor -->
+  <link rel="stylesheet" href="views/theme/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.min.css">
+  <!-- Google Font -->
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <!-- DataTables -->
+  <link rel="stylesheet" href="views/theme/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <!-- TimePicker -->
+  <link rel="stylesheet" href="views/theme/plugins/timepicker/bootstrap-timepicker.min.css">
+    {# Extras en el header #}
+    {% block appHeader %}
+      {# :) #}
+    {% endblock %}
+    <link rel="stylesheet" href="views/app/css/estilos.css">
+</head>
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+      {% include 'overall/header' %}
+      {% include 'overall/menu' %}
+
+      {% block appBody %}
+        {# :) #}
+      {% endblock %}
+
+      {% include 'overall/footer' %}
+
+
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+{# Carga de jQuery #}
+{% if config.framework.debug %}
+{# jQuery para ver errores de ajax vía consola, no eliminar #}
+  <script src="views/app/js/jdev.min.js"></script>
+{% else %}
+  {# jQuery para su plantilla, este puede ser modificado a voluntad #}
+  <script src="views/theme/bower_components/jquery/dist/jquery.min.js"></script>
+{% endif %}
+<!-- jQuery UI 1.11.4 -->
+<script src="views/theme/bower_components/jquery-ui/jquery-ui.min.js"></script>
+<!-- Resolve conflict in jQuery UI tooltip with Bootstrap tooltip -->
+<script>
+  $.widget.bridge('uibutton', $.ui.button);
+</script>
+<!-- Bootstrap 3.3.7 -->
+<script src="views/theme/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- Morris.js charts -->
+<script src="views/theme/bower_components/raphael/raphael.min.js"></script>
+<script src="views/theme/bower_components/morris.js/morris.min.js"></script>
+<!-- Sparkline -->
+<script src="views/theme/bower_components/jquery-sparkline/dist/jquery.sparkline.min.js"></script>
+<!-- jvectormap -->
+<script src="views/theme/plugins/jvectormap/jquery-jvectormap-1.2.2.min.js"></script>
+<script src="views/theme/plugins/jvectormap/jquery-jvectormap-world-mill-en.js"></script>
+<!-- jQuery Knob Chart -->
+<script src="views/theme/bower_components/jquery-knob/dist/jquery.knob.min.js"></script>
+<!-- daterangepicker -->
+<script src="views/theme/bower_components/moment/min/moment.min.js"></script>
+<script src="views/theme/bower_components/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- datepicker -->
+<script src="views/theme/bower_components/bootstrap-datepicker/dist/js/bootstrap-datepicker.min.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="views/theme/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<!-- Slimscroll -->
+<script src="views/theme/bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
+<!-- FastClick -->
+<script src="views/theme/bower_components/fastclick/lib/fastclick.js"></script>
+<!-- AdminLTE App -->
+<script src="views/theme/dist/js/adminlte.min.js"></script>
+
+<!-- AdminLTE for demo purposes -->
+<script src="views/theme/dist/js/demo.js"></script>
+<!-- DataTables -->
+<script src="views/theme/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="views/theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- TimePicker -->
+<script src="views/theme/plugins/timepicker/bootstrap-timepicker.min.js"></script>
+
+
+    {# Footer #}
+    {% block appFooter %}
+      {# :) #}
+    {% endblock %}
+</body>
+</html>

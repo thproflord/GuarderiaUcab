@@ -1,0 +1,50 @@
+<div class="modal fade" id="modal_crear_horario">
+        <div class="modal-dialog">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title">Crear horario</h4>
+            </div>
+            <div class="modal-body">
+              <form role="form" id="crear_horario_form">
+              <!-- text input -->
+              <div class="form-group">
+                <label>Año Incio</label>
+                <input type="number" min="2017" class="form-control" placeholder="" name="anio_ini">
+                <label>Año Fin</label>
+                <input type="number" min="2017" class="form-control" placeholder="" name="anio_fin">
+                <label>Día</label>
+                <input type="number" min="1" max="5" class="form-control" placeholder="" name="dia">
+                <label>Hora Inicio</label>
+                <input type="number" min="1" max="24" class="form-control" placeholder="" name="hora_ini">
+                <label>Hora Fin</label>
+                <input type="number" min="1" max="24" class="form-control" placeholder="" name="hora_fin">
+                <label>Sede</label>
+                <select class="form-control select2" name="sede"  data-placeholder="">
+                        <option disabled selected value></option>
+                    {% for s in sedes %}
+                        <option value="{{ s.codigo_sede }}">{{ s.nombre }}</option>
+                    {% endfor %}
+                </select>
+                <label>Categoría</label>
+                <select class="form-control select2" name="categoria"  data-placeholder="">
+                        <option disabled selected value></option>
+                    {% for c in categorias %}
+                        <option value="{{ c.nombre_categoria }}">{{ c.nombre_categoria }}</option>
+                    {% endfor %}
+                </select>
+              </div>
+            </form>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+              <button type="button" id="crear_horario" class="btn btn-primary">Crear horario</button>
+            </div>
+          </div>
+          <!-- /.modal-content -->
+      </div>
+      <!-- /.modal-dialog -->
+  </div>
+  <!-- /.modal -->
+
