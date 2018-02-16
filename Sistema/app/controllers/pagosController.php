@@ -15,52 +15,40 @@ use app\models as Model;
 use Ocrend\Kernel\Router\IRouter;
 use Ocrend\Kernel\Controllers\Controllers;
 use Ocrend\Kernel\Controllers\IControllers;
-  
+
 /**
  * Controlador pagos/
  *
  * @author Alexander De Azevedo, Sergio García y Greg Gómez <oeneikaphotos@gmail.com>
 */
-  
+
 class pagosController extends Controllers implements IControllers {
 
     public function __construct(IRouter $router) {
-        parent::__construct($router);   
+        parent::__construct($router);
         $p = new Model\Pagos;
         $v = new Model\Ventas;
         $r = new Model\Representantes;
-
         switch($this->method) {
-            case 'eliminar':
-              $p->delete($this->isset_id);
+            case 'pagos':
+              echo $this->template->render('pagos/pagos');
             break;
-            case 'uniformes':
-                echo $this->template->render('pagos/pagos',array(
-                    'pagosuni' => $p->getPagos('*','uniformes'),
-                    'tipopago' => 0,
-                ));
+            case 'actividades':
+                echo $this->template->render('pagos/actividades');
             break;
+            case 'pagoshoras':
+                echo $this->template->render('pagos/pagoshoras');
             break;
-            case 'mensualidades':
-                echo $this->template->render('pagos/pagos',array(
-                    'pagosmen' => $p->getPagos('*','mensualidades'),
-                    'tipopago' => 1,
-                ));
+            case 'multas':
+                echo $this->template->render('pagos/multas');
             break;
-            case 'inscripciones':
-                echo $this->template->render('pagos/pagos',array(
-                    'pagosin' => $p->getPagos('*','inscripciones'),
-                    'tipopago' => 2,
-                ));
+            case 'menu':
+                echo $this->template->render('pagos/menu');
             break;
-            default:
-            echo $this->template->render('pagos/pagos',array(
-                'pagos' => $p->get()
-            ));
+            case 'factura':
+                echo $this->template->render('pagos/factura');
 
-            break;
-          }
-
+        }
 
     }
 

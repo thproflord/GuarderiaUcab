@@ -15,20 +15,46 @@ use app\models as Model;
 use Ocrend\Kernel\Router\IRouter;
 use Ocrend\Kernel\Controllers\Controllers;
 use Ocrend\Kernel\Controllers\IControllers;
-  
+
 /**
- * Controlador autorizados/
+ * Controlador representantes/
  *
- * @author Ramon García, Fernando Gomes y Alexander De Azevedo <oeneikaphotos@gmail.com>
+ * @author Alexander De Azevedo, Sergio García y Greg Gómez <oeneikaphotos@gmail.com>
 */
-  
+
 class autorizadosController extends Controllers implements IControllers {
 
     public function __construct(IRouter $router) {
-        parent::__construct($router);   
-        $a = new Model\Autorizados;
-		echo $this->template->render('autorizados/autorizados');
+        parent::__construct($router);
+        $r = new Model\Autorizados;
 
+        /*switch($this->method) {
+            case 'eliminar':
+              $r->delete($this->isset_id);
+            break;
+            case 'cedula_representante':
+            echo $this->template->render('representantes/representantes',array(
+              'representantes' => $r->get($this->method,$this->isset_id)
+            ));
+            break;
+            case 'nombre':
+            echo $this->template->render('representantes/representantes',array(
+              'representantes' => $r->get($this->method,$this->isset_id)
+            ));
+            break;
+            case 'sexo':
+            echo $this->template->render('representantes/representantes',array(
+              'representantes' => $r->get($this->method,$this->isset_id)
+            ));
+            break;
+            default:
+              echo $this->template->render('representantes/representantes',array(
+                'representantes' => $r->get()
+              ));
+            break;
+          }
+          */
+        echo $this->template->render('autorizados/autorizados');
     }
 
 }

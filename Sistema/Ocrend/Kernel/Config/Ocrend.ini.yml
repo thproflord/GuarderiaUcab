@@ -10,7 +10,7 @@ database:
   host: localhost
   user: root
   pass:
-  name: Guarderia
+  name: guarderia
   port: 1521
   protocol: TCP
   motor: mysql
@@ -29,7 +29,7 @@ sessions:
 
 # Variables del framework
 framework:
-  debug: false
+  debug: true
   version: 2.0.4
 
 # Configuración del sitio
