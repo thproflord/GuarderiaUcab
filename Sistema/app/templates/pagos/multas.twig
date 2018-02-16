@@ -1,0 +1,282 @@
+{% extends 'overall/layout' %}
+{% block appHeader %}
+  <!-- DataTables -->
+  <link rel="stylesheet" href="views/theme/bower_components/datatables.net-bs/css/dataTables.bootstrap.min.css">
+  <style>
+    .example-modal .modal {
+      position: relative;
+      top: auto;
+      bottom: auto;
+      right: auto;
+      left: auto;
+      display: block;
+      z-index: 1;
+    }
+
+    .example-modal .modal {
+      background: transparent !important;
+    }
+  </style>
+{% endblock %}
+
+{% block appBody %}
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        PAGOS Multas
+        <small>Escuela de fútbol 'Pasión de vida'</small>
+      </h1>
+      <ol class="breadcrumb">
+        <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
+        <li><a href="#">Pagos</a></li>
+        <li class="active">Listado de Pagos</li>
+      </ol>
+    </section>
+
+    <!-- Main content -->
+    <section class="content">
+      <div class="row">
+        <div class="col-xs-12">
+          <div class="box">
+            <div class="box-header">
+              <h3 class="box-title">Listado de Pagos</h3>
+            </div>
+            <!-- /.box-header -->
+            <div class="box-body">
+
+
+                <div class="row">
+                    <form id="criterios_pagos_form">
+
+                        <div class="col-xs-12 col-sm-6 col-md-3">
+                            <select class="select" id="id_tipo_criterio_pagos" name="tipo_criterio_pagos">
+                                {% if tipopago == 0 %}
+                               <option value="uno">Numero factura</option>
+                               <option value="dos">Nombre Representante - Nombre Jugador</option>
+                               <option value="tres">Nombre Representante - Numero factura -  Monto menor a</option>
+                               {% elseif tipopago == 1 %}
+                               <option value="uno">Mes (MM)</option>
+                               <option value="dos">Nombre Representante - Nombre Jugador</option>
+                               <option value="tres">Nombre Representante - Mes (MM) - Monto menor a </option>
+                               {% else %}
+                               <option value="uno">Año inicio temporada (YYYY)</option>
+                               <option value="dos">Nombre Representante - Nombre Jugador</option>
+                               <option value="tres">Nombre Representante - Año in temporada - Mes de inscripcion</option>
+                               {% endif %}
+                            </select>
+                         </div>
+
+
+                               {% if tipopago == 0 %}
+                               <input type="hidden" class="form-control" value="0" name="titpopago">
+                               {% elseif tipopago == 1 %}
+                               <input type="hidden" class="form-control" value="1" name="titpopago">
+                               {% else %}
+                               <input type="hidden" class="form-control" value="2" name="titpopago">
+                               {% endif %}
+
+                        <div class="col-xs-12 col-sm-6 col-md-3">
+                          <input type="text" class="form-control" id="id_criterio_pagos_1" name="criterio_pagos_1">
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-3">
+                          <input type="text" class="form-control" id="id_criterio_pagos_2" name="criterio_pagos_2">
+                        </div>
+                        <div class="col-xs-12 col-sm-6 col-md-3">
+                          <input type="text" class="form-control"  id="id_criterio_pagos_3" name="criterio_pagos_3">
+                        </div>
+                        <div class="col-xs-12 col-sm-2 col-md-2">
+                           <button type="button" id="busqueda_criterios_pagos" class="btn btn-primary btn-lacra">Buscar</button>
+                        </div>
+
+                    </form>
+                    </div>
+
+
+              <div class="table-responsive">
+                <table id="example2" class="table table-bordered table-hover">
+
+                    {% if tipopago == 0 %}
+                        <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Monto</th>
+                            <th>Ref bancaria</th>
+                            <th>Representante</th>
+                            <th>Jugador</th>
+                            <th>Numero factura</th>
+                            <th>Metodo pago</th>
+                        </tr>
+                        </thead>
+                        <tbody id="pagos_body">
+                        {% for p in pagosuni %}
+                            <tr>
+                                <td>{{ fecha('D, d F, Y', p.fecha_pago) }}</td>
+                                <td>Bs {{ p.monto_pago }}</td>
+                                <td>{{ p.ref_bancaria }}</td>
+                                <td>{{ p.nr }} {{ p.ar }} {{ p.cedula_representante }} </td>
+                                <td>{{ p.nj }} {{ p.aj }} {{ p.id_jugador }}</td>
+                                <td>{{ p.numero_factura }}</td>
+                                <td>{{ p.metodo_pago }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+
+                    {% else %}
+                    {% if tipopago == 1 %}
+                        <thead>
+                        <tr>
+                            <th>Fecha</th>
+                            <th>Monto</th>
+                            <th>Abono credito</th>
+                            <th>Ref bancaria</th>
+                            <th>Representante</th>
+                            <th>Jugador</th>
+                            <th>Codigo Mensualidad</th>
+                            <th>Metodo pago</th>
+                        </tr>
+                        </thead>
+                        <tbody id="pagos_body">
+                        {% for p in pagosmen %}
+                            <tr>
+                                <td>{{ fecha('D, d F, Y', p.fecha_pago) }}</td>
+                                <td>Bs {{ p.monto_pago }}</td>
+                                <td>Bs {{ p.abono_credito }}</td>
+                                <td>{{ p.ref_bancaria }}</td>
+                                <td>{{ p.nr }} {{ p.ar }} {{ p.cedula_representante }} </td>
+                                <td>{{ p.nj }} {{ p.aj }} {{ p.id_jugador }}</td>
+                                <td>{{ p.codigo_mensualidad }}</td>
+                                <td>{{ p.metodo_pago }}</td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+                    {% else %}
+                          <thead>
+                            <tr>
+                                <th>Fecha</th>
+                                <th>Monto</th>
+                                <th>Ref bancaria</th>
+                                <th>Cedula representante</th>
+                                <th>Jugador</th>
+                                <th>Temporada</th>
+                                <th>Metodo pago</th>
+                            </tr>
+                            </thead>
+                            <tbody id="pagos_body" >
+                            {% for p in pagosin %}
+                                <tr>
+                                    <td>{{ fecha('D, d F, Y', p.fecha_pago) }}</td>
+                                    <td>Bs {{ p.monto_pago }}</td>
+                                    <td>{{ p.ref_bancaria }}</td>
+                                    <td>{{ p.nr }} {{ p.ar }} {{ p.cedula_representante }} </td>
+                                    <td>{{ p.nj }} {{ p.aj }} {{ p.id_jugador }}</td>
+                                    <td>{{ p.anio_ini }}-{{ p.anio_fin }}</td>
+                                    <td>{{ p.metodo_pago }}</td>
+                                </tr>
+                            {% endfor %}
+                            </tbody>
+                    {% endif %}
+                    {% endif %}
+                </table>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.box -->
+        </div>
+        <!-- /.col -->
+      </div>
+      <!-- /.row -->
+
+      {#% include 'colegios/eliminar' %#}
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+
+
+{% endblock %}
+
+{% block appFooter %}
+<!-- DataTables -->
+<script src="views/theme/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="views/theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<!-- page script -->
+<script>
+  $(function () {
+    $('#example1').DataTable()
+    $('#example2').DataTable({
+      'paging'      : true,
+      'lengthChange': false,
+      'searching'   : false,
+      'ordering'    : true,
+      'info'        : true,
+      'autoWidth'   : false
+    })
+  })
+</script>
+
+<script>
+    /*Evento ejecutado al realizar click sobre el button "busqueda_criterio" */
+    $('#busqueda_criterios_pagos').click(function(e) {
+    e.defaultPrevented;
+
+    $.ajax({
+      type : "GET",
+      url : "api/pagos/criterios",
+      data : $("#criterios_pagos_form").serialize(),
+      success: function(json){
+        $("#pagos_body").empty();
+        for (var i = 0; i < json.length; i++){
+
+          {% if tipopago == 0 %}
+
+          $("#pagos_body").append(`
+          <tr>
+             <td>${ json[i].fecha_pago }</td>
+             <td>${ json[i].monto_pago }</td>
+             <td>${ json[i].ref_bancaria }</td>
+             <td>${ json[i].nr } ${ json[i].ar } ${ json[i].cedula_representante }</td>
+             <td>${ json[i].nj } ${ json[i].aj } ${ json[i].id_jugador }</td>
+             <td>${ json[i].numero_factura }</td>
+             <td>${ json[i].metodo_pago }</td>
+          </tr>
+         `);
+         {% elseif tipopago == 1 %}
+         $("#pagos_body").append(`
+         <tr>
+            <td>${ json[i].fecha_pago }</td>
+            <td>${ json[i].monto_pago }</td>
+            <td>${ json[i].abono_credito }</td>
+            <td>${ json[i].ref_bancaria }</td>
+            <td>${ json[i].nr } ${ json[i].ar } ${ json[i].cedula_representante }</td>
+            <td>${ json[i].nj } ${ json[i].aj } ${ json[i].id_jugador }</td>
+            <td>${ json[i].codigo_mensualidad }</td>
+            <td>${ json[i].metodo_pago }</td>
+         </tr>
+        `);
+         {% else %}
+         $("#pagos_body").append(`
+         <tr>
+            <td>${ json[i].fecha_pago }</td>
+            <td>${ json[i].monto_pago }</td>
+            <td>${ json[i].ref_bancaria }</td>
+            <td>${ json[i].nr } ${ json[i].ar } ${ json[i].cedula_representante }</td>
+            <td>${ json[i].nj } ${ json[i].aj } ${ json[i].id_jugador }</td>
+            <td>${ json[i].anio_ini } ${ json[i].anio_fin }</td>
+            <td>${ json[i].metodo_pago }</td>
+         </tr>
+        `);
+         {% endif %}
+
+        }
+      },
+      error : function(xhr, status) {
+        alert('Ha ocurrido un problema.');
+      }
+    })
+    });
+    </script>
+
+{% endblock %}

@@ -36,6 +36,17 @@ class pagosController extends Controllers implements IControllers {
             case 'actividades':
                 echo $this->template->render('pagos/actividades');
             break;
+            case 'pagoshoras':
+                echo $this->template->render('pagos/pagoshoras');
+            break;
+            case 'multas':
+                echo $this->template->render('pagos/multas');
+            break;
+            case 'menu':
+                echo $this->template->render('pagos/menu');
+            break;
+            case 'factura':
+                echo $this->template->render('pagos/factura');
 
         }
 
