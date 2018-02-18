@@ -29,32 +29,18 @@ class personalController extends Controllers implements IControllers {
         global $config;
 
         $p = new Model\Personal($router);
-        echo $this->template->render('personal/personal');
-        /*switch($this->method) {
-          case 'eliminar':
-            $p->delete();
+        switch($this->method) {
+          case 'crear':
+            echo $this->template->render('personal/crear');
           break;
-          case 'fecha_nacimiento':
-          echo $this->template->render('personal/personal',array(
-            'personal' => $p->getFnac($this->method,$this->isset_id)
-          ));
-          break;
-          case 'nacionalidad':
-          echo $this->template->render('personal/personal',array(
-            'personal' => $p->get($this->method,$this->isset_id)
-          ));
-          break;
-          case 'sexo':
-          echo $this->template->render('personal/personal',array(
-            'personal' => $p->get($this->method,$this->isset_id)
-          ));
+
           break;
           default:
             echo $this->template->render('personal/personal',array(
               'personal' => $p->get()
             ));
           break;
-        }*/
+        }
     }
 
 }

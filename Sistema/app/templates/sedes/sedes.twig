@@ -23,7 +23,7 @@
     <section class="content-header">
       <h1>
         SEDES
-        <small>Escuela de fútbol 'Pasión de vida'</small>
+        <small>Guarderia</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
@@ -45,8 +45,8 @@
                <div class="row">
                 <div class="col-xs-12 col-sm-4 col-md-3">
                  <select id="criterio_sedes" class="select">
-                    <option value="costo_3dias">Costo por tres dias</option> 
-                    <option value="costo_5dias">Costo por cinco dias</option> 
+                    <option value="costo_3dias">Costo por tres dias</option>
+                    <option value="costo_5dias">Costo por cinco dias</option>
                     <option value="nombre">Nombre</option>
                  </select>
                 </div>
@@ -56,7 +56,7 @@
                 </div>
 
                 <div class="col-xs-12 col-sm-2 col-md-2">
-                   <button type="button" id="busqueda_criterio_sedes" class="btn btn-primary btn-lacra">Buscar</button>  
+                   <button type="button" id="busqueda_criterio_sedes" class="btn btn-primary btn-lacra">Buscar</button>
                 </div>
               </div>
               <div class="table-responsive">
@@ -64,12 +64,11 @@
                   <thead>
                   <tr>
                     <th>Nombre</th>
-                    <th>Dirección</th>
-                    <th>Fecha de Aperture</th>
-                    <th>Costo por 3 días</th>
-                    <th>Costo por 5 días</th>
-                    <th>Urbanización</th>
-                    <th>Calle</th>
+                    <th>Lugar</th>
+                    <th>Encargado</th>
+                    <th>Rif</th>
+                    <th>Telefono</th>
+                    <th>Costo</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
                   </tr>
@@ -77,13 +76,13 @@
                   <tbody>
                   {% for s in sedes %}
                       <tr>
-                          <td>{{ s.nombre }} {{ s.apellido }}</td>
-                          <td>{{ s.direccion }}</td>
-                          <td>{{ s.fecha_apertura }}</td>
-                          <td>{{ s.costo_3dias }}</td>
-                          <td>{{ s.costo_5dias }}</td>
-                          <td>{{ s.urbanizacion }}</td>
-                          <td>{{ s.calle }}</td>
+                          <td>{{ s.nombre }} </td>
+                          <td>{{ s.id_lugar }}</td>
+                          <td>{{ s.id_enc }}</td>
+                          <td>{{ s.rif }}</td>
+                          <td>{{ s.telefonos }}</td>
+                          <td>{{ s.costo }}</td>
+
                           <td><a type="button" data-toggle="modal" data-target="#modal_editar_sede" onclick="editar_sede('{{ s.nombre }}',{{ s.codigo_sede }},'{{ s.direccion }}','{{ s.fecha_apertura }}',{{ s.costo_3dias }},{{ s.costo_5dias }},'{{ s.calle }}','{{ s.urbanizacion }}','{{ s.ci_coord_tecni }}','{{ s.ci_coord_admin }}')"><i class="fa fa-edit"></i></a></td>
                           <td><a type="button" href="sedes/eliminar/{{ s.codigo_sede }}"><i class="fa fa-trash"></i></a></td>
                       </tr>
@@ -112,7 +111,7 @@
 
 {% block appFooter %}
 <!-- page script -->
-<script src="views/app/js/sedes/crear.js"></script>
+<script src="views/app/js/sedes/crear.js"> </script>
 <script src="views/app/js/sedes/editar.js"></script>
 <!-- DataTables -->
 <script src="views/theme/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
@@ -136,19 +135,19 @@
   /*Evento ejecutado al realizar click sobre el button "busqueda_criterio" */
   $('#busqueda_criterio_sedes').click(function(e) {
   e.defaultPrevented;
-  
+
   /*Nombre del crud*/
   var crud = "sedes/";
-  
+
   /*Criterio de busqueda , definido en el select "criterio" */
   var criterio = $("#criterio_sedes").val().concat("/");
-  
+
   /*Valor a buscar , escrito en el input "data"*/
   var valor = $("#data_sedes").val();
-  
+
   /*Link con todos los datos*/
   var busqueda=crud.concat(criterio).concat(valor);
-  
+
   /*Redireccion al link*/
   location.href = busqueda;
   });

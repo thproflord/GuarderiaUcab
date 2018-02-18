@@ -5,7 +5,7 @@
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">Crear Sedes</h4>
+              <h4 class="modal-title">Crear Sede</h4>
             </div>
             <div class="modal-body">
               <form role="form" id="crear_sedes_form">
@@ -13,30 +13,19 @@
               <div class="form-group">
                 <label>Nombre</label>
                 <input type="text" class="form-control" placeholder="Nombre..." name="nombre">
-                <label>Dirección</label>
-                <input type="text" class="form-control" placeholder="Dirección..." name="direccion">
-                <label>Fecha de Apertura</label>
-                <input type="date" class="form-control" placeholder="" name="fecha_apertura">
-                <label>Costo por 3 días</label>
-                <input type="number" class="form-control" placeholder="" name="costo_3dias" value='0'>
-                <label>Costo por 5 días</label>
-                <input type="number" class="form-control" placeholder="" name="costo_5dias" value='0'>
-                <label>Urbanización</label>
-                <input type="text" class="form-control" placeholder="Urbanización..." name="urbanizacion">
-                <label>Calle</label>
-                <input type="text" class="form-control" placeholder="Calle..." name="calle">
-                <label>Coordinador Técnico</label>
+                <label>Lugar</label>
+                <input type="text" class="form-control" placeholder="Dirección..." name="lugar">
+                <label>Rif</label>
+                <input type="text" class="form-control" placeholder="RIF" name="rif">
+                <label>Telefono</label>
+                <input type="text" class="form-control" placeholder="Telefono" name="telefono">
+                <label>Costo</label>
+                <input type="text" class="form-control" placeholder="Costo" name="costo">
+                <label>Encargado</label>
                 <select class="form-control select2" name="coord_tecnico"  data-placeholder="">
                     <option disabled selected value></option>
                 {% for t in tecnicos %}
                     <option value="{{ t.cedula_empleado }}">{{ t.nombre }} {{ t.apellido }}</option>
-                {% endfor %}
-                </select>
-                <label>Coordinador Administrativo</label>
-                <select class="form-control select2" name="coord_admin"  data-placeholder="">
-                    <option disabled selected value></option>
-                {% for a in administrativos %}
-                    <option value="{{ a.cedula_empleado }}">{{ a.nombre }} {{ a.apellido }}</option>
                 {% endfor %}
                 </select>
               </div>
@@ -44,7 +33,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
-              <button type="button" id="crear_sedes" class="btn btn-primary">Crear Sedes</button>
+              <button type="button" id="crear_sedes" class="btn btn-primary">Crear Sede</button>
             </div>
           </div>
           <!-- /.modal-content -->
@@ -52,4 +41,3 @@
       <!-- /.modal-dialog -->
   </div>
   <!-- /.modal -->
-

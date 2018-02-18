@@ -26,21 +26,18 @@ use Ocrend\Kernel\Router\IRouter;
 
 class Sedes extends Models implements IModels {
     /**
-      * Característica para establecer conexión con base de datos. 
+      * Característica para establecer conexión con base de datos.
     */
     use DBModel;
 
     private $nombre;
-    private $direccion;
-    private $costo_3dias;
-    private $costo_5dias;
-    private $fecha_apertura;
-    private $calle;
-    private $urbanizacion;
-    private $coord_tecnico;
-    private $coord_admin;
+    private $lugar;
+    private $rif;
+    private $telefono;
+    private $costo;
+    private $encargado;
 
-    
+
     /**
       * Controla los errores de entrada del formulario
       *
@@ -50,40 +47,33 @@ class Sedes extends Models implements IModels {
       global $http;
 
       $this->nombre = $http->request->get('nombre');
-      $this->direccion = $http->request->get('direccion');
-      $this->costo_3dias = $http->request->get('costo_3dias');
-      $this->costo_5dias = $http->request->get('costo_5dias');
-      $this->fecha_apertura = $http->request->get('fecha_apertura');
-      $this->calle = $http->request->get('calle');
-      $this->urbanizacion = $http->request->get('urbanizacion'); 
-      $this->coord_tecnico = $http->request->get('coord_tecnico');
-      $this->coord_admin = $http->request->get('coord_admin');  
+      $this->lugar = $http->request->get('lugar');
+      $this->rif = $http->request->get('rif');
+      $this->telefono = $http->request->get('telefono');
+      $this->costo = $http->request->get('costo');
+      $this->encargado = $http->request->get('calle');
 
       if($this->functions->e($this->nombre)){
         throw new ModelsException('Por favor introduzca un nombre!');
       }
-      if($this->functions->e($this->direccion)){
-        throw new ModelsException('Por favor introduzca una dirección!');
+      /*
+      if($this->functions->e($this->lugar)){
+        throw new ModelsException('Por favor introduzca un Lugar!');
+      }*/
+      if($this->functions->e($this->rif)){
+        throw new ModelsException('Por favor introduzca un RIF!');
       }
-      if($this->functions->e($this->costo_3dias,$this->costo_5dias)){
-        throw new ModelsException('Los campos costo para 3 y 5 días son abligatorios');
+      if($this->functions->e($this->telefono)){
+        throw new ModelsException('Por favor introduzca un telefono!');
       }
-      if($this->functions->e($this->fecha_apertura)){
-        throw new ModelsException('Por favor introduzca una fecha de apertura!');
+      if($this->functions->e($this->costo)){
+        throw new ModelsException('Por favor introduzca un Costo!');
       }
-      if($this->functions->e($this->calle)){
-        throw new ModelsException('Por favor introduzca una calle!');
-      }
-      if($this->functions->e($this->urbanizacion)){
-        throw new ModelsException('Por favor introduzca una urbanización!');
-      }
-      if($this->functions->e($this->coord_admin,$this->coord_tecnico)){
-        throw new ModelsException('Debe elegir un coordinador tecnico y uno administrativo');
-      }
+
       # throw new ModelsException('¡Esto es un error!');
     }
 
-    /** 
+    /**
       * Crea un elemento de Sedes en la tabla ``
       *
       * @return array con información para la api, un valor success y un mensaje.
@@ -91,23 +81,22 @@ class Sedes extends Models implements IModels {
     final public function add() {
       try {
         global $http;
-                  
+
         # Controlar errores de entrada en el formulario
         $this->errors();
 
         # Insertar elementos
-        $this->db->query("INSERT INTO sedes_4
-        (nombre,direccion,costo_3dias,costo_5dias,fecha_apertura,calle,urbanizacion,ci_coord_tecni,ci_coord_admin,codigo_ciudad)
-        VALUES ('$this->nombre','$this->direccion',$this->costo_3dias,$this->costo_5dias,'$this->fecha_apertura','$this->calle',
-        '$this->urbanizacion','$this->coord_tecnico','$this->coord_admin',1);");
+        $this->db->query("INSERT INTO guarderia_2
+        (nombre,id_lugar,id_enc,rif,telefonos,costo)
+        VALUES ('$this->nombre',null,null,'$this->rif','$this->telefono',$this->costo);");
 
         return array('success' => 1, 'message' => 'Creado con éxito.');
       } catch(ModelsException $e) {
         return array('success' => 0, 'message' => $e->getMessage());
       }
     }
-          
-    /** 
+
+    /**
       * Edita un elemento de Sedes en la tabla ``
       *
       * @return array con información para la api, un valor success y un mensaje.
@@ -117,8 +106,8 @@ class Sedes extends Models implements IModels {
         global $http;
 
         # Obtener el id del elemento que se está editando y asignarlo en $this->id
-        $codigo = $http->request->get('codigo'); 
-                  
+        $codigo = $http->request->get('codigo');
+
         # Controlar errores de entrada en el formulario
         $this->errors();
 
@@ -135,7 +124,7 @@ class Sedes extends Models implements IModels {
       }
     }
 
-    /** 
+    /**
       * Borra un elemento de Sedes en la tabla ``
       * y luego redirecciona a sedes/&success=true
       *
@@ -159,14 +148,10 @@ class Sedes extends Models implements IModels {
       * @return false|array: false si no hay datos.
       *                      array con los datos.
       */
-    final public function get(string $criterio="-" ,$select = '*') {
+    final public function get(string $criterio="-" ,$select = '*'){
 
-    /*Busqueda general*/
-      if($criterio=="-"){
-      return $this->db->query_select("SELECT * FROM sedes_4;");
-    }
-      /*Busqueda personalizada*/
-    return $this->db->query_select("SELECT * FROM sedes_4  WHERE $criterio='$select';");
+      return $this->db->query_select("SELECT * FROM guarderia_2;");
+
     }
 
     /**
@@ -196,7 +181,7 @@ class Sedes extends Models implements IModels {
 
     /**
       * __destruct()
-    */ 
+    */
     public function __destruct() {
         parent::__destruct();
         $this->endDBConexion();

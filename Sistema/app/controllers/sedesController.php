@@ -29,35 +29,17 @@ class sedesController extends Controllers implements IControllers {
         global $config;
 
         $s = new Model\Sedes($router);
-        $p = new Model\Personal();
-        echo $this->template->render('sedes/sedes');
-        /*switch($this->method) {
-          case 'eliminar':
-            $s->delete();
-          break;
-          case 'costo_3dias':
-          echo $this->template->render('sedes/sedes',array(
-            'sedes' => $s->getCosto($this->method,$this->isset_id)
-          ));
-          break;
-          case 'costo_5dias':
-          echo $this->template->render('sedes/sedes',array(
-            'sedes' => $s->getCosto($this->method,$this->isset_id)
-          ));
-          break;
-          case 'nombre':
-          echo $this->template->render('sedes/sedes',array(
-            'sedes' => $s->get($this->method,$this->isset_id)
-          ));
+
+        switch($this->method) {
+          case 'crear':
+            echo $this->template->render('sedes/crear');
           break;
           default:
-            echo $this->template->render('sedes/sedes',array(
-              'sedes' => $s->get(),
-              'tecnicos' => $p->getCoordTec(),
-              'administrativos' => $p->getCoordAdmin()
-            ));
+            echo $this->template->render('sedes/sedes', array(
+            'sedes' => $s->get()
+          ));
           break;
-        }*/
+        }
     }
 
 }

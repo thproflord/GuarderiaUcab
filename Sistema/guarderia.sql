@@ -1,23 +1,4 @@
--- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Feb 16, 2018 at 06:16 PM
--- Server version: 5.7.14
--- PHP Version: 7.0.10
 
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `guarderia`
 --
 
 -- --------------------------------------------------------
@@ -76,7 +57,7 @@ CREATE TABLE `autorizado_2` (
   `cedula` int(11) NOT NULL,
   `nombre` int(11) NOT NULL,
   `apellido` int(11) NOT NULL,
-  `telefono` int(11) NOT NULL
+  `telefono` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -149,10 +130,11 @@ CREATE TABLE `factura_2` (
 
 CREATE TABLE `guarderia_2` (
   `id_guarderia` int(11) UNSIGNED NOT NULL,
-  `id_lugar` int(11) UNSIGNED NOT NULL,
+  `id_lugar` int(11) UNSIGNED,
+  `id_enc` int(11) UNSIGNED,
   `rif` varchar(12) NOT NULL,
   `nombre` varchar(12) NOT NULL,
-  `telefonos` int(11) UNSIGNED NOT NULL,
+  `telefonos` varchar(15) NOT NULL,
   `costo` float UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -395,17 +377,16 @@ CREATE TABLE `nino_pediatra_2` (
 --
 
 CREATE TABLE `padre_2` (
-  `id_padre` int(11) UNSIGNED NOT NULL,
   `cedula` int(11) UNSIGNED NOT NULL,
   `nombre` varchar(11) NOT NULL,
   `apellido` varchar(11) NOT NULL,
   `direccion` varchar(11) NOT NULL,
   `email` varchar(11) NOT NULL,
-  `tel_casa` int(11) NOT NULL,
-  `tel_ofic` int(11) NOT NULL,
-  `tel_celular` int(11) NOT NULL,
+  `tel_casa` varchar(15),
+  `tel_ofic` varchar(15),
+  `tel_celular`  varchar(15) NOT NULL,
   `profesion` varchar(11) NOT NULL,
-  `edo_civil` varchar(11) NOT NULL,
+  `edo_civil` varchar(11),
   `principal` tinyint(1) NOT NULL COMMENT '1 : Si 0 : No',
   `vivenino` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -465,7 +446,7 @@ CREATE TABLE `pediatra_2` (
   `id_pediatra` int(11) UNSIGNED NOT NULL,
   `cedula` int(11) UNSIGNED NOT NULL,
   `nombre` varchar(11) NOT NULL,
-  `telefono` varchar(11) NOT NULL
+  `telefono` varchar(15) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -477,12 +458,11 @@ CREATE TABLE `pediatra_2` (
 CREATE TABLE `personal_2` (
   `id_personal` int(11) UNSIGNED NOT NULL,
   `id_guarderia` int(11) UNSIGNED NOT NULL,
-  `id_guarderia_encarg` int(11) UNSIGNED DEFAULT NULL,
   `cedula` int(11) UNSIGNED NOT NULL,
   `nombre` varchar(11) NOT NULL,
   `apellidos` varchar(11) NOT NULL,
   `direccion` varchar(100) NOT NULL,
-  `telefono` varchar(11) NOT NULL,
+  `telefono` varchar(15) NOT NULL,
   `nivel_estudio` text NOT NULL COMMENT 'bachillerato, TSU, universitario, postgrado',
   `sueldo` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -617,8 +597,7 @@ ALTER TABLE `factura_2`
 --
 ALTER TABLE `guarderia_2`
   ADD PRIMARY KEY (`id_guarderia`),
-  ADD UNIQUE KEY `rif` (`rif`),
-  ADD KEY `id_lugar` (`id_lugar`);
+  ADD UNIQUE KEY `rif` (`rif`);
 
 --
 -- Indexes for table `guarderia_actividad_2`
@@ -762,8 +741,7 @@ ALTER TABLE `nino_pediatra_2`
 -- Indexes for table `padre_2`
 --
 ALTER TABLE `padre_2`
-  ADD PRIMARY KEY (`id_padre`),
-  ADD UNIQUE KEY `cedula` (`cedula`);
+  ADD PRIMARY KEY (`cedula`);
 
 --
 -- Indexes for table `pago_insc_mens_2`
@@ -800,8 +778,7 @@ ALTER TABLE `pediatra_2`
 --
 ALTER TABLE `personal_2`
   ADD PRIMARY KEY (`id_personal`),
-  ADD KEY `id_guarderia` (`id_guarderia`),
-  ADD KEY `id_guarderia_encarg` (`id_guarderia_encarg`);
+  ADD KEY `id_guarderia` (`id_guarderia`);
 
 --
 -- Indexes for table `pers_capacitado_2`
@@ -933,10 +910,7 @@ ALTER TABLE `menu_2`
 ALTER TABLE `nino_2`
   MODIFY `id_nino` int(11) NOT NULL AUTO_INCREMENT;
 --
--- AUTO_INCREMENT for table `padre_2`
 --
-ALTER TABLE `padre_2`
-  MODIFY `id_padre` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT for table `pago_insc_mens_2`
 --
@@ -970,7 +944,7 @@ ALTER TABLE `sintoma_2`
 -- Constraints for table `asistencia_2`
 --
 ALTER TABLE `asistencia_2`
-  ADD CONSTRAINT `asistencia_2_ibfk_1` FOREIGN KEY (`id_padre`) REFERENCES `padre_2` (`id_padre`),
+  ADD CONSTRAINT `asistencia_2_ibfk_1` FOREIGN KEY (`id_padre`) REFERENCES `padre_2` (`cedula`),
   ADD CONSTRAINT `asistencia_2_ibfk_2` FOREIGN KEY (`id_autorizado`) REFERENCES `autorizado_2` (`id_autorizado`),
   ADD CONSTRAINT `asistencia_2_ibfk_3` FOREIGN KEY (`id_inscripcion`) REFERENCES `inscripcion_2` (`id_inscripcion`);
 
@@ -996,7 +970,8 @@ ALTER TABLE `factura_2`
 -- Constraints for table `guarderia_2`
 --
 ALTER TABLE `guarderia_2`
-  ADD CONSTRAINT `guarderia_2_ibfk_1` FOREIGN KEY (`id_lugar`) REFERENCES `lugar_2` (`id_lugar`);
+  ADD CONSTRAINT `guarderia_2_ibfk_1` FOREIGN KEY (`id_lugar`) REFERENCES `lugar_2` (`id_lugar`),
+  ADD CONSTRAINT `guarderia_2_ibfk_2` FOREIGN KEY (`id_enc`) REFERENCES `personal_2` (`id_personal`);
 
 --
 -- Constraints for table `guarderia_actividad_2`
@@ -1055,7 +1030,7 @@ ALTER TABLE `menu_2`
 -- Constraints for table `nino_2`
 --
 ALTER TABLE `nino_2`
-  ADD CONSTRAINT `nino_2_ibfk_1` FOREIGN KEY (`id_padre`) REFERENCES `padre_2` (`id_padre`);
+  ADD CONSTRAINT `nino_2_ibfk_1` FOREIGN KEY (`id_padre`) REFERENCES `padre_2` (`cedula`);
 
 --
 -- Constraints for table `nino_alergia_2`
@@ -1110,15 +1085,14 @@ ALTER TABLE `pago_insc_mens_2`
 -- Constraints for table `parentesco_2`
 --
 ALTER TABLE `parentesco_2`
-  ADD CONSTRAINT `parentesco_2_ibfk_1` FOREIGN KEY (`id_padre`) REFERENCES `padre_2` (`id_padre`),
+  ADD CONSTRAINT `parentesco_2_ibfk_1` FOREIGN KEY (`id_padre`) REFERENCES `padre_2` (`cedula`),
   ADD CONSTRAINT `parentesco_2_ibfk_2` FOREIGN KEY (`id_nino`) REFERENCES `nino_2` (`id_nino`);
 
 --
 -- Constraints for table `personal_2`
 --
 ALTER TABLE `personal_2`
-  ADD CONSTRAINT `personal_2_ibfk_1` FOREIGN KEY (`id_guarderia`) REFERENCES `guarderia_2` (`id_guarderia`),
-  ADD CONSTRAINT `personal_2_ibfk_2` FOREIGN KEY (`id_guarderia_encarg`) REFERENCES `guarderia_2` (`id_guarderia`);
+  ADD CONSTRAINT `personal_2_ibfk_1` FOREIGN KEY (`id_guarderia`) REFERENCES `guarderia_2` (`id_guarderia`);
 
 --
 -- Constraints for table `pers_capacitado_2`
@@ -1140,7 +1114,3 @@ ALTER TABLE `plato_comida_2`
 ALTER TABLE `plato_menu_2`
   ADD CONSTRAINT `plato_menu_2_ibfk_1` FOREIGN KEY (`id_plato`) REFERENCES `plato_2` (`id_plato`),
   ADD CONSTRAINT `plato_menu_2_ibfk_2` FOREIGN KEY (`id_menu`) REFERENCES `menu_2` (`id_menu`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

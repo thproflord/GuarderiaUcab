@@ -18,7 +18,7 @@ use Ocrend\Kernel\Router\IRouter;
 
 class Representantes extends Models implements IModels {
     /**
-      * Característica para establecer conexión con base de datos. 
+      * Característica para establecer conexión con base de datos.
     */
     use DBModel;
 
@@ -30,7 +30,7 @@ class Representantes extends Models implements IModels {
     private $tlf_celular;
     private $profesion;
     private $sexo;
-    
+
     /**
       * Controla los errores de entrada del formulario
       *
@@ -43,10 +43,10 @@ class Representantes extends Models implements IModels {
       $this->nombre = $http->request->get('nombre');
       $this->apellido = $http->request->get('apellido');
       $this->cedula = $http->request->get('cedula');
-      $this->tlf_casa = $http->request->get('tlf_casa');
-      $this->tlf_oficina = $http->request->get('tlf_oficina');
-      $this->tlf_celular = $http->request->get('tlf_celular');
-      $this->sexo = $http->request->get('sexo');
+      $this->tlf_casa = ($http->request->get('tlf_casa') != ' ') ? $http->request->get('tlf_casa') : null;
+      $this->tlf_oficina = ($http->request->get('tlf_oficina') != ' ') ? $http->request->get('tlf_oficina') : null;
+      $this->tlf_celular = ($http->request->get('tlf_celular') != ' ') ? $http->request->get('tlf_celular') : null;
+      $this->principal = $http->request->get('sexo');
       $this->profesion = $http->request->get('profesion');
 
       if($this->functions->e($this->nombre)){
@@ -57,10 +57,6 @@ class Representantes extends Models implements IModels {
       }
       if($this->functions->e($this->cedula)){
         throw new ModelsException('El campo cedula es obligatorio');
-      }
-
-      if($this->functions->e($this->sexo)){
-        throw new ModelsException('Por favor seleccione un sexo');
       }
 
       if($this->functions->e($this->profesion) && $this->tipo == 2){
@@ -78,15 +74,15 @@ class Representantes extends Models implements IModels {
     final public function add(){
       try {
         global $http;
-                  
+
         # Controlar errores de entrada en el formulario
         $this->errors();
 
         # Insertar elementos
-        $this->db->query("INSERT INTO representantes
-        (nombre,apellido,cedula,tlf_casa,tlf_ofic,tlf_celular,sexo,profesion)
-        VALUES ('$this->nombre','$this->apellido','$this->cedula',$this->tlf_casa,$this->tlf_oficina,
-        $this->tlf_celular,'$this->sexo','$this->profesion');");
+        $this->db->query("INSERT INTO padre_2
+        (nombre,apellido,cedula,tel_casa,tel_ofic,tel_celular,profesion,principal)
+        VALUES ('$this->nombre','$this->apellido','$this->cedula','$this->tlf_casa','$this->tlf_oficina',
+        '$this->tlf_celular','$this->profesion',$this->principal);");
 
         return array('success' => 1, 'message' => 'Creado con éxito.');
       } catch(ModelsException $e) {
@@ -100,7 +96,7 @@ class Representantes extends Models implements IModels {
     }
 
     final public function get(bool $multi = true, string $select = '*') {
-        return $this->db->query_select("SELECT * FROM representantes;");
+        return $this->db->query_select("SELECT * FROM padre_2;");
     }
 
     /**
@@ -113,7 +109,7 @@ class Representantes extends Models implements IModels {
 
     /**
       * __destruct()
-    */ 
+    */
     public function __destruct() {
         parent::__destruct();
         $this->endDBConexion();

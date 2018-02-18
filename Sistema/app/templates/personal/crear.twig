@@ -17,60 +17,46 @@
                   <input type="text" class="form-control" placeholder="Apellido..." name="apellido">
                   <label>Cedula</label>
                   <input type="text" class="form-control" placeholder="Cedula" name="cedula">
-                  <label>Teléfono de Casa</label>
-                  <input type="tel" class="form-control" placeholder="" name="tlf_casa" data-inputmask="'mask':['(999) 999-9999']" data-mask>
-                  <label>Teléfono de Oficina</label>
-                  <input type="tel" class="form-control" placeholder="" name="tlf_oficina" data-inputmask="'mask':['(999) 999-9999']" data-mask>
-                  <label>Teléfono Celular</label>
-                  <input type="tel" class="form-control" placeholder="" name="tlf_celular" data-inputmask="'mask':['(999) 999-9999']" data-mask>
-                  <label>Fecha de Nacimiento</label>
-                  <input type="date" class="form-control" placeholder="" name="fecha_nacimiento">
-                  <label>Nacionalidad</label>
-                  <input type="text" class="form-control" placeholder="Nacionalidad" name="nacionalidad">
+                  <label>Guarderia</label>
+                  <input type="text" class="form-control" placeholder="Codigo" name="guarderia" >
+                  <label>Teléfono</label>
+                  <input type="text" class="form-control" placeholder="" name="tlf">
+                  <label>Direccion</label>
+                  <input type="text" class="form-control" placeholder="" name="direccion">
+                  <label>Sueldo</label>
+                  <input type="text" class="form-control" placeholder="" name="sueldo">
                 </div>
-                <div class="form-group" onchange="mostrarProfesionCrear()">
-                  <label>Tipo Empleado</label>
+
+                  <label>Nivel de Estudio</label>
                   <div class="radio">
                     <label>
-                      <input type="radio" name="tipo_empleado" id="tipo_empleado1" value="1" checked>
-                      Coordinador Tecnico
+                      <input type="radio" name="tipo_empleado" id="tipo_empleado1" value="bachillerato" checked>
+                      Bachillerato
                     </label>
                   </div>
                   <div class="radio">
                     <label>
-                      <input type="radio" name="tipo_empleado" id="tipo_empleado2" value="2">
-                      Coordinador Administrativo
+                      <input type="radio" name="tipo_empleado" id="tipo_empleado2" value="TSU">
+                       TSU
                     </label>
                   </div>
                   <div class="radio">
                     <label>
-                      <input type="radio" name="tipo_empleado" id="tipo_empleado3" value="0">
-                      Administrador
+                      <input type="radio" name="tipo_empleado" id="tipo_empleado3" value="universitario">
+                      Universitario
                     </label>
                   </div>
-                </div>
-                <div id="profesion_crear" style="display:none">
-                  <label>Profesión</label>
-                  <input type="text" class="form-control" placeholder="Profesion..." name="profesion">
-                </div>
-                <div class="form-group">
-                  <label>Sexo</label>
-                    <div class="radio">
-                      <label>
-                        <input type="radio" name="sexo" id="sexo1" value="m">
-                        Masculino
-                      </label>
-                    </div>
-                    <div class="radio">
-                      <label>
-                        <input type="radio" name="sexo" id="sexo2" value="f">
-                        Femenino
-                      </label>
-                    </div>
-                </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="tipo_empleado" id="tipo_empleado3" value="postgrado">
+                      Postgrado
+                    </label>
+                  </div>
+
               </form>
               </div>
               <div class="modal-footer">
+                
                 <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
                 <button type="button" id="crear_personal" class="btn btn-primary">Crear Empleado</button>
               </div>
@@ -80,4 +66,3 @@
         <!-- /.modal-dialog -->
     </div>
     <!-- /.modal -->
-

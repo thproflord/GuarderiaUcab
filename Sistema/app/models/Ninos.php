@@ -18,7 +18,7 @@ use Ocrend\Kernel\Router\IRouter;
 
 class Ninos extends Models implements IModels {
     /**
-      * Característica para establecer conexión con base de datos. 
+      * Característica para establecer conexión con base de datos.
     */
     use DBModel;
 
@@ -27,7 +27,7 @@ class Ninos extends Models implements IModels {
     private $sexo;
     private $fecha_nac;
     private $cedula_repre;
-    
+
     /**
       * Controla los errores de entrada del formulario
       *
@@ -55,24 +55,24 @@ class Ninos extends Models implements IModels {
 
       if($this->functions->e($this->fecha_nac)){
         throw new ModelsException('Por favor seleccione una fecha de nacimiento');
-      }      
+      }
 
       if($this->functions->e($this->cedula_repre)){
         throw new ModelsException('Por favor introduzca la cedula del representante');
       }
-      
+
     }
 
     final public function add(){
       try {
         global $http;
-                  
+
         # Controlar errores de entrada en el formulario
         $this->errors();
 
         # Insertar elementos
-        $this->db->query("INSERT INTO Ninos
-        (nombre,apellidos,sexo,fecha_nac,cedula_repre)
+        $this->db->query("INSERT INTO Nino_2
+        (nombre,apellido,sexo,fecha_nac,id_padre)
         VALUES ('$this->nombre','$this->apellido','$this->sexo','$this->fecha_nac','$this->cedula_repre');");
 
         return array('success' => 1, 'message' => 'Creado con éxito.');
@@ -87,7 +87,7 @@ class Ninos extends Models implements IModels {
     }
 
     final public function get(bool $multi = true, string $select = '*') {
-        return $this->db->query_select("SELECT * FROM Ninos;");
+        return $this->db->query_select("SELECT * FROM Nino_2;");
     }
 
     /**
@@ -100,7 +100,7 @@ class Ninos extends Models implements IModels {
 
     /**
       * __destruct()
-    */ 
+    */
     public function __destruct() {
         parent::__destruct();
         $this->endDBConexion();

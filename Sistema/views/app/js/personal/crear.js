@@ -1,11 +1,3 @@
-function mostrarProfesionCrear(){
-  if ($('#tipo_empleado2').is(':checked')){
-    $('#profesion_crear').css('display','block');
-  }
-  else{
-    $('#profesion_crear').css('display','none');
-  }
-}
 
 /**
  * Ajax action to api rest
@@ -29,11 +21,11 @@ function crear_empleado(){
       }
     });
   }
-  
+
   /**
    * Events
-   *  
-   * @param {*} e 
+   *
+   * @param {*} e
    */
   $('#crear_personal').click(function(e) {
     e.defaultPrevented;

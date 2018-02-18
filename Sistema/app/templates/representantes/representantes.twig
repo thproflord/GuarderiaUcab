@@ -67,7 +67,7 @@
                   <tr>
                     <th>Cedula</th>
                     <th>Nombre</th>
-                    <th>Sexo</th>
+                    <th>Principal</th>
                     <th>Profesión</th>
                     <th>Teléfono Oficina</th>
                     <th>Teléfono Casa</th>
@@ -81,11 +81,11 @@
                       <tr>
                           <td>{{ r.cedula }}</td>
                           <td>{{ r.nombre }} {{ r.apellido }}</td>
-                          <td>{{ r.sexo }}</td>
+                          <td>{{ (r.principal == 1) ? 'Si' : 'No' }}</td>
                           <td>{{ r.profesion }}</td>
-                          <td>{{ r.tlf_ofic }}</td>
-                          <td>{{ r.tlf_casa }}</td>
-                          <td>{{ r.tlf_celular }}</td>
+                          <td>{{ r.tel_ofic }}</td>
+                          <td>{{ r.tel_casa }}</td>
+                          <td>{{ r.tel_celular }}</td>
                           <td><a type="button" data-toggle="modal" data-target="#modal_editar_representante" onclick="edit_representante('{{ r.nombre }}','{{ r.apellido }}','{{ r.cedula_representante }}','{{ r.telefono_oficina }}','{{ r.telefono_casa }}','{{ r.telefono_celular }}','{{ r.sexo }}','{{ r.direccion }}','{{ r.profesion }}')"><i class="fa fa-edit"></i></a></td>
                           <td><a type="button" href="representantes/eliminar/{{ r.cedula }}"><i class="fa fa-trash"></i></a></td>
                       </tr>

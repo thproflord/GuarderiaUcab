@@ -24,13 +24,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        PERSONAL
-        <small>Escuela de fútbol 'Pasión de vida'</small>
+        Docentes
+        <small>Guarderia</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li><a href="#">Personal</a></li>
-        <li class="active">Listado de Personal</li>
+        <li><a href="#">Docente</a></li>
+        <li class="active">Listado de Docente</li>
       </ol>
     </section>
 
@@ -40,15 +40,15 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Listado de Personal</h3>
+              <h3 class="box-title">Listado de Docentes</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
                <div class="row">
                 <div class="col-xs-12 col-sm-4 col-md-3">
                  <select id="criterio_personal" class="select">
-                    <option value="fecha_nacimiento">Fecha de nacimiento</option> 
-                    <option value="nacionalidad">Nacionalidad</option> 
+                    <option value="fecha_nacimiento">Fecha de nacimiento</option>
+                    <option value="nacionalidad">Nacionalidad</option>
                     <option value="sexo">Sexo</option>
                  </select>
                 </div>
@@ -58,7 +58,7 @@
                 </div>
 
                 <div class="col-xs-12 col-sm-2 col-md-2">
-                   <button type="button" id="busqueda_criterio_personal" class="btn btn-primary btn-lacra">Buscar</button>  
+                   <button type="button" id="busqueda_criterio_personal" class="btn btn-primary btn-lacra">Buscar</button>
                 </div>
               </div>
               <div class="table-responsive">
@@ -66,40 +66,32 @@
                   <thead>
                   <tr>
                     <th>Nombre</th>
-                    <th>cedula_empleado</th>
-                    <th>Teléfono Oficina</th>
-                    <th>Teléfono Casa</th>
-                    <th>Teléfono Celular</th>
-                    <th>Fecha de nacimiento</th>
-                    <th>Nacionalidad</th>
-                    <th>Sexo</th>
-                    <th>Tipo</th>
-                    <th>Profesión</th>
-                    <th>Editar</th>
-                    <th>Eliminar</th>
+                    <th>Cedula</th>
+                    <th>Guarderia</th>
+                    <th>Direccion</th>
+                    <th>Teléfono</th>
+                    <th>Nivel De Estudio</th>
+                    <th>Sueldo</th>
                   </tr>
                   </thead>
                   <tbody>
                   {% for p in personal %}
                       <tr>
-                          <td>{{ p.nombre }} {{ p.apellido }}</td>
-                          <td>{{ p.cedula_empleado }}</td>
-                          <td>{{ p.telefono_oficina }}</td>
-                          <td>{{ p.telefono_casa }}</td>
-                          <td>{{ p.telefono_celular }}</td>
-                          <td>{{ p.fecha_nacimiento }}</td>
-                          <td>{{ p.nacionalidad }}</td>
-                          <td>{{ p.sexo }}</td>
-                          <td>{{ p.tipo }}</td>
-                          <td>{{ p.profesion }}</td>
+                          <td>{{ p.nombre }} {{ p.apellidos }}</td>
+                          <td>{{ p.cedula }}</td>
+                          <td>{{ p.id_guarderia }}</td>
+                          <td>{{ p.direccion }}</td>
+                          <td>{{ p.telefono }}</td>
+                          <td>{{ p.nivel_estudio }}</td>
+                          <td>{{ p.sueldo }}</td>
                           <td><a type="button" data-toggle="modal" data-target="#modal_editar_personal" onclick="editar_personal('{{ p.nombre }}','{{ p.apellido }}','{{ p.cedula_empleado }}','{{ p.telefono_oficina }}','{{ p.telefono_casa }}','{{ p.telefono_celular }}','{{ p.fecha_nacimiento }}','{{ p.nacionalidad }}',{{ p.tipo }},'{{ p.profesion }}','{{ p.sexo }}')"><i class="fa fa-edit"></i></a></td>
                           <td><a type="button" href="personal/eliminar/{{ p.cedula_empleado }}"><i class="fa fa-trash"></i></a></td>
                       </tr>
                   {% endfor %}
                   </tbody>
-                  
-                 
-                 
+
+
+
                 </table>
                 <button type="button" class="btn btn-block btn-primary btn-flat" data-toggle="modal" data-target="#modal_crear_personal" onclick="crear_personal()"><i class="fa fa-plus-circle"></i> CREAR NUEVO PERSONAL</button>
               </div>
@@ -146,19 +138,19 @@
   /*Evento ejecutado al realizar click sobre el button "busqueda_criterio" */
   $('#busqueda_criterio_personal').click(function(e) {
   e.defaultPrevented;
-  
+
   /*Nombre del crud*/
   var crud = "personal/";
-  
+
   /*Criterio de busqueda , definido en el select "criterio" */
   var criterio = $("#criterio_personal").val().concat("/");
-  
+
   /*Valor a buscar , escrito en el input "data"*/
   var valor = $("#data_personal").val();
-  
+
   /*Link con todos los datos*/
   var busqueda=crud.concat(criterio).concat(valor);
-  
+
   /*Redireccion al link*/
   location.href = busqueda;
   });

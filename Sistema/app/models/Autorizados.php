@@ -18,7 +18,7 @@ use Ocrend\Kernel\Router\IRouter;
 
 class Autorizados extends Models implements IModels {
     /**
-      * Característica para establecer conexión con base de datos. 
+      * Característica para establecer conexión con base de datos.
     */
     use DBModel;
 
@@ -26,7 +26,7 @@ class Autorizados extends Models implements IModels {
     private $apellido;
     private $cedula;
     private $telefono;
-    
+
     /**
       * Controla los errores de entrada del formulario
       *
@@ -40,7 +40,7 @@ class Autorizados extends Models implements IModels {
       $this->apellido = $http->request->get('apellido');
       $this->cedula = $http->request->get('cedula');
       $this->telefono = $http->request->get('telefono');
-      
+
 
       if($this->functions->e($this->nombre)){
         throw new ModelsException('El campo nombre es obligatorio');
@@ -60,12 +60,12 @@ class Autorizados extends Models implements IModels {
     final public function add(){
       try {
         global $http;
-                  
+
         # Controlar errores de entrada en el formulario
         $this->errors();
 
         # Insertar elementos
-        $this->db->query("INSERT INTO autorizados
+        $this->db->query("INSERT INTO autorizado_2
         (cedula,nombre,apellido,telefono)
         VALUES ('$this->cedula','$this->nombre','$this->apellido','$this->telefono');");
 
@@ -81,7 +81,7 @@ class Autorizados extends Models implements IModels {
     }
 
     final public function get(bool $multi = true, string $select = '*') {
-        return $this->db->query_select("SELECT * FROM autorizados;");
+        return $this->db->query_select("SELECT * FROM autorizado_2;");
     }
 
     /**
@@ -94,7 +94,7 @@ class Autorizados extends Models implements IModels {
 
     /**
       * __destruct()
-    */ 
+    */
     public function __destruct() {
         parent::__destruct();
         $this->endDBConexion();

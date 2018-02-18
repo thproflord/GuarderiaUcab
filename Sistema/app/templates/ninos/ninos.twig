@@ -76,9 +76,9 @@
                   <tbody>
                   {% for r in Ninos %}
                       <tr>
-                          <td>{{ r.cedula_repre }}</td>
+                          <td>{{ r.id_padre }}</td>
                           <td>{{ r.nombre }}</td>
-                          <td>{{ r.apellidos }}</td>
+                          <td>{{ r.apellido }}</td>
                           <td>{{ r.fecha_nac }}</td>
                           <td>{{ r.sexo }}</td>
                           <td><a type="button" data-toggle="modal" data-target="#modal_editar_representante" onclick="edit_representante('{{ r.nombre }}','{{ r.apellido }}','{{ r.cedula_representante }}','{{ r.telefono_oficina }}','{{ r.telefono_casa }}','{{ r.telefono_celular }}','{{ r.sexo }}','{{ r.direccion }}','{{ r.parentesco }}','{{ r.profesion }}')"><i class="fa fa-edit"></i></a></td>
