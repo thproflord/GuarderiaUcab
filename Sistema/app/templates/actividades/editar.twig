@@ -1,0 +1,38 @@
+<div class="modal fade" id="modal_editar_actividades">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Editar Actividades</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form" id="editar_actividades_form">
+          <!-- text input -->
+          <div class="form-group">
+                <label>Nombre</label>
+                <input type="text" class="form-control" placeholder="Nombre" name="nombre" id="id_nombre">
+                <label>Transporte</label>
+                <input type="text" class="form-control" placeholder="Transporte" name="transporte" id="id_transporte">
+                <input type="hidden" class="form-control" placeholder="Codigo" name="codigo" id="id_codigo">
+                <label>Costo_trans</label>
+                <input type="tel" class="form-control" placeholder="" name="costo_trans" id="id_costo_trans">
+                <label>Edad_minima</label>
+                <input type="tel" class="form-control" placeholder="" name="edad_minima" id="id_edad_minima">
+                <label>Descripcion</label>
+                <input type="tel" class="form-control" placeholder="" name="descripcion" id="id_descripcion">
+          </div>
+       
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+          <button type="button" id="editar_actividades" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+

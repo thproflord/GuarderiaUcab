@@ -48,12 +48,11 @@
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>id_actividad</th>
                     <th>codigo</th>
                     <th>nombre</th>
-                    <th>transporte</th>
-                    <th>costo_trans</th>
-                    <th>edad_minima</th>
+                    <th width="10%">transporte</th>
+                    <th width="10%">costo_trans</th>
+                    <th width="10%">edad_minima</th>
                     <th>descripcion</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
@@ -62,14 +61,14 @@
                   <tbody>
                   {% for r in actividades %}
                       <tr>
-                          <td>{{ r.id_actividad }}</td>
                           <td>{{ r.codigo }}</td>
+                          <td>{{ r.nombre }}</td>
                           <td>{{ r.transporte }}</td>
                           <td>{{ r.costo_trans }}</td>
                           <td>{{ r.edad_minima }}</td>
                           <td>{{ r.descripcion }}</td>
-                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_actividades" onclick="edit_actividades('{{ r.nombre }}','{{ r.apellido }}','{{ r.cedula_actividades }}','{{ r.telefono_oficina }}','{{ r.telefono_casa }}','{{ r.telefono_celular }}','{{ r.sexo }}','{{ r.direccion }}','{{ r.profesion }}')"><i class="fa fa-edit"></i></a></td>
-                          <td><a type="button" href="actividadess/eliminar/{{ r.cedula }}"><i class="fa fa-trash"></i></a></td>
+                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_actividades" onclick="edit_actividades('{{ r.codigo }}','{{ r.nombre }}','{{ r.transporte }}','{{ r.costo_trans }}','{{ r.edad_minima }}','{{ r.descripcion }}')"><i class="fa fa-edit"></i></a></td>
+                          <td><a type="button" href="actividades/eliminar/{{ r.cedula }}"><i class="fa fa-trash"></i></a></td>
                       </tr>
                   {% endfor %}
                   </tbody>
@@ -85,8 +84,8 @@
       </div>
       <!-- /.row -->
       {# Creación de producto #}
-      {% include 'representantes/crear' %}
-      {% include 'representantes/editar' %}
+      {% include 'actividades/crear' %}
+      {% include 'actividades/editar' %}
       {#% include 'colegios/eliminar' %#}
     </section>
     <!-- /.content -->
@@ -118,17 +117,17 @@
 
 <script>
 /*Evento ejecutado al realizar click sobre el button "busqueda_criterio" */
-$('#busqueda_criterio_actividadess').click(function(e) {
+$('#busqueda_criterio_actividades').click(function(e) {
 e.defaultPrevented;
 
 /*Nombre del crud*/
 var crud = "actividadess/";
 
 /*Criterio de busqueda , definido en el select "criterio" */
-var criterio = $("#criterio_actividadess").val().concat("/");
+var criterio = $("#criterio_actividades").val().concat("/");
 
 /*Valor a buscar , escrito en el input "data"*/
-var valor = $("#data_actividadess").val();
+var valor = $("#data_actividades").val();
 
 /*Link con todos los datos*/
 var busqueda=crud.concat(criterio).concat(valor);

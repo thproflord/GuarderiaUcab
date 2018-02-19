@@ -75,9 +75,28 @@ class Autorizados extends Models implements IModels {
       }
     }
 
-    final public function editar(){
-      $this->db->update('autorizados', array(
-      ),"cedula=");
+    /** 
+      * Edita un elemento de Personal en la tabla ``
+      *
+      * @return array con información para la api, un valor success y un mensaje.
+    */
+    final public function edit() : array {
+      try {
+        global $http;
+        
+        # Controlar errores de entrada en el formulario
+        $this->errors(true);
+
+        
+        # Actualizar elementos
+        $this->db->query("UPDATE autorizado_2
+        SET nombre  =  '$this->nombre', apellido = '$this->apellido', telefono  =  '$this->telefono'
+        WHERE cedula = '$this->cedula'");
+
+        return array('success' => 1, 'message' => 'Editado con éxito.');
+      } catch(ModelsException $e) {
+        return array('success' => 0, 'message' => $e->getMessage());
+      }
     }
 
     final public function get(bool $multi = true, string $select = '*') {

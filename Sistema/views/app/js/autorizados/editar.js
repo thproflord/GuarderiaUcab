@@ -1,16 +1,19 @@
-function edit_juego(codigo,descripcion){
-    $('#id_codigo').val(codigo);
-    $('#id_descripcion').val(descripcion);   
+function edit_autorizado(nombre,apellido,cedula,telefono){
+    $('#id_nombre').val(nombre);
+    $('#id_apellido').val(apellido);
+    $('#id_cedula').val(cedula);
+    $('#id_telefono').val(telefono);
+    
 }
 
 /**
  * Ajax action to api rest
 */
-function editar_juego(){
+function editar_autorizado(){
     $.ajax({
       type : "POST",
-      url : "api/juegos/editar",
-      data : $('#editar_juego_form').serialize(),
+      url : "api/autorizados/editar",
+      data : $('#editar_autorizado_form').serialize(),
       success : function(json) {
         alert(json.success);
         alert(json.message);
@@ -31,13 +34,13 @@ function editar_juego(){
    *  
    * @param {*} e 
    */
-  $('#editar_juego').click(function(e) {
+  $('#editar_autorizado').click(function(e) {
     e.defaultPrevented;
-    editar_juego();
+    editar_autorizado();
   });
-  $('#editar_juego_form').keypress(function(e) {
+  $('#editar_autorizado_form').keypress(function(e) {
       e.defaultPrevented;
       if(e.which == 13) {
-          editar_juego();
+          editar_autorizado();
       }
   });

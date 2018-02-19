@@ -55,7 +55,7 @@ class Medicinas extends Models implements IModels {
         $this->errors();
 
         # Insertar elementos
-        $this->db->query("INSERT INTO medicinas
+        $this->db->query("INSERT INTO medicina_2
         (codigo,descripcion)
         VALUES ('$this->codigo','$this->descripcion');");
 
@@ -65,9 +65,23 @@ class Medicinas extends Models implements IModels {
       }
     }
 
-    final public function editar(){
-      $this->db->update('autorizados', array(
-      ),"cedula=");
+    final public function edit() : array {
+      try {
+        global $http;
+        
+        # Controlar errores de entrada en el formulario
+        $this->errors(true);
+
+        
+        # Actualizar elementos
+        $this->db->query("UPDATE medicina_2
+        SET descripcion  =  '$this->descripcion'
+        WHERE codigo = '$this->codigo'");
+
+        return array('success' => 1, 'message' => 'Editado con éxito.');
+      } catch(ModelsException $e) {
+        return array('success' => 0, 'message' => $e->getMessage());
+      }
     }
 
     final public function get(bool $multi = true, string $select = '*') {

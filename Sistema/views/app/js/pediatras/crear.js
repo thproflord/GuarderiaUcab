@@ -1,16 +1,8 @@
-function edit_juego(codigo,descripcion){
-    $('#id_codigo').val(codigo);
-    $('#id_descripcion').val(descripcion);   
-}
-
-/**
- * Ajax action to api rest
-*/
-function editar_juego(){
+function crear_pediatra(){
     $.ajax({
       type : "POST",
-      url : "api/juegos/editar",
-      data : $('#editar_juego_form').serialize(),
+      url : "api/pediatras/crear",
+      data : $('#crear_pediatra_form').serialize(),
       success : function(json) {
         alert(json.success);
         alert(json.message);
@@ -31,13 +23,13 @@ function editar_juego(){
    *  
    * @param {*} e 
    */
-  $('#editar_juego').click(function(e) {
+  $('#crear_pediatra').click(function(e) {
     e.defaultPrevented;
-    editar_juego();
+    crear_pediatra();
   });
-  $('#editar_juego_form').keypress(function(e) {
+  $('#crear_pediatra_form').keypress(function(e) {
       e.defaultPrevented;
       if(e.which == 13) {
-          editar_juego();
+          crear_pediatra();
       }
   });

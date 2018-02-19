@@ -1,27 +1,25 @@
-<div class="modal fade" id="modal_crear_medicinas">
+<div class="modal fade" id="modal_editar_enfermedades">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">Crear Medicinas</h4>
+          <h4 class="modal-title">Editar Enfermedades</h4>
         </div>
         <div class="modal-body">
-          <form role="form" id="crear_medicina_form">
+          <form role="form" id="editar_enfermedades_form">
           <!-- text input -->
           <div class="form-group">
-            <label>Codigo</label>
-            <input type="text" class="form-control" placeholder="codigo" name="codigo" value="MED00">
-
-            <label>Descripción</label>
-            <input type="text" class="form-control" placeholder="descripcion" name="descripcion">
-
+                <label>Descripcion</label>
+                <input type="text" class="form-control" placeholder="Descripcion" name="descripcion" id="id_descripcion">
+                <input type="hidden" class="form-control" placeholder="Codigo" name="codigo" id="id_codigo">
           </div>
-         </form>
+       
+        </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
-          <button type="button" id="crear_medicina" class="btn btn-primary">Crear Medicina</button>
+          <button type="button" id="editar_enfermedades" class="btn btn-primary">Guardar Cambios</button>
         </div>
       </div>
       <!-- /.modal-content -->

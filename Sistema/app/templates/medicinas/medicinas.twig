@@ -75,7 +75,7 @@
                       <tr>
                           <td>{{ r.codigo }}</td>
                           <td>{{ r.descripcion }}</td>
-                          <td><a type="button" data-toggle="modal" data-target="#medicinas" onclick="edit_medicinas('{{ r.codigo }}','{{ r.descripcion }}')"><i class="fa fa-edit"></i></a></td>
+                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_medicina" onclick="edit_medicina('{{ r.codigo }}','{{ r.descripcion }}')"><i class="fa fa-edit"></i></a></td>
                           <td><a type="button" href="medicinas/eliminar/{{ r.codigo}}"><i class="fa fa-trash"></i></a></td>
                       </tr>
                   {% endfor %}
@@ -93,7 +93,7 @@
       <!-- /.row -->
       {# Creación de producto #}
       {% include 'medicinas/crear' %}
-      {% include 'representantes/editar' %}
+      {% include 'medicinas/editar' %}
       {#% include 'colegios/eliminar' %#}
     </section>
     <!-- /.content -->

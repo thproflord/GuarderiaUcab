@@ -68,6 +68,29 @@ $app->post('/jugadores/editar', function() use($app) {
 });
 
 /**
+  * Acción vía ajax de Actividades en api/actividades/crear
+  *
+  * @return json
+*/
+$app->post('/actividades/crear', function() use($app) {
+  $j = new Model\Actividades;
+
+  return $app->json($j->add());
+});
+
+
+/**
+  * Acción vía ajax de Actividades en api/actividades/editar
+  *
+  * @return json
+*/
+$app->post('/actividades/editar', function() use($app) {
+  $j = new Model\Actividades;
+
+  return $app->json($j->edit());
+});
+
+/**
   * Acción vía ajax de Valores en api/valores/crear
   *
   * @return json
@@ -184,7 +207,7 @@ $app->post('/ninos/editar', function() use($app) {
 });
 
 /**
-  * Acción vía ajax de Niños en api/autorizados/crear
+  * Acción vía ajax de Autorizados en api/autorizados/crear
   *
   * @return json
 */
@@ -196,7 +219,7 @@ $app->post('/autorizados/crear', function() use($app) {
 
 
 /**
-  * Acción vía ajax de Representantes en api/autorizados/editar
+  * Acción vía ajax de Autorizados en api/autorizados/editar
   *
   * @return json
 */
@@ -205,6 +228,31 @@ $app->post('/autorizados/editar', function() use($app) {
 
   return $app->json($r->edit());
 });
+
+
+/**
+  * Acción vía ajax de Pediatras en api/pediatras/crear
+  *
+  * @return json
+*/
+$app->post('/pediatras/crear', function() use($app) {
+  $r = new Model\Pediatras;
+
+  return $app->json($r->add());
+});
+
+
+/**
+  * Acción vía ajax de Pediatras en api/pediatras/editar
+  *
+  * @return json
+*/
+$app->post('/pediatras/editar', function() use($app) {
+  $r = new Model\Pediatras;
+
+  return $app->json($r->edit());
+});
+
 
 /**
   * Acción vía ajax de Niños en api/medicinas/crear

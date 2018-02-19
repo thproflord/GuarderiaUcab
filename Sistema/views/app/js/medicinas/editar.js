@@ -1,4 +1,4 @@
-function edit_enfermedades(codigo, descripcion){
+function edit_medicina(codigo,descripcion){
     $('#id_codigo').val(codigo);
     $('#id_descripcion').val(descripcion);
 }
@@ -6,11 +6,11 @@ function edit_enfermedades(codigo, descripcion){
 /**
  * Ajax action to api rest
 */
-function editar_enfermedades(){
+function editar_medicina(){
     $.ajax({
       type : "POST",
-      url : "api/enfermedades/editar",
-      data : $('#editar_enfermedades_form').serialize(),
+      url : "api/medicinas/editar",
+      data : $('#editar_medicina_form').serialize(),
       success : function(json) {
         alert(json.success);
         alert(json.message);
@@ -25,19 +25,19 @@ function editar_enfermedades(){
       }
     });
   }
-
+  
   /**
    * Events
-   *
-   * @param {*} e
+   *  
+   * @param {*} e 
    */
-  $('#editar_enfermedades').click(function(e) {
+  $('#editar_medicina').click(function(e) {
     e.defaultPrevented;
-    editar_enfermedades();
+    editar_medicina();
   });
-  $('#editar_enfermedades_form').keypress(function(e) {
+  $('#editar_medicina_form').keypress(function(e) {
       e.defaultPrevented;
       if(e.which == 13) {
-          editar_enfermedades();
+          editar_medicina();
       }
   });

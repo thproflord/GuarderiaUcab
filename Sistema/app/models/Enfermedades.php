@@ -34,22 +34,16 @@ class Enfermedades extends Models implements IModels {
     final private function errors(bool $edit = false) {
       global $http;
 
-      $this->codigo = $http->request->get('codig');
+      $this->codigo = $http->request->get('codigo');
       $this->descripcion = $http->request->get('descripcion');
 
       if($this->functions->e($this->codigo)){
         throw new ModelsException('El campo Codigo es obligatorio');
       }
       if($this->functions->e($this->descripcion)){
-        throw new ModelsException('El campo Descripcion es obligatorio');
+        throw new ModelsException('El campo descripcion es obligatorio');
       }
 
-      /*$cedula_exist = $this->db->query_select("SELECT * FROM representantes WHERE cedula_empleado = '$this->cedula'");
-      if(false!==$cedula_exist && !$edit){
-        throw new ModelsException('El numero de cedula ya existe');
-      }*/
-
-     // throw new ModelsException('¡Esto es un error!');
     }
 
     final public function add(){
@@ -70,9 +64,23 @@ class Enfermedades extends Models implements IModels {
       }
     }
 
-    final public function editar(){
-      $this->db->update('representantes', array(
-      ),"cedula=");
+    final public function edit() : array {
+      try {
+        global $http;
+        
+        # Controlar errores de entrada en el formulario
+        $this->errors(true);
+
+        
+        # Actualizar elementos
+        $this->db->query("UPDATE enfermedad_2
+        SET descripcion  =  '$this->descripcion'
+        WHERE codigo = '$this->codigo'");
+
+        return array('success' => 1, 'message' => 'Editado con éxito.');
+      } catch(ModelsException $e) {
+        return array('success' => 0, 'message' => $e->getMessage());
+      }
     }
 
     final public function get(bool $multi = true, string $select = '*') {

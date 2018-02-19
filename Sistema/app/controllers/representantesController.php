@@ -34,7 +34,7 @@ class representantesController extends Controllers implements IControllers {
           echo $this->template->render('representantes/crear');
         break;
         case 'editar':
-          $r->editar();
+          echo $this->template->render('representantes/crear');
         break;
         case 'eliminar':
           # code...

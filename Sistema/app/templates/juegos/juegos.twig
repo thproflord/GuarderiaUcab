@@ -64,7 +64,6 @@
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>id_juego</th>
                     <th>codigo</th>
                     <th>descripcion</th>
                     <th>Editar</th>
@@ -74,10 +73,9 @@
                   <tbody>
                   {% for r in juego %}
                       <tr>
-                          <td>{{ r.id_juego }}</td>
                           <td>{{ r.codigo }}</td>
                           <td>{{ r.descripcion }}</td>
-                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_juego" onclick="edit_juego('{{ r.nombre }}','{{ r.apellido }}','{{ r.cedula_juego }}','{{ r.telefono_oficina }}','{{ r.telefono_casa }}','{{ r.telefono_celular }}','{{ r.sexo }}','{{ r.direccion }}','{{ r.profesion }}')"><i class="fa fa-edit"></i></a></td>
+                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_juego" onclick="edit_juego('{{ r.codigo }}','{{ r.descripcion }}')"><i class="fa fa-edit"></i></a></td>
                           <td><a type="button" href="juegos/eliminar/{{ r.cedula }}"><i class="fa fa-trash"></i></a></td>
                       </tr>
                   {% endfor %}

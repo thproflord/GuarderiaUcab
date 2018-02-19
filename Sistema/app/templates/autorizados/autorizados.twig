@@ -46,19 +46,19 @@
             <div class="box-body">
               <div class="row">
                 <div class="col-xs-12 col-sm-4 col-md-3">
-                 <select id="criterio_representantes" class="select">
-                      <option value="cedula_representante">Cedula</option>
+                 <select id="criterio_autorizados" class="select">
+                      <option value="cedula_autorizado">Cedula</option>
                       <option value="nombre">Nombre</option>
                       <option value="sexo">Sexo</option>
                    </select>
                 </div>
 
                 <div class="col-xs-12 col-sm-6 col-md-7">
-                  <input type="text" class="form-control" placeholder="Introduce los datos a buscar" id="data_representantes">
+                  <input type="text" class="form-control" placeholder="Introduce los datos a buscar" id="data_autorizados">
                 </div>
 
                 <div class="col-xs-12 col-sm-2 col-md-2">
-                   <button type="button" id="busqueda_criterio_representantes" class="btn btn-primary btn-lacra">Buscar</button>
+                   <button type="button" id="busqueda_criterio_autorizados" class="btn btn-primary btn-lacra">Buscar</button>
                 </div>
               </div>
               <div class="table-responsive">
@@ -80,8 +80,8 @@
                           <td>{{ r.nombre }}</td>
                           <td>{{ r.apellido }}</td>
                           <td>{{ r.telefono }}</td>
-                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_representante" onclick="edit_representante('{{ r.nombre }}','{{ r.apellido }}','{{ r.cedula_representante }}','{{ r.telefono_oficina }}','{{ r.telefono_casa }}','{{ r.telefono_celular }}','{{ r.sexo }}','{{ r.direccion }}','{{ r.parentesco }}','{{ r.profesion }}')"><i class="fa fa-edit"></i></a></td>
-                          <td><a type="button" href="representantes/eliminar/{{ r.cedula_representante }}"><i class="fa fa-trash"></i></a></td>
+                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_autorizado" onclick="edit_autorizado('{{ r.nombre }}','{{ r.apellido }}','{{ r.cedula }}','{{ r.telefono }}')"><i class="fa fa-edit"></i></a></td>
+                          <td><a type="button" href="autorizados/eliminar/{{ r.cedula }}"><i class="fa fa-trash"></i></a></td>
                       </tr>
                   {% endfor %}
                   </tbody>
@@ -98,7 +98,7 @@
       <!-- /.row -->
       {# Creación de producto #}
       {% include 'autorizados/crear' %}
-      {% include 'representantes/editar' %}
+      {% include 'autorizados/editar' %}
       {#% include 'colegios/eliminar' %#}
     </section>
     <!-- /.content -->
@@ -108,7 +108,7 @@
 
 {% block appFooter %}
 <script src="views/app/js/autorizados/crear.js"></script>
-<script src="views/app/js/representantes/editar.js"></script>
+<script src="views/app/js/autorizados/editar.js"></script>
 <!-- DataTables -->
 <script src="views/theme/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="views/theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
@@ -130,17 +130,17 @@
 
 <script>
 /*Evento ejecutado al realizar click sobre el button "busqueda_criterio" */
-$('#busqueda_criterio_representantes').click(function(e) {
+$('#busqueda_criterio_autorizados').click(function(e) {
 e.defaultPrevented;
 
 /*Nombre del crud*/
-var crud = "representantes/";
+var crud = "autorizados/";
 
 /*Criterio de busqueda , definido en el select "criterio" */
-var criterio = $("#criterio_representantes").val().concat("/");
+var criterio = $("#criterio_autorizados").val().concat("/");
 
 /*Valor a buscar , escrito en el input "data"*/
-var valor = $("#data_representantes").val();
+var valor = $("#data_autorizados").val();
 
 /*Link con todos los datos*/
 var busqueda=crud.concat(criterio).concat(valor);

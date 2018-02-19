@@ -1,16 +1,17 @@
-function edit_enfermedades(codigo, descripcion){
-    $('#id_codigo').val(codigo);
-    $('#id_descripcion').val(descripcion);
+function edit_pediatra(nombre,telefono,cedula){
+    $('#id_nombre').val(nombre);
+    $('#id_telefono').val(telefono);
+    $('#id_cedula').val(cedula);
 }
 
 /**
  * Ajax action to api rest
 */
-function editar_enfermedades(){
+function editar_pediatra(){
     $.ajax({
       type : "POST",
-      url : "api/enfermedades/editar",
-      data : $('#editar_enfermedades_form').serialize(),
+      url : "api/pediatras/editar",
+      data : $('#editar_pediatra_form').serialize(),
       success : function(json) {
         alert(json.success);
         alert(json.message);
@@ -25,19 +26,19 @@ function editar_enfermedades(){
       }
     });
   }
-
+  
   /**
    * Events
-   *
-   * @param {*} e
+   *  
+   * @param {*} e 
    */
-  $('#editar_enfermedades').click(function(e) {
+  $('#editar_pediatra').click(function(e) {
     e.defaultPrevented;
-    editar_enfermedades();
+    editar_pediatra();
   });
-  $('#editar_enfermedades_form').keypress(function(e) {
+  $('#editar_pediatra_form').keypress(function(e) {
       e.defaultPrevented;
       if(e.which == 13) {
-          editar_enfermedades();
+          editar_pediatra();
       }
   });

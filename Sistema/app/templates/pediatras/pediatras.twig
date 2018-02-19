@@ -46,19 +46,19 @@
             <div class="box-body">
               <div class="row">
                 <div class="col-xs-12 col-sm-4 col-md-3">
-                 <select id="criterio_representantes" class="select">
-                      <option value="cedula_representante">Cedula</option>
+                 <select id="criterio_pediatras" class="select">
+                      <option value="cedula_pediatra">Cedula</option>
                       <option value="nombre">Nombre</option>
                       <option value="sexo">Sexo</option>
                    </select>
                 </div>
 
                 <div class="col-xs-12 col-sm-6 col-md-7">
-                  <input type="text" class="form-control" placeholder="Introduce los datos a buscar" id="data_representantes">
+                  <input type="text" class="form-control" placeholder="Introduce los datos a buscar" id="data_pediatras">
                 </div>
 
                 <div class="col-xs-12 col-sm-2 col-md-2">
-                   <button type="button" id="busqueda_criterio_representantes" class="btn btn-primary btn-lacra">Buscar</button>
+                   <button type="button" id="busqueda_criterio_pediatras" class="btn btn-primary btn-lacra">Buscar</button>
                 </div>
               </div>
               <div class="table-responsive">
@@ -77,13 +77,13 @@
                           <td>{{ r.cedula }}</td>
                           <td>{{ r.nombre }}</td>
                           <td>{{ r.telefono }}</td>
-                          <td><a type="button" data-toggle="modal" data-target="#pediatras" onclick="edit_representante('{{ r.nombre }}','{{ r.telefono }}','{{ r.cedula}}')"><i class="fa fa-edit"></i></a></td>
-                          <td><a type="button" href="representantes/eliminar/{{ r.cedula}}"><i class="fa fa-trash"></i></a></td>
+                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_pediatra" onclick="edit_pediatra('{{ r.nombre }}','{{ r.telefono }}','{{ r.cedula}}')"><i class="fa fa-edit"></i></a></td>
+                          <td><a type="button" href="pediatras/eliminar/{{ r.cedula}}"><i class="fa fa-trash"></i></a></td>
                       </tr>
                   {% endfor %}
                   </tbody>
                 </table>
-                <button type="button" class="btn btn-block btn-primary btn-flat" data-toggle="modal" data-target="#modal_crear_representante"><i class="fa fa-plus-circle"></i> CREAR NUEVO NIÑO</button>
+                <button type="button" class="btn btn-block btn-primary btn-flat" data-toggle="modal" data-target="#modal_crear_pediatra"><i class="fa fa-plus-circle"></i> CREAR NUEVO PEDIATRA</button>
               </div>
             </div>
             <!-- /.box-body -->
@@ -94,8 +94,8 @@
       </div>
       <!-- /.row -->
       {# Creación de producto #}
-      {% include 'representantes/crear' %}
-      {% include 'representantes/editar' %}
+      {% include 'pediatras/crear' %}
+      {% include 'pediatras/editar' %}
       {#% include 'colegios/eliminar' %#}
     </section>
     <!-- /.content -->
@@ -104,8 +104,8 @@
 {% endblock %}
 
 {% block appFooter %}
-<script src="views/app/js/representantes/crear.js"></script>
-<script src="views/app/js/representantes/editar.js"></script>
+<script src="views/app/js/pediatras/crear.js"></script>
+<script src="views/app/js/pediatras/editar.js"></script>
 <!-- DataTables -->
 <script src="views/theme/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="views/theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
@@ -127,17 +127,17 @@
 
 <script>
 /*Evento ejecutado al realizar click sobre el button "busqueda_criterio" */
-$('#busqueda_criterio_representantes').click(function(e) {
+$('#busqueda_criterio_pediatras').click(function(e) {
 e.defaultPrevented;
 
 /*Nombre del crud*/
-var crud = "representantes/";
+var crud = "pediatras/";
 
 /*Criterio de busqueda , definido en el select "criterio" */
-var criterio = $("#criterio_representantes").val().concat("/");
+var criterio = $("#criterio_pediatras").val().concat("/");
 
 /*Valor a buscar , escrito en el input "data"*/
-var valor = $("#data_representantes").val();
+var valor = $("#data_pediatras").val();
 
 /*Link con todos los datos*/
 var busqueda=crud.concat(criterio).concat(valor);

@@ -26,7 +26,6 @@ class pediatrasController extends Controllers implements IControllers {
 
     public function __construct(IRouter $router) {
       parent::__construct($router);
-      
       global $config;
       $r = new Model\Pediatras($router);
       switch ($this->method) {

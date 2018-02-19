@@ -41,7 +41,7 @@ class Ninos extends Models implements IModels {
       $this->apellido = $http->request->get('apellido');
       $this->sexo = $http->request->get('sexo');
       $this->fecha_nac = $http->request->get('fecha_nac');
-      $this->cedula_repre = $http->request->get('cedula_repre');
+      $this->cedula_repre = $http->request->get('cedula');
 
       if($this->functions->e($this->nombre)){
         throw new ModelsException('El campo nombre es obligatorio');
@@ -81,9 +81,23 @@ class Ninos extends Models implements IModels {
       }
     }
 
-    final public function editar(){
-      $this->db->update('ninos', array(
-      ),"cedula=");
+    final public function edit() : array {
+      try {
+        global $http;
+        
+        # Controlar errores de entrada en el formulario
+        $this->errors(true);
+
+        
+        # Actualizar elementos
+        $this->db->query("UPDATE Nino_2
+        SET nombre  =  '$this->nombre', apellido = '$this->apellido', fecha_nac  =  '$this->fecha_nac', sexo = '$this->sexo'
+        WHERE id_padre = '$this->cedula_repre'");
+
+        return array('success' => 1, 'message' => 'Editado con éxito.');
+      } catch(ModelsException $e) {
+        return array('success' => 0, 'message' => $e->getMessage());
+      }
     }
 
     final public function get(bool $multi = true, string $select = '*') {

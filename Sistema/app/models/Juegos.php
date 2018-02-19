@@ -22,7 +22,6 @@ class Juegos extends Models implements IModels {
     */
     use DBModel;
 
-    private $id_juego;
     private $codigo;
     private $descripcion;
 
@@ -56,8 +55,8 @@ class Juegos extends Models implements IModels {
 
         # Insertar elementos
         $this->db->query("INSERT INTO juego_2
-        (id_juego,codigo,descripcion)
-        VALUES ('$this->id_juego','$this->codigo','$this->descripcion');");
+        (codigo,descripcion)
+        VALUES ('$this->codigo','$this->descripcion');");
 
         return array('success' => 1, 'message' => 'Creado con éxito.');
       } catch(ModelsException $e) {
@@ -65,9 +64,23 @@ class Juegos extends Models implements IModels {
       }
     }
 
-    final public function editar(){
-      $this->db->update('juegos', array(
-      ),"cedula=");
+    final public function edit() : array {
+      try {
+        global $http;
+        
+        # Controlar errores de entrada en el formulario
+        $this->errors(true);
+
+        
+        # Actualizar elementos
+        $this->db->query("UPDATE juego_2
+        SET descripcion  =  '$this->descripcion'
+        WHERE codigo = '$this->codigo'");
+
+        return array('success' => 1, 'message' => 'Editado con éxito.');
+      } catch(ModelsException $e) {
+        return array('success' => 0, 'message' => $e->getMessage());
+      }
     }
 
     final public function get(bool $multi = true, string $select = '*') {
