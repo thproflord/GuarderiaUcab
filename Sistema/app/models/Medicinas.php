@@ -71,7 +71,7 @@ class Medicinas extends Models implements IModels {
     }
 
     final public function get(bool $multi = true, string $select = '*') {
-        return $this->db->query_select("SELECT * FROM medicinas;");
+        return $this->db->query_select("SELECT * FROM medicina_2;");
     }
 
     /**

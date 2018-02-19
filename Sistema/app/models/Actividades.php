@@ -16,7 +16,7 @@ use Ocrend\Kernel\Router\IRouter;
  * @author Alexander De Azevedo, Sergio García y Greg Gómez <oeneikaphotos@gmail.com>
  */
 
-class Asistencia extends Models implements IModels {
+class Actividades extends Models implements IModels {
     /**
       * Característica para establecer conexión con base de datos.
     */
@@ -79,7 +79,7 @@ class Asistencia extends Models implements IModels {
         $this->errors();
 
         # Insertar elementos
-        $this->db->query("INSERT INTO asistencia_2
+        $this->db->query("INSERT INTO actividad_2
         (nombre,apellido,cedula,tel_casa,tel_ofic,tel_celular,profesion,principal)
         VALUES ('$this->nombre','$this->apellido','$this->cedula','$this->tlf_casa','$this->tlf_oficina',
         '$this->tlf_celular','$this->profesion',$this->principal);");
@@ -91,12 +91,12 @@ class Asistencia extends Models implements IModels {
     }
 
     final public function editar(){
-      $this->db->update('asistencia_2', array(
+      $this->db->update('actividades', array(
       ),"cedula=");
     }
 
     final public function get(bool $multi = true, string $select = '*') {
-        return $this->db->query_select("SELECT * FROM asistencia_2;");
+        return $this->db->query_select("SELECT * FROM actividad_2;");
     }
 
     /**

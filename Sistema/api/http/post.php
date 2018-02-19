@@ -15,11 +15,11 @@ use app\models as Model;
     * Inicio de sesión
     *
     * @return json
-*/  
+*/
 $app->post('/login', function() use($app) {
-    $u = new Model\Users;   
+    $u = new Model\Users;
 
-    return $app->json($u->login());   
+    return $app->json($u->login());
 });
 
 /**
@@ -28,9 +28,9 @@ $app->post('/login', function() use($app) {
     * @return json
 */
 $app->post('/register', function() use($app) {
-    $u = new Model\Users; 
+    $u = new Model\Users;
 
-    return $app->json($u->register());   
+    return $app->json($u->register());
 });
 
 /**
@@ -39,9 +39,9 @@ $app->post('/register', function() use($app) {
     * @return json
 */
 $app->post('/lostpass', function() use($app) {
-    $u = new Model\Users; 
+    $u = new Model\Users;
 
-    return $app->json($u->lostpass());   
+    return $app->json($u->lostpass());
 });
 
 /**
@@ -50,9 +50,9 @@ $app->post('/lostpass', function() use($app) {
   * @return json
 */
 $app->post('/jugadores/crear', function() use($app) {
-  $j = new Model\Jugadores; 
+  $j = new Model\Jugadores;
 
-  return $app->json($j->add());   
+  return $app->json($j->add());
 });
 
 
@@ -62,9 +62,9 @@ $app->post('/jugadores/crear', function() use($app) {
   * @return json
 */
 $app->post('/jugadores/editar', function() use($app) {
-  $j = new Model\Jugadores; 
+  $j = new Model\Jugadores;
 
-  return $app->json($j->edit());   
+  return $app->json($j->edit());
 });
 
 /**
@@ -73,9 +73,9 @@ $app->post('/jugadores/editar', function() use($app) {
   * @return json
 */
 $app->post('/valores/crear', function() use($app) {
-  $v = new Model\Valores; 
+  $v = new Model\Valores;
 
-  return $app->json($v->add());   
+  return $app->json($v->add());
 });
 
 
@@ -85,9 +85,9 @@ $app->post('/valores/crear', function() use($app) {
   * @return json
 */
 $app->post('/valores/editar', function() use($app) {
-  $v = new Model\Valores; 
+  $v = new Model\Valores;
 
-  return $app->json($v->edit());   
+  return $app->json($v->edit());
 });
 
 /**
@@ -96,9 +96,9 @@ $app->post('/valores/editar', function() use($app) {
   * @return json
 */
 $app->post('/notas/crear', function() use($app) {
-  $n = new Model\Notas; 
+  $n = new Model\Notas;
 
-  return $app->json($n->add());   
+  return $app->json($n->add());
 });
 
 
@@ -108,9 +108,9 @@ $app->post('/notas/crear', function() use($app) {
   * @return json
 */
 $app->post('/notas/editar', function() use($app) {
-  $n = new Model\Notas; 
+  $n = new Model\Notas;
 
-  return $app->json($n->edit());   
+  return $app->json($n->edit());
 });
 
 
@@ -120,9 +120,9 @@ $app->post('/notas/editar', function() use($app) {
   * @return json
 */
 $app->post('/representantes/crear', function() use($app) {
-  $r = new Model\Representantes; 
+  $r = new Model\Representantes;
 
-  return $app->json($r->add());   
+  return $app->json($r->add());
 });
 
 
@@ -132,7 +132,30 @@ $app->post('/representantes/crear', function() use($app) {
   * @return json
 */
 $app->post('/representantes/editar', function() use($app) {
-  $r = new Model\Representantes; 
+  $r = new Model\Representantes;
+
+  return $app->json($r->edit());
+});
+
+/**
+  * Acción vía ajax de Juegos en api/Juegos/crear
+  *
+  * @return json
+*/
+$app->post('/juegos/crear', function() use($app) {
+  $r = new Model\Juegos; 
+
+  return $app->json($r->add());   
+});
+
+
+/**
+  * Acción vía ajax de Juegos en api/Juegos/editar
+  *
+  * @return json
+*/
+$app->post('/juegos/editar', function() use($app) {
+  $r = new Model\Juegos; 
 
   return $app->json($r->edit());   
 });
@@ -143,9 +166,9 @@ $app->post('/representantes/editar', function() use($app) {
   * @return json
 */
 $app->post('/ninos/crear', function() use($app) {
-  $r = new Model\Ninos; 
+  $r = new Model\Ninos;
 
-  return $app->json($r->add());   
+  return $app->json($r->add());
 });
 
 
@@ -155,9 +178,9 @@ $app->post('/ninos/crear', function() use($app) {
   * @return json
 */
 $app->post('/ninos/editar', function() use($app) {
-  $r = new Model\Ninos; 
+  $r = new Model\Ninos;
 
-  return $app->json($r->edit());   
+  return $app->json($r->edit());
 });
 
 /**
@@ -166,9 +189,9 @@ $app->post('/ninos/editar', function() use($app) {
   * @return json
 */
 $app->post('/autorizados/crear', function() use($app) {
-  $r = new Model\Autorizados; 
+  $r = new Model\Autorizados;
 
-  return $app->json($r->add());   
+  return $app->json($r->add());
 });
 
 
@@ -178,9 +201,9 @@ $app->post('/autorizados/crear', function() use($app) {
   * @return json
 */
 $app->post('/autorizados/editar', function() use($app) {
-  $r = new Model\Autorizados; 
+  $r = new Model\Autorizados;
 
-  return $app->json($r->edit());   
+  return $app->json($r->edit());
 });
 
 /**
@@ -189,9 +212,9 @@ $app->post('/autorizados/editar', function() use($app) {
   * @return json
 */
 $app->post('/medicinas/crear', function() use($app) {
-  $r = new Model\Medicinas; 
+  $r = new Model\Medicinas;
 
-  return $app->json($r->add());   
+  return $app->json($r->add());
 });
 
 
@@ -201,9 +224,9 @@ $app->post('/medicinas/crear', function() use($app) {
   * @return json
 */
 $app->post('/medicinas/editar', function() use($app) {
-  $r = new Model\Medicinas; 
+  $r = new Model\Medicinas;
 
-  return $app->json($r->edit());   
+  return $app->json($r->edit());
 });
 
 /**
@@ -212,9 +235,9 @@ $app->post('/medicinas/editar', function() use($app) {
   * @return json
 */
 $app->post('/personal/crear', function() use($app) {
-  $p = new Model\Personal; 
+  $p = new Model\Personal;
 
-  return $app->json($p->add());   
+  return $app->json($p->add());
 });
 
 
@@ -224,9 +247,9 @@ $app->post('/personal/crear', function() use($app) {
   * @return json
 */
 $app->post('/personal/editar', function() use($app) {
-  $p = new Model\Personal; 
+  $p = new Model\Personal;
 
-  return $app->json($p->edit());   
+  return $app->json($p->edit());
 });
 
 
@@ -236,9 +259,9 @@ $app->post('/personal/editar', function() use($app) {
   * @return json
 */
 $app->post('/sedes/crear', function() use($app) {
-  $s = new Model\Sedes; 
+  $s = new Model\Sedes;
 
-  return $app->json($s->add());   
+  return $app->json($s->add());
 });
 
 
@@ -248,9 +271,9 @@ $app->post('/sedes/crear', function() use($app) {
   * @return json
 */
 $app->post('/sedes/editar', function() use($app) {
-  $s = new Model\Sedes; 
+  $s = new Model\Sedes;
 
-  return $app->json($s->edit());   
+  return $app->json($s->edit());
 });
 
 
@@ -260,15 +283,15 @@ $app->post('/sedes/editar', function() use($app) {
   * @return json
 */
 $app->post('/productos/crear', function() use($app) {
-  $p = new Model\Productos; 
+  $p = new Model\Productos;
 
   return $app->json($p->add());
 });
 
 $app->post('/colegios/crear', function() use($app) {
-  $p = new Model\Colegios; 
+  $p = new Model\Colegios;
 
-  return $app->json($p->add());   
+  return $app->json($p->add());
 });
 
 
@@ -279,25 +302,25 @@ $app->post('/colegios/crear', function() use($app) {
 */
 $app->post('/productos/editar', function() use($app) {
   $p = new Model\Productos;
-  
-  return $app->json($p->edit()); 
+
+  return $app->json($p->edit());
 });
 $app->post('/colegios/editar', function() use($app) {
-  $p = new Model\Colegios; 
+  $p = new Model\Colegios;
 
-  return $app->json($p->edit());   
+  return $app->json($p->edit());
 });
 
 $app->post('/posicion/crear', function() use($app) {
-  $p = new Model\Posicion; 
+  $p = new Model\Posicion;
 
-  return $app->json($p->add());   
+  return $app->json($p->add());
 });
 
 $app->post('/posicion/editar', function() use($app) {
-  $p = new Model\Posicion; 
+  $p = new Model\Posicion;
 
-  return $app->json($p->edit());   
+  return $app->json($p->edit());
 });
 
 
@@ -307,9 +330,9 @@ $app->post('/posicion/editar', function() use($app) {
   * @return json
 */
 $app->post('/colores/crear', function() use($app) {
-  $c = new Model\Colores; 
+  $c = new Model\Colores;
 
-  return $app->json($c->add());   
+  return $app->json($c->add());
 });
 
 
@@ -319,34 +342,34 @@ $app->post('/colores/crear', function() use($app) {
   * @return json
 */
 $app->post('/colores/editar', function() use($app) {
-  $c = new Model\Colores; 
+  $c = new Model\Colores;
 
   return $app->json($c->edit());
-});   
+});
 
 
 $app->post('/categorias/crear', function() use($app) {
-  $p = new Model\Categorias; 
+  $p = new Model\Categorias;
 
-  return $app->json($p->add());   
+  return $app->json($p->add());
 });
 
 $app->post('/categorias/editar', function() use($app) {
-  $p = new Model\Categorias; 
+  $p = new Model\Categorias;
 
-  return $app->json($p->edit());   
+  return $app->json($p->edit());
 });
 
 $app->post('/lugares/crear', function() use($app) {
-  $p = new Model\Lugares; 
+  $p = new Model\Lugares;
 
-  return $app->json($p->add());   
+  return $app->json($p->add());
 });
 
 $app->post('/lugares/editar', function() use($app) {
-  $p = new Model\Lugares; 
+  $p = new Model\Lugares;
 
-  return $app->json($p->edit());   
+  return $app->json($p->edit());
 });
 
 
@@ -356,9 +379,9 @@ $app->post('/lugares/editar', function() use($app) {
   * @return json
 */
 $app->post('/ajustes/crear', function() use($app) {
-  $a = new Model\Ajustes; 
+  $a = new Model\Ajustes;
 
-  return $app->json($a->add());   
+  return $app->json($a->add());
 });
 
 /**
@@ -367,9 +390,9 @@ $app->post('/ajustes/crear', function() use($app) {
   * @return json
 */
 $app->post('/ajustes/dañado', function() use($app) {
-  $a = new Model\Ajustes; 
+  $a = new Model\Ajustes;
 
-  return $app->json($a->dañado());   
+  return $app->json($a->dañado());
 });
 
 
@@ -379,9 +402,9 @@ $app->post('/ajustes/dañado', function() use($app) {
   * @return json
 */
 $app->post('/ajustes/editar', function() use($app) {
-  $a = new Model\Ajustes; 
+  $a = new Model\Ajustes;
 
-  return $app->json($a->edit());   
+  return $app->json($a->edit());
 });
 
 
@@ -391,9 +414,9 @@ $app->post('/ajustes/editar', function() use($app) {
   * @return json
 */
 $app->post('/estados/crear', function() use($app) {
-  $e = new Model\Estados; 
+  $e = new Model\Estados;
 
-  return $app->json($e->add());   
+  return $app->json($e->add());
 });
 
 
@@ -403,9 +426,9 @@ $app->post('/estados/crear', function() use($app) {
   * @return json
 */
 $app->post('/estados/editar', function() use($app) {
-  $e = new Model\Estados; 
+  $e = new Model\Estados;
 
-  return $app->json($e->edit());   
+  return $app->json($e->edit());
 });
 
 
@@ -415,9 +438,9 @@ $app->post('/estados/editar', function() use($app) {
   * @return json
 */
 $app->post('/ejercicios/crear', function() use($app) {
-  $e = new Model\Ejercicios; 
+  $e = new Model\Ejercicios;
 
-  return $app->json($e->add());   
+  return $app->json($e->add());
 });
 
 
@@ -427,9 +450,9 @@ $app->post('/ejercicios/crear', function() use($app) {
   * @return json
 */
 $app->post('/ejercicios/editar', function() use($app) {
-  $e = new Model\Ejercicios; 
+  $e = new Model\Ejercicios;
 
-  return $app->json($e->edit());   
+  return $app->json($e->edit());
 });
 
 
@@ -439,9 +462,9 @@ $app->post('/ejercicios/editar', function() use($app) {
   * @return json
 */
 $app->post('/horarios/crear', function() use($app) {
-  $h = new Model\Horarios; 
+  $h = new Model\Horarios;
 
-  return $app->json($h->add());   
+  return $app->json($h->add());
 });
 
 
@@ -451,9 +474,9 @@ $app->post('/horarios/crear', function() use($app) {
   * @return json
 */
 $app->post('/horarios/editar', function() use($app) {
-  $h = new Model\Horarios; 
+  $h = new Model\Horarios;
 
-  return $app->json($h->edit());   
+  return $app->json($h->edit());
 });
 
 
@@ -463,9 +486,9 @@ $app->post('/horarios/editar', function() use($app) {
   * @return json
 */
 $app->post('/planentrenamiento/crear', function() use($app) {
-  $p = new Model\Planentrenamiento; 
+  $p = new Model\Planentrenamiento;
 
-  return $app->json($p->add());   
+  return $app->json($p->add());
 });
 
 
@@ -475,9 +498,9 @@ $app->post('/planentrenamiento/crear', function() use($app) {
   * @return json
 */
 $app->post('/proveedores/crear', function() use($app) {
-  $p = new Model\Proveedores; 
+  $p = new Model\Proveedores;
 
-  return $app->json($p->add());   
+  return $app->json($p->add());
 });
 
 
@@ -487,8 +510,8 @@ $app->post('/proveedores/crear', function() use($app) {
   * @return json
 */
 $app->post('/planentrenamiento/editar', function() use($app) {
-  $p = new Model\Planentrenamiento; 
-  return $app->json($p->edit());   
+  $p = new Model\Planentrenamiento;
+  return $app->json($p->edit());
 });
 
 /*
@@ -497,9 +520,9 @@ $app->post('/planentrenamiento/editar', function() use($app) {
   * @return json
 */
 $app->post('/proveedores/editar', function() use($app) {
-  $p = new Model\Proveedores; 
+  $p = new Model\Proveedores;
 
-  return $app->json($p->edit());   
+  return $app->json($p->edit());
 });
 
 
@@ -509,7 +532,7 @@ $app->post('/proveedores/editar', function() use($app) {
   * @return json
 */
 $app->post('/plansemanal/crear', function() use($app) {
-  $p = new Model\Plansemanal; 
+  $p = new Model\Plansemanal;
 
   return $app->json($p->add());
 });
@@ -519,9 +542,9 @@ $app->post('/plansemanal/crear', function() use($app) {
   * @return json
 */
 $app->post('/ordencompra/crear', function() use($app) {
-  $oc = new Model\Ordencompra; 
+  $oc = new Model\Ordencompra;
 
-  return $app->json($oc->add());   
+  return $app->json($oc->add());
 });
 
 
@@ -531,9 +554,9 @@ $app->post('/ordencompra/crear', function() use($app) {
   * @return json
 */
 $app->post('/plansemanal/editar', function() use($app) {
-  $p = new Model\Plansemanal; 
+  $p = new Model\Plansemanal;
 
-  return $app->json($p->edit());   
+  return $app->json($p->edit());
 });
 /*
   * Acción vía ajax de Ordencompra en api/ordencompra/editar
@@ -541,9 +564,9 @@ $app->post('/plansemanal/editar', function() use($app) {
   * @return json
 */
 $app->post('/ordencompra/editar', function() use($app) {
-  $oc = new Model\Ordencompra; 
+  $oc = new Model\Ordencompra;
 
-  return $app->json($oc->edit());   
+  return $app->json($oc->edit());
 });
 
 
@@ -553,9 +576,9 @@ $app->post('/ordencompra/editar', function() use($app) {
   * @return json
 */
 $app->post('/asistencia/crear', function() use($app) {
-  $a = new Model\Asistencia; 
+  $a = new Model\Asistencia;
 
-  return $app->json($a->add());   
+  return $app->json($a->add());
 });
 
 
@@ -565,9 +588,9 @@ $app->post('/asistencia/crear', function() use($app) {
   * @return json
 */
 $app->post('/asistencia/editar', function() use($app) {
-  $a = new Model\Asistencia; 
+  $a = new Model\Asistencia;
 
-  return $app->json($a->edit());   
+  return $app->json($a->edit());
 });
 
 
@@ -577,9 +600,9 @@ $app->post('/asistencia/editar', function() use($app) {
   * @return json
 */
 $app->post('/partidos/crear', function() use($app) {
-  $p = new Model\Partidos; 
+  $p = new Model\Partidos;
 
-  return $app->json($p->add());   
+  return $app->json($p->add());
 });
 
 
@@ -589,19 +612,19 @@ $app->post('/partidos/crear', function() use($app) {
   * @return json
 */
 $app->post('/partidos/editar', function() use($app) {
-  $p = new Model\Partidos; 
+  $p = new Model\Partidos;
 
-  return $app->json($p->edit()); 
+  return $app->json($p->edit());
 });
-/*  
+/*
   * Acción vía ajax de Ordencompra en api/ordencompra/editar
   *
   * @return json
 */
 $app->post('/ordencompra/pagar', function() use($app) {
-  $oc = new Model\Ordencompra; 
+  $oc = new Model\Ordencompra;
 
-  return $app->json($oc->pagar());   
+  return $app->json($oc->pagar());
 });
 
 /**
@@ -610,9 +633,9 @@ $app->post('/ordencompra/pagar', function() use($app) {
   * @return json
 */
 $app->post('/ventas/crear', function() use($app) {
-  $v = new Model\Ventas; 
+  $v = new Model\Ventas;
 
-  return $app->json($v->add());   
+  return $app->json($v->add());
 });
 
 /**
@@ -621,9 +644,9 @@ $app->post('/ventas/crear', function() use($app) {
   * @return json
 */
 $app->post('/mensualidades/crear', function() use($app) {
-  $m = new Model\Mensualidades; 
+  $m = new Model\Mensualidades;
 
-  return $app->json($m->add());   
+  return $app->json($m->add());
 });
 
 /**
@@ -632,9 +655,9 @@ $app->post('/mensualidades/crear', function() use($app) {
   * @return json
 */
 $app->post('/inscripciones/crear', function() use($app) {
-  $i = new Model\Inscripciones; 
+  $i = new Model\Inscripciones;
 
-  return $app->json($i->add());   
+  return $app->json($i->add());
 });
 
 
@@ -644,9 +667,9 @@ $app->post('/inscripciones/crear', function() use($app) {
   * @return json
 */
 $app->post('/equipos/crear', function() use($app) {
-  $e = new Model\Equipos; 
+  $e = new Model\Equipos;
 
-  return $app->json($e->add());   
+  return $app->json($e->add());
 });
 
 
@@ -656,9 +679,9 @@ $app->post('/equipos/crear', function() use($app) {
   * @return json
 */
 $app->post('/equipos/editar', function() use($app) {
-  $e = new Model\Equipos; 
+  $e = new Model\Equipos;
 
-  return $app->json($e->edit());   
+  return $app->json($e->edit());
 });
 /*
   * Acción vía ajax de Pagos en api/pagos/crear
@@ -666,9 +689,9 @@ $app->post('/equipos/editar', function() use($app) {
   * @return json
 */
 $app->post('/pagos/crear', function() use($app) {
-  $p = new Model\Pagos; 
+  $p = new Model\Pagos;
 
-  return $app->json($p->add());   
+  return $app->json($p->add());
 });
 
 /**
@@ -677,7 +700,31 @@ $app->post('/pagos/crear', function() use($app) {
   * @return json
 */
 $app->post('/costos/editar', function() use($app) {
-  $c = new Model\Costos; 
+  $c = new Model\Costos;
 
-  return $app->json($c->edit());   
+  return $app->json($c->edit());
 });
+
+$app->post('/enfermedades/crear', function() use($app) {
+  $j = new Model\Enfermedades;
+
+  return $app->json($j->add());
+});
+
+
+/**
+  * Acción vía ajax de Jugadores en api/jugadores/editar
+  *
+  * @return json
+*/
+$app->post('/enfermedades/editar', function() use($app) {
+  $j = new Model\Enfermedades;
+
+  return $app->json($j->edit());
+});
+
+/**
+  * Acción vía ajax de Valores en api/valores/crear
+  *
+  * @return json
+*/

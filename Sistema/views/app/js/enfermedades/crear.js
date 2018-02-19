@@ -1,11 +1,11 @@
 /**
  * Ajax action to api rest
 */
-function crear_asistencia(){
+function crear_enfermedades(){
     $.ajax({
       type : "POST",
-      url : "api/asistencias/crear",
-      data : $('#crear_asistencia_form').serialize(),
+      url : "api/enfermedades/crear",
+      data : $('#crear_enfermedades_form').serialize(),
       success : function(json) {
         alert(json.success);
         alert(json.message);
@@ -20,19 +20,19 @@ function crear_asistencia(){
       }
     });
   }
-  
+
   /**
    * Events
-   *  
-   * @param {*} e 
+   *
+   * @param {*} e
    */
-  $('#crear_asistencia').click(function(e) {
+  $('#crear_enfermedades').click(function(e) {
     e.defaultPrevented;
-    crear_asistencia();
+    crear_enfermedades();
   });
-  $('#crear_asistencia_form').keypress(function(e) {
+  $('#crear_enfermedades_form').keypress(function(e) {
       e.defaultPrevented;
       if(e.which == 13) {
-          crear_asistencia();
+          crear_enfermedades();
       }
   });

@@ -22,16 +22,16 @@ use Ocrend\Kernel\Controllers\IControllers;
  * @author Ramon García, Fernando Gomes y Alexander De Azevedo <oeneikaphotos@gmail.com>
 */
 
-class asistenciaController extends Controllers implements IControllers {
+class actividadesController extends Controllers implements IControllers {
 
     public function __construct(IRouter $router) {
       parent::__construct($router);
       
       global $config;
-      $r = new Model\Asistencia($router);
+      $r = new Model\Actividades($router);
       switch ($this->method) {
         case 'crear':
-          echo $this->template->render('asistencia/crear');
+          echo $this->template->render('actividades/crear');
         break;
         case 'editar':
           $r->editar();
@@ -41,8 +41,8 @@ class asistenciaController extends Controllers implements IControllers {
         break;
         default:
 
-          echo $this->template->render('asistencia/asistencia',array(
-          'asistencia' => $r->get()
+          echo $this->template->render('actividades/actividades',array(
+          'actividades' => $r->get()
           ));
           break;
       }
