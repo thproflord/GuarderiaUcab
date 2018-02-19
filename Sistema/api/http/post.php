@@ -138,6 +138,29 @@ $app->post('/representantes/editar', function() use($app) {
 });
 
 /**
+  * Acción vía ajax de Juegos en api/Juegos/crear
+  *
+  * @return json
+*/
+$app->post('/juegos/crear', function() use($app) {
+  $r = new Model\Juegos; 
+
+  return $app->json($r->add());   
+});
+
+
+/**
+  * Acción vía ajax de Juegos en api/Juegos/editar
+  *
+  * @return json
+*/
+$app->post('/juegos/editar', function() use($app) {
+  $r = new Model\Juegos; 
+
+  return $app->json($r->edit());   
+});
+
+/**
   * Acción vía ajax de Niños en api/ninos/crear
   *
   * @return json

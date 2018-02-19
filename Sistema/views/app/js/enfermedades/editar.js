@@ -26,7 +26,7 @@ function edit_enfermedades(nombre,apellido,cedula,telefono_oficina,telefono_casa
 function editar_enfermedades(){
     $.ajax({
       type : "POST",
-      url : "api/enfermedadess/editar",
+      url : "api/enfermedades/editar",
       data : $('#editar_enfermedades_form').serialize(),
       success : function(json) {
         alert(json.success);

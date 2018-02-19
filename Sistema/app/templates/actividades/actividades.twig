@@ -24,12 +24,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Juegos
+        Actividades
         <small>Guarderia</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li class="active">Juegos</li>
+        <li><a href="#">Actividades</a></li>
+        <li class="active">Listado de Actividades</li>
       </ol>
     </section>
 
@@ -39,51 +40,41 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Listado de Juegos</h3>
+              <h3 class="box-title">Listado de Actividades</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
-              <div class="row">
-                <div class="col-xs-12 col-sm-4 col-md-3">
-                 <select id="criterio_juegos" class="select">
-                      <option value="cedula_juego">Cedula</option>
-                      <option value="nombre">Nombre</option>
-                      <option value="sexo">Sexo</option>
-                   </select>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-7">
-                  <input type="text" class="form-control" placeholder="Introduce los datos a buscar" id="data_juegos">
-                </div>
-
-                <div class="col-xs-12 col-sm-2 col-md-2">
-                   <button type="button" id="busqueda_criterio_juegos" class="btn btn-primary btn-lacra">Buscar</button>
-                </div>
-              </div>
               <div class="table-responsive">
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>id_juego</th>
+                    <th>id_actividad</th>
                     <th>codigo</th>
+                    <th>nombre</th>
+                    <th>transporte</th>
+                    <th>costo_trans</th>
+                    <th>edad_minima</th>
                     <th>descripcion</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
 
                   </thead>
                   <tbody>
-                  {% for r in juego %}
+                  {% for r in actividades %}
                       <tr>
-                          <td>{{ r.id_juego }}</td>
+                          <td>{{ r.id_actividad }}</td>
                           <td>{{ r.codigo }}</td>
+                          <td>{{ r.transporte }}</td>
+                          <td>{{ r.costo_trans }}</td>
+                          <td>{{ r.edad_minima }}</td>
                           <td>{{ r.descripcion }}</td>
-                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_juego" onclick="edit_juego('{{ r.nombre }}','{{ r.apellido }}','{{ r.cedula_juego }}','{{ r.telefono_oficina }}','{{ r.telefono_casa }}','{{ r.telefono_celular }}','{{ r.sexo }}','{{ r.direccion }}','{{ r.profesion }}')"><i class="fa fa-edit"></i></a></td>
-                          <td><a type="button" href="juegos/eliminar/{{ r.cedula }}"><i class="fa fa-trash"></i></a></td>
+                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_actividades" onclick="edit_actividades('{{ r.nombre }}','{{ r.apellido }}','{{ r.cedula_actividades }}','{{ r.telefono_oficina }}','{{ r.telefono_casa }}','{{ r.telefono_celular }}','{{ r.sexo }}','{{ r.direccion }}','{{ r.profesion }}')"><i class="fa fa-edit"></i></a></td>
+                          <td><a type="button" href="actividadess/eliminar/{{ r.cedula }}"><i class="fa fa-trash"></i></a></td>
                       </tr>
                   {% endfor %}
                   </tbody>
                 </table>
-                <button type="button" class="btn btn-block btn-primary btn-flat" data-toggle="modal" data-target="#modal_crear_juego"><i class="fa fa-plus-circle"></i> CREAR NUEVOS JUEGOS</button>
+                <button type="button" class="btn btn-block btn-primary btn-flat" data-toggle="modal" data-target="#modal_crear_actividades"><i class="fa fa-plus-circle"></i> CREAR NUEVO ACTIVIDADES</button>
               </div>
             </div>
             <!-- /.box-body -->
@@ -94,8 +85,8 @@
       </div>
       <!-- /.row -->
       {# Creación de producto #}
-      {% include 'juegos/crear' %}
-      {% include 'juegos/editar' %}
+      {% include 'representantes/crear' %}
+      {% include 'representantes/editar' %}
       {#% include 'colegios/eliminar' %#}
     </section>
     <!-- /.content -->
@@ -104,8 +95,8 @@
 {% endblock %}
 
 {% block appFooter %}
-<script src="views/app/js/juegos/crear.js"></script>
-<script src="views/app/js/juegos/editar.js"></script>
+<script src="views/app/js/actividades/crear.js"></script>
+<script src="views/app/js/actividades/editar.js"></script>
 <!-- DataTables -->
 <script src="views/theme/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="views/theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
@@ -127,17 +118,17 @@
 
 <script>
 /*Evento ejecutado al realizar click sobre el button "busqueda_criterio" */
-$('#busqueda_criterio_juegos').click(function(e) {
+$('#busqueda_criterio_actividadess').click(function(e) {
 e.defaultPrevented;
 
 /*Nombre del crud*/
-var crud = "juegos/";
+var crud = "actividadess/";
 
 /*Criterio de busqueda , definido en el select "criterio" */
-var criterio = $("#criterio_juegos").val().concat("/");
+var criterio = $("#criterio_actividadess").val().concat("/");
 
 /*Valor a buscar , escrito en el input "data"*/
-var valor = $("#data_juegos").val();
+var valor = $("#data_actividadess").val();
 
 /*Link con todos los datos*/
 var busqueda=crud.concat(criterio).concat(valor);

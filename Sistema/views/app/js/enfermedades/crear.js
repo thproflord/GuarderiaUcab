@@ -4,7 +4,7 @@
 function crear_enfermedades(){
     $.ajax({
       type : "POST",
-      url : "api/enfermedadess/crear",
+      url : "api/enfermedades/crear",
       data : $('#crear_enfermedades_form').serialize(),
       success : function(json) {
         alert(json.success);

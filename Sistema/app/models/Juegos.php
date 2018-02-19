@@ -38,10 +38,10 @@ class Juegos extends Models implements IModels {
       $this->codigo = $http->request->get('codigo');
       $this->descripcion = $http->request->get('descripcion');
 
-      if($this->functions->e($this->nombre)){
-        throw new ModelsException('El campo nombre es obligatorio');
+      if($this->functions->e($this->codigo)){
+        throw new ModelsException('El campo codigo es obligatorio');
       }
-      if($this->functions->e($this->apellido)){
+      if($this->functions->e($this->descripcion)){
         throw new ModelsException('El campo descripcion es obligatorio');
       }
 
@@ -57,7 +57,7 @@ class Juegos extends Models implements IModels {
         # Insertar elementos
         $this->db->query("INSERT INTO juego_2
         (id_juego,codigo,descripcion)
-        VALUES ('$this->id_juego','$this->nombre','$this->descripcion');");
+        VALUES ('$this->id_juego','$this->codigo','$this->descripcion');");
 
         return array('success' => 1, 'message' => 'Creado con éxito.');
       } catch(ModelsException $e) {
