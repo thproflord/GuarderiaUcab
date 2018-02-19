@@ -34,7 +34,6 @@ class Pediatras extends Models implements IModels {
 
     final private function errors(bool $edit = false) {
       global $http;
-
       $this->cedula = $http->request->get('cedula');
       $this->nombre = $http->request->get('nombre');
       $this->telefono = ($http->request->get('telefono') != ' ') ? $http->request->get('telefono') : null;
@@ -56,8 +55,7 @@ class Pediatras extends Models implements IModels {
         $this->errors();
 
         # Insertar elementos
-        $this->db->query("INSERT INTO pediatra_2
-        (cedula, nombre, telefono)
+        $this->db->query("INSERT INTO pediatra_2 (cedula, nombre, telefono)
         VALUES ('$this->cedula','$this->nombre','$this->telefono');");
 
         return array('success' => 1, 'message' => 'Creado con éxito.');

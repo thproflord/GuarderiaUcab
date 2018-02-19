@@ -26,8 +26,26 @@ class comidasController extends Controllers implements IControllers {
 
     public function __construct(IRouter $router) {
         parent::__construct($router);   
-        $c = new Model\Comidas;
-		echo $this->template->render('comidas/comidas');
+
+        $c = new Model\Comidas($router);
+        switch($this->method){
+            case 'crear':
+            echo $this->template->render('comidas/crear');
+            break;
+            
+            case 'editar':
+            echo $this->template->render('comidas/editar');
+            break;
+            
+            case 'eliminar':
+            break;
+
+            default:
+            echo $this->template->render('comidas/comidas',array(  
+                'comida' => $c->get(true) 
+            ));
+            break;
+        }
 
     }
 

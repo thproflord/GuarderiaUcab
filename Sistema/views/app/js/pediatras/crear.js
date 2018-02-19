@@ -1,3 +1,10 @@
+<<<<<<< HEAD
+=======
+
+/**
+ * Ajax action to api rest
+*/
+>>>>>>> 3409342a728c6b29040819f0da8bde756bcb71d0
 function crear_pediatra(){
     $.ajax({
       type : "POST",
@@ -17,11 +24,19 @@ function crear_pediatra(){
       }
     });
   }
+<<<<<<< HEAD
   
   /**
    * Events
    *  
    * @param {*} e 
+=======
+
+  /**
+   * Events
+   *
+   * @param {*} e
+>>>>>>> 3409342a728c6b29040819f0da8bde756bcb71d0
    */
   $('#crear_pediatra').click(function(e) {
     e.defaultPrevented;
@@ -32,4 +47,8 @@ function crear_pediatra(){
       if(e.which == 13) {
           crear_pediatra();
       }
+<<<<<<< HEAD
   });
+=======
+  });
+>>>>>>> 3409342a728c6b29040819f0da8bde756bcb71d0

@@ -71,7 +71,7 @@ class Ninos extends Models implements IModels {
         $this->errors();
 
         # Insertar elementos
-        $this->db->query("INSERT INTO Nino_2
+        $this->db->query("INSERT INTO nino_2
         (nombre,apellido,sexo,fecha_nac,id_padre)
         VALUES ('$this->nombre','$this->apellido','$this->sexo','$this->fecha_nac','$this->cedula_repre');");
 

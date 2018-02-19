@@ -26,7 +26,7 @@ class representantesController extends Controllers implements IControllers {
 
     public function __construct(IRouter $router) {
       parent::__construct($router);
-      
+
       global $config;
       $r = new Model\Representantes($router);
       switch ($this->method) {
@@ -34,7 +34,7 @@ class representantesController extends Controllers implements IControllers {
           echo $this->template->render('representantes/crear');
         break;
         case 'editar':
-          echo $this->template->render('representantes/crear');
+          $r->editar();
         break;
         case 'eliminar':
           # code...
