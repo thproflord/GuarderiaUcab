@@ -15,20 +15,37 @@ use app\models as Model;
 use Ocrend\Kernel\Router\IRouter;
 use Ocrend\Kernel\Controllers\Controllers;
 use Ocrend\Kernel\Controllers\IControllers;
-  
+
 /**
- * Controlador pediatras/
+ * Controlador ninos/
  *
  * @author Ramon García, Fernando Gomes y Alexander De Azevedo <oeneikaphotos@gmail.com>
 */
-  
+
 class pediatrasController extends Controllers implements IControllers {
 
     public function __construct(IRouter $router) {
-        parent::__construct($router);   
-        $p = new Model\Pediatras;
-		echo $this->template->render('pediatras/pediatras');
+      parent::__construct($router);
+      
+      global $config;
+      $r = new Model\Pediatras($router);
+      switch ($this->method) {
+        case 'crear':
+          echo $this->template->render('pediatras/crear');
+        break;
+        case 'editar':
+          $r->editar();
+        break;
+        case 'eliminar':
+          # code...
+        break;
+        default:
+
+          echo $this->template->render('pediatras/pediatras',array(
+          'pediatra' => $r->get()
+          ));
+          break;
+      }
 
     }
-
 }

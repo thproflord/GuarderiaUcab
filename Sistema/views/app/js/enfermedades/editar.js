@@ -1,4 +1,4 @@
-function edit_asistencia(nombre,apellido,cedula,telefono_oficina,telefono_casa,telefono_celular,sexo,direccion,parentesco,profesion){
+function edit_enfermedades(nombre,apellido,cedula,telefono_oficina,telefono_casa,telefono_celular,sexo,direccion,parentesco,profesion){
     $('#id_nombre').val(nombre);
     $('#id_apellido').val(apellido);
     $('#id_cedula').val(cedula);
@@ -23,11 +23,11 @@ function edit_asistencia(nombre,apellido,cedula,telefono_oficina,telefono_casa,t
 /**
  * Ajax action to api rest
 */
-function editar_asistencia(){
+function editar_enfermedades(){
     $.ajax({
       type : "POST",
-      url : "api/asistencias/editar",
-      data : $('#editar_asistencia_form').serialize(),
+      url : "api/enfermedadess/editar",
+      data : $('#editar_enfermedades_form').serialize(),
       success : function(json) {
         alert(json.success);
         alert(json.message);
@@ -48,13 +48,13 @@ function editar_asistencia(){
    *  
    * @param {*} e 
    */
-  $('#editar_asistencia').click(function(e) {
+  $('#editar_enfermedades').click(function(e) {
     e.defaultPrevented;
-    editar_asistencia();
+    editar_enfermedades();
   });
-  $('#editar_asistencia_form').keypress(function(e) {
+  $('#editar_enfermedades_form').keypress(function(e) {
       e.defaultPrevented;
       if(e.which == 13) {
-          editar_asistencia();
+          editar_enfermedades();
       }
   });
