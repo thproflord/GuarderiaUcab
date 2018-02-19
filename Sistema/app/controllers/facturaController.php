@@ -27,7 +27,14 @@ class facturaController extends Controllers implements IControllers {
     public function __construct(IRouter $router) {
         parent::__construct($router);   
         $f = new Model\Factura;
-		echo $this->template->render('factura/factura');
+        switch($this->method){
+
+            default:
+            echo $this->template->render('factura/factura',array(  
+                'facturas' => $f->get(true) 
+            ));
+            break;
+        }
 
     }
 

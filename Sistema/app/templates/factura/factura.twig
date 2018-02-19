@@ -42,25 +42,7 @@
             <div class="box-header">
               <h3 class="box-title">Listado de Factura</h3>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="row">
-                <div class="col-xs-12 col-sm-4 col-md-3">
-                 <select id="criterio_representantes" class="select">
-                      <option value="cedula_representante">Cedula</option>
-                      <option value="nombre">Nombre</option>
-                      <option value="sexo">Sexo</option>
-                   </select>
-                </div>
-
-                <div class="col-xs-12 col-sm-6 col-md-7">
-                  <input type="text" class="form-control" placeholder="Introduce los datos a buscar" id="data_representantes">
-                </div>
-
-                <div class="col-xs-12 col-sm-2 col-md-2">
-                   <button type="button" id="busqueda_criterio_representantes" class="btn btn-primary btn-lacra">Buscar</button>
-                </div>
-              </div>
+        
               <div class="table-responsive">
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
@@ -73,12 +55,12 @@
                     <th>Eliminar</th>
                   </thead>
                   <tbody>
-                  {% for r in representantes %}
+                  {% for f in facturas %}
                       <tr>
-                          <td>{{ r.semana }}</td>
-                          <td>{{ r.nro_transfe }}</td>
-                          <td>{{ r.fecha }}</td>
-                          <td>{{ r.monto }}</td>
+                          <td>{{ f.semana }}</td>
+                          <td>{{ f.nro_transfe }}</td>
+                          <td>{{ f.fecha }}</td>
+                          <td>{{ f.monto }}</td>
                           <td><a type="button" data-toggle="modal" data-target="#enfermedades" onclick="edit_factura('{{ r.semana }}','{{ r.nro_transfe }}','{{ r.fecha }}','{{ r.monto }}')"><i class="fa fa-edit"></i></a></td>
                           <td><a type="button" href="factura/eliminar/{{ r.semana}}"><i class="fa fa-trash"></i></a></td>
                       </tr>

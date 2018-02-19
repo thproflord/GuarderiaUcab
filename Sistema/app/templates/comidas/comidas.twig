@@ -42,43 +42,24 @@
             <div class="box-header">
               <h3 class="box-title">Listado de Comidas</h3>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-              <div class="row">
-                <div class="col-xs-12 col-sm-4 col-md-3">
-                 <select id="criterio_representantes" class="select">
-                      <option value="cedula_representante">Cedula</option>
-                      <option value="nombre">Nombre</option>
-                      <option value="sexo">Sexo</option>
-                   </select>
-                </div>
 
-                <div class="col-xs-12 col-sm-6 col-md-7">
-                  <input type="text" class="form-control" placeholder="Introduce los datos a buscar" id="data_representantes">
-                </div>
-
-                <div class="col-xs-12 col-sm-2 col-md-2">
-                   <button type="button" id="busqueda_criterio_representantes" class="btn btn-primary btn-lacra">Buscar</button>
-                </div>
-              </div>
               <div class="table-responsive">
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>Codigo</th>
                     <th>Tipo</th>
                     <th>Descripción</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
+
                   </thead>
                   <tbody>
-                  {% for r in representantes %}
+                  {% for c in comida %}
                       <tr>
-                          <td>{{ r.codigo }}</td>
-                          <td>{{ r.tipo }}</td>
-                          <td>{{ r.descripcion }}</td>
-                          <td><a type="button" data-toggle="modal" data-target="#comidas" onclick="edit_comidas('{{ r.codigo }}','{{ r.descripcion }}','{{ r.tipo }}')"><i class="fa fa-edit"></i></a></td>
-                          <td><a type="button" href="comidas/eliminar/{{ r.codigo}}"><i class="fa fa-trash"></i></a></td>
+                          <td>{{ c.tipo }}</td>
+                          <td>{{ c.descripcion }}</td>
+                          <td><a type="button" data-toggle="modal" data-target="#comidas" onclick="edit_comidas('{{ c.id_comida }}','{{ c.tipo }}','{{ c.descripcion }}'')"><i class="fa fa-edit"></i></a></td>
+                          <td><a type="button" href="comidas/eliminar/{{ c.id_comida}}"><i class="fa fa-trash"></i></a></td>
                       </tr>
                   {% endfor %}
                   </tbody>
@@ -94,8 +75,6 @@
       </div>
       <!-- /.row -->
       {# Creación de producto #}
-      {% include 'representantes/crear' %}
-      {% include 'representantes/editar' %}
       {#% include 'colegios/eliminar' %#}
     </section>
     <!-- /.content -->

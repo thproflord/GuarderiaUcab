@@ -24,8 +24,8 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        PAGOS Mensualidades
-        <small>Escuela de fútbol 'Pasión de vida'</small>
+        Pago de  Mensualidades
+        <small>Guardería “AMAMOS A SU BEBE COMO EN CASA”</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
@@ -42,141 +42,30 @@
             <div class="box-header">
               <h3 class="box-title">Listado de Pagos</h3>
             </div>
-            <!-- /.box-header -->
-            <div class="box-body">
-
-
-                <div class="row">
-                    <form id="criterios_pagos_form">
-
-                        <div class="col-xs-12 col-sm-6 col-md-3">
-                            <select class="select" id="id_tipo_criterio_pagos" name="tipo_criterio_pagos">
-                                {% if tipopago == 0 %}
-                               <option value="uno">Numero factura</option>
-                               <option value="dos">Nombre Representante - Nombre Jugador</option>
-                               <option value="tres">Nombre Representante - Numero factura -  Monto menor a</option>
-                               {% elseif tipopago == 1 %}
-                               <option value="uno">Mes (MM)</option>
-                               <option value="dos">Nombre Representante - Nombre Jugador</option>
-                               <option value="tres">Nombre Representante - Mes (MM) - Monto menor a </option>
-                               {% else %}
-                               <option value="uno">Año inicio temporada (YYYY)</option>
-                               <option value="dos">Nombre Representante - Nombre Jugador</option>
-                               <option value="tres">Nombre Representante - Año in temporada - Mes de inscripcion</option>
-                               {% endif %}
-                            </select>
-                         </div>
-
-
-                               {% if tipopago == 0 %}
-                               <input type="hidden" class="form-control" value="0" name="titpopago">
-                               {% elseif tipopago == 1 %}
-                               <input type="hidden" class="form-control" value="1" name="titpopago">
-                               {% else %}
-                               <input type="hidden" class="form-control" value="2" name="titpopago">
-                               {% endif %}
-
-                        <div class="col-xs-12 col-sm-6 col-md-3">
-                          <input type="text" class="form-control" id="id_criterio_pagos_1" name="criterio_pagos_1">
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-3">
-                          <input type="text" class="form-control" id="id_criterio_pagos_2" name="criterio_pagos_2">
-                        </div>
-                        <div class="col-xs-12 col-sm-6 col-md-3">
-                          <input type="text" class="form-control"  id="id_criterio_pagos_3" name="criterio_pagos_3">
-                        </div>
-                        <div class="col-xs-12 col-sm-2 col-md-2">
-                           <button type="button" id="busqueda_criterios_pagos" class="btn btn-primary btn-lacra">Buscar</button>
-                        </div>
-
-                    </form>
-                    </div>
-
 
               <div class="table-responsive">
                 <table id="example2" class="table table-bordered table-hover">
-
-                    {% if tipopago == 0 %}
                         <thead>
                         <tr>
                             <th>Fecha</th>
+                            <th>Numero de pago</th>
+                            <th>Concepto de pago</th>
+                            <th>Tipo de pago</th>
                             <th>Monto</th>
-                            <th>Ref bancaria</th>
-                            <th>Representante</th>
-                            <th>Jugador</th>
-                            <th>Numero factura</th>
-                            <th>Metodo pago</th>
                         </tr>
                         </thead>
                         <tbody id="pagos_body">
-                        {% for p in pagosuni %}
+                        {% for p in mensualidades %}
                             <tr>
-                                <td>{{ fecha('D, d F, Y', p.fecha_pago) }}</td>
-                                <td>Bs {{ p.monto_pago }}</td>
-                                <td>{{ p.ref_bancaria }}</td>
-                                <td>{{ p.nr }} {{ p.ar }} {{ p.cedula_representante }} </td>
-                                <td>{{ p.nj }} {{ p.aj }} {{ p.id_jugador }}</td>
-                                <td>{{ p.numero_factura }}</td>
-                                <td>{{ p.metodo_pago }}</td>
+                                <td>{{ fecha_pago|date("d/m/y") }}</td>
+                                <td>{{ p.numero }}</td>
+                                <td>{{ p.concepto }}</td>
+                                <td>{{ p.tipo_pago }} </td>
+                                <td>Bs {{ p.monto }}</td>
+                    
                             </tr>
                         {% endfor %}
                         </tbody>
-
-                    {% else %}
-                    {% if tipopago == 1 %}
-                        <thead>
-                        <tr>
-                            <th>Fecha</th>
-                            <th>Monto</th>
-                            <th>Abono credito</th>
-                            <th>Ref bancaria</th>
-                            <th>Representante</th>
-                            <th>Jugador</th>
-                            <th>Codigo Mensualidad</th>
-                            <th>Metodo pago</th>
-                        </tr>
-                        </thead>
-                        <tbody id="pagos_body">
-                        {% for p in pagosmen %}
-                            <tr>
-                                <td>{{ fecha('D, d F, Y', p.fecha_pago) }}</td>
-                                <td>Bs {{ p.monto_pago }}</td>
-                                <td>Bs {{ p.abono_credito }}</td>
-                                <td>{{ p.ref_bancaria }}</td>
-                                <td>{{ p.nr }} {{ p.ar }} {{ p.cedula_representante }} </td>
-                                <td>{{ p.nj }} {{ p.aj }} {{ p.id_jugador }}</td>
-                                <td>{{ p.codigo_mensualidad }}</td>
-                                <td>{{ p.metodo_pago }}</td>
-                            </tr>
-                        {% endfor %}
-                        </tbody>
-                    {% else %}
-                          <thead>
-                            <tr>
-                                <th>Fecha</th>
-                                <th>Monto</th>
-                                <th>Ref bancaria</th>
-                                <th>Cedula representante</th>
-                                <th>Jugador</th>
-                                <th>Temporada</th>
-                                <th>Metodo pago</th>
-                            </tr>
-                            </thead>
-                            <tbody id="pagos_body" >
-                            {% for p in pagosin %}
-                                <tr>
-                                    <td>{{ fecha('D, d F, Y', p.fecha_pago) }}</td>
-                                    <td>Bs {{ p.monto_pago }}</td>
-                                    <td>{{ p.ref_bancaria }}</td>
-                                    <td>{{ p.nr }} {{ p.ar }} {{ p.cedula_representante }} </td>
-                                    <td>{{ p.nj }} {{ p.aj }} {{ p.id_jugador }}</td>
-                                    <td>{{ p.anio_ini }}-{{ p.anio_fin }}</td>
-                                    <td>{{ p.metodo_pago }}</td>
-                                </tr>
-                            {% endfor %}
-                            </tbody>
-                    {% endif %}
-                    {% endif %}
                 </table>
               </div>
             </div>

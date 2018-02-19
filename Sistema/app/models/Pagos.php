@@ -29,16 +29,16 @@ class Pagos extends Models implements IModels {
 
     use DBModel;
 
-
-    private $monto_pago;
-    private $ref_bancaria;
-    private $numero_factura;
-    private $codigo_mensualidad;
-    private $cedula_representante;
-    private $anio_ini;
-    private $anio_fin;
-    private $id_jugador;
-    private $metodo_pago;
+    private $id_inscripcion;
+    private $id_mensualidad;
+    private $numero;
+    private $fechapago;
+    private $concepto;
+    private $tipo_pago;
+    private $monto;
+    private $numero_cheque;
+    private $numero_tarjeta;
+    private $monto_debito;
 
     /*Esto es solo para los pagos de facturas , para validar que tipo de uniforme se esta pagando para hacer el ajuste en el inventario*/
     private $tipo_uniforme;
@@ -47,28 +47,20 @@ class Pagos extends Models implements IModels {
     /*Revisa los errores al momento de editar y crear*/
     final private function errors(bool $edit = false) {
         global $http;
-            
-        
-        $this->monto_pago = $http->request->get('monto');
-        $this->ref_bancaria = $http->request->get('ref_bancaria');
-
-        $this->numero_factura = $http->request->get('numero_factura');
-        $this->codigo_mensualidad = $http->request->get('codigo_mensualidad');
-        $this->cedula_representante = $http->request->get('id_representante');
-        $this->anio_ini = $http->request->get('año_ini');
-        $this->anio_fin = $http->request->get('año_fin');
-        $this->metodo_pago = $http->request->get('metodo_pago');
-        $this->id_jugador = $http->request->get('id_jugador');
-        $this->tipo_uniforme = $http->request->get('tipo_unif');
+          
+        $this->id_inscripcion = $http->request->get('id_inscripcion');
+        $this->id_mensualidad = $http->request->get('id_mensualidad');
+        $this->numero = $http->request->get('numero');
+        $this->fechapago = $http->request->get('fechapago');
+        $this->concepto = $http->request->get('concepto');
+        $this->tipo_pago = $http->request->get('tipo_pago');
+        $this->monto = $http->request->get('monto');
+        $this->numero_cheque = $http->request->get('numero_cheque');
+        $this->numero_tarjeta = $http->request->get('numero_tarjeta');
+        $this->monto_debito = $http->request->get('monto_debito');
 
         /*Si esto es falso entonces debo hacer un balance de inventario*/
-        if( !($this->functions->e($this->numero_factura)) ){
-          $cantidad_ajuste = $http->request->get('cantidad_ajuste');
-        }
-        if($this->functions->e($this->monto_pago)){
-          throw new ModelsException('El monto es obligatorio');
-        }
-        if($this->functions->e($this->ref_bancaria)){
+        if( !($this->functions->e()) ){
           throw new ModelsException('La referencia bancaria es obligatoria');
         }
 
@@ -276,202 +268,16 @@ class Pagos extends Models implements IModels {
         * @return false|array: false si no hay datos.
         *                      array con los datos.
         */
-    final public function getPagos(string $select='*',string $a='*') {
+    final public function getPagos(string $select='*') {
 
         
-        if($a=='uniformes'){
           return $this->db->query_select(
-            "SELECT p4.fecha_pago AS fecha_pago,p4.monto_pago AS monto_pago ,p4.ref_bancaria AS ref_bancaria,p4.metodo_pago AS metodo_pago,
-            p4.numero_factura AS numero_factura,
-            r4.cedula_representante AS cedula_representante,r4.nombre AS nr,r4.apellido AS ar,
-            j4.id_jugador AS id_jugador,j4.nombre AS nj,j4.apellido AS aj
-            FROM pagos_4 p4
-            INNER JOIN representantes_4 r4 ON r4.cedula_representante=p4.cedula_representante
-            INNER JOIN jugadores_4 j4 ON p4.id_jugador=j4.id_jugador
-            WHERE p4.numero_factura IS NOT NULL;"
+            "SELECT * FROM pago_insc_mens_2
+            WHERE concepto = 1;"
           );
-        }
-        else 
-        if($a=='mensualidades'){
-            return $this->db->query_select(
-              "SELECT p4.fecha_pago AS fecha_pago,p4.monto_pago AS monto_pago ,p4.ref_bancaria AS ref_bancaria ,p4.metodo_pago AS metodo_pago,
-              p4.codigo_mensualidad AS codigo_mensualidad,p4.abono_credito AS abono_credito,
-              r4.cedula_representante AS cedula_representante,r4.nombre AS nr,r4.apellido AS ar,
-              j4.id_jugador AS id_jugador,j4.nombre AS nj,j4.apellido AS aj 
-              FROM pagos_4 p4
-              INNER JOIN representantes_4 r4 ON r4.cedula_representante=p4.cedula_representante
-              INNER JOIN jugadores_4 j4 ON p4.id_jugador=j4.id_jugador
-              WHERE codigo_mensualidad IS NOT NULL;"
-              );
-        }else 
-        if($a=='inscripciones'){
-          return $this->db->query_select(
-            "SELECT  p4.fecha_pago AS fecha_pago,p4.monto_pago AS monto_pago ,p4.ref_bancaria AS ref_bancaria ,p4.metodo_pago AS metodo_pago,
-            p4.anio_ini AS anio_ini ,p4.anio_fin AS anio_fin,
-            r4.cedula_representante AS cedula_representante,r4.nombre AS nr,r4.apellido AS ar,
-            j4.id_jugador AS id_jugador,j4.nombre AS nj,j4.apellido AS aj 
-            FROM pagos_4 p4
-            INNER JOIN representantes_4 r4 ON r4.cedula_representante=p4.cedula_representante
-            INNER JOIN jugadores_4 j4 ON p4.id_jugador=j4.id_jugador
-            WHERE anio_ini IS NOT NULL;"
-            );
-        }else
-        {
-          return $this->db->query_select(
-            "SELECT $select
-            FROM pagos_4;"
-            );
-        }
+
 
     }
-
-
-    final public function getPagoVentasByFactura(){
-
-      return $this->db->query_select(
-        "SELECT COUNT(*) AS cantidad_pagos , SUM(p4.monto_pago) monto_pagos ,p4.numero_factura AS numero_factura
-        FROM pagos_4 p4
-        INNER JOIN facturas_4 f4 ON f4.numero_factura=p4.numero_factura
-        GROUP BY p4.numero_factura
-        ;"
-        );
-
-    }
-
-    final public function getPagoMensualidadesByCodigo(){
-
-      return $this->db->query_select(
-        "SELECT  SUM(p4.monto_pago) monto_pagos,p4.codigo_mensualidad AS codigo_mensualidad,
-        p4.cedula_representante AS cedula_representante , p4.id_jugador AS id_jugador
-        FROM pagos_4 p4
-        WHERE p4.codigo_mensualidad IS NOT NULL
-        GROUP BY p4.codigo_mensualidad , p4.cedula_representante , p4.id_jugador      
-        ;"
-        );
-
-    }
-
-    final public function getCostos(string $select){/*Esto debe ir al controlador de costos*/
-
-      return $this->db->query_select(
-        "SELECT $select
-        FROM costos_4
-        WHERE 1=1
-        ;"
-        );
-
-    }
-
-    final public function checkMensualidades(string $codigo,string $mensualidad,string $representante,string $jugador){
-
-      $codigo = $codigo[0].$codigo[1];
-      /*la query trae algo si la mensualidad esta totalmente pagada*/
-      return $this->db->query_select(
-        "SELECT p4.id_jugador AS jj 
-        FROM pagos_4 p4
-        WHERE p4.codigo_mensualidad LIKE ('$codigo%') AND 
-        p4.cedula_representante='$representante' AND p4.id_jugador='$jugador' AND
-        p4.codigo_mensualidad IS NOT NULL 
-        GROUP BY p4.id_jugador
-        HAVING SUM(p4.monto_pago)>=$mensualidad
-        ;"
-        );
-
-    }
-
-
-
-
-
-    final public function getByCriterios() {
-      global $http;
-      
-      $criterios= $http->query->get('tipo_criterio_pagos');
-      $a = $http->query->get('criterio_pagos_1');
-      $b = $http->query->get('criterio_pagos_2');
-      $c = $http->query->get('criterio_pagos_3');
-      $t = $http->query->get('titpopago');
-      $inner_join = "WHERE 2=-1";
-
-        if($criterios=="uno"){
-
-          if($t == 0 AND is_numeric($a)){
-            $inner_join="INNER JOIN facturas_4 f4 ON f4.numero_factura=p4.numero_factura AND f4.numero_factura=$a";
-          }else 
-          if($t == 1){
-            $inner_join="INNER JOIN mensualidades_4 m4 ON m4.codigo_consecutivo=p4.codigo_mensualidad AND m4.codigo_consecutivo LIKE '$a%'";
-          }else 
-          if($t == 1 AND is_numeric($a)){
-            $inner_join="INNER JOIN inscripciones_4 i4 ON i4.anio_ini_inscripcion=p4.anio_ini AND i4.anio_ini_inscripcion=$a";
-          }
-          
-          /**/
-          return $this->db->query_select(
-            "SELECT FROM_UNIXTIME(p4.fecha_pago,'%d %m %Y') AS fecha_pago , p4.monto_pago AS monto_pago , p4.abono_credito AS abono_credito , p4.ref_bancaria AS ref_bancaria , p4.numero_factura AS numero_factura,
-            p4.codigo_mensualidad AS codigo_mensualidad , p4.cedula_representante AS cedula_representante , p4.anio_ini  AS anio_ini ,
-            p4.anio_fin  AS anio_fin , p4.metodo_pago AS metodo_pago , p4.id_jugador AS id_jugador, r4.nombre AS nr , r4.apellido AS ar,
-            j4.nombre AS nj , j4.apellido AS aj
-            FROM pagos_4 p4
-            INNER JOIN representantes_4 r4 ON r4.cedula_representante=p4.cedula_representante
-            INNER JOIN jugadores_4 j4 ON p4.id_jugador=j4.id_jugador 
-            $inner_join
-            ;");
-
-        }else
-        if($criterios=="dos"){
-
-          $where="";
-
-          if($t == 0){
-            $where="WHERE p4.numero_factura IS NOT NULL";
-          }else 
-          if($t == 1){
-            $where="WHERE p4.codigo_mensualidad IS NOT NULL";
-          }else 
-          if($t == 2 ){
-            $where="WHERE p4.anio_ini IS NOT NULL";
-          }
-
-          /**/
-          return $this->db->query_select(
-            "SELECT FROM_UNIXTIME(p4.fecha_pago,'%d %m %Y') AS fecha_pago , p4.monto_pago AS monto_pago , p4.abono_credito AS abono_credito , p4.ref_bancaria AS ref_bancaria , p4.numero_factura AS numero_factura,
-            p4.codigo_mensualidad AS codigo_mensualidad , p4.cedula_representante AS cedula_representante , p4.anio_ini  AS anio_ini ,
-            p4.anio_fin  AS anio_fin , p4.metodo_pago AS metodo_pago , p4.id_jugador AS id_jugador , r4.nombre AS nr , r4.apellido AS ar,
-            j4.nombre AS nj , j4.apellido AS aj
-            FROM pagos_4 p4
-            INNER JOIN representantes_4 r4 ON r4.cedula_representante=p4.cedula_representante AND r4.nombre='$a'
-            INNER JOIN jugadores_4 j4 ON p4.id_jugador=j4.id_jugador AND j4.nombre='$b'
-            $where
-            ;");
-
-        }else        
-        if($criterios=="tres"){
-
-          if($t == 0 AND is_numeric($b) AND is_numeric($c) ){
-            $inner_join="INNER JOIN facturas_4 f4 ON f4.numero_factura=p4.numero_factura AND f4.numero_factura=$b WHERE p4.monto_pago<$c ";
-          }else 
-          if($t == 1 AND is_numeric($c) ){
-            $inner_join="INNER JOIN mensualidades_4 m4 ON m4.codigo_consecutivo=p4.codigo_mensualidad AND m4.codigo_consecutivo LIKE '$b%' AND m4.precio_mensualidad<$c ";
-          }else 
-          if($t == 2 AND is_numeric($b)){
-            $inner_join="INNER JOIN inscripciones_4 i4 ON i4.anio_ini_inscripcion=p4.anio_ini AND i4.anio_ini_inscripcion=$b AND FROM_UNIXTIME(i4.fecha_inscripcion) LIKE '%-$c-%'";
-          }
-
-          return $this->db->query_select(
-            "SELECT DISTINCT FROM_UNIXTIME(p4.fecha_pago,'%d %m %Y') AS fecha_pago , p4.monto_pago AS monto_pago , p4.abono_credito AS abono_credito , p4.ref_bancaria AS ref_bancaria , p4.numero_factura AS numero_factura,
-            p4.codigo_mensualidad AS codigo_mensualidad , p4.cedula_representante AS cedula_representante , p4.anio_ini  AS anio_ini ,
-            p4.anio_fin  AS anio_fin , p4.metodo_pago AS metodo_pago , p4.id_jugador AS id_jugador, r4.nombre AS nr , r4.apellido AS ar,
-            j4.nombre AS nj , j4.apellido AS aj
-            FROM pagos_4 p4
-            INNER JOIN representantes_4 r4 ON r4.cedula_representante=p4.cedula_representante AND r4.nombre='$a'
-            INNER JOIN jugadores_4 j4 ON p4.id_jugador=j4.id_jugador 
-            $inner_join
-            ;");
-        }
-
-      }
-
-
 
 
 

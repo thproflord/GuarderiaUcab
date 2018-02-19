@@ -29,9 +29,12 @@ class pagosController extends Controllers implements IControllers {
         $p = new Model\Pagos;
         $v = new Model\Ventas;
         $r = new Model\Representantes;
+       
         switch($this->method) {
-            case 'pagos':
-              echo $this->template->render('pagos/pagos');
+            default:
+              echo $this->template->render('pagos/pagos',array(
+                  'mensualidades' => $p->getPagos()
+              ));
             break;
             case 'actividades':
                 echo $this->template->render('pagos/actividades');
