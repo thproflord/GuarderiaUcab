@@ -9,7 +9,7 @@ function edit_enfermedades(nombre,apellido,cedula,telefono_oficina,telefono_casa
     $('#id_parentesco').val(parentesco);
     $('#id_profesion').val(profesion);
 
-    
+
 
     if(sexo == 'm'){
         $("#id_sexo_hombre_edit").prop("checked",true);
@@ -17,7 +17,7 @@ function edit_enfermedades(nombre,apellido,cedula,telefono_oficina,telefono_casa
     else {
         $("#id_sexo_mujer_edit").prop("checked",true);
     }
-    
+
 }
 
 /**
@@ -26,7 +26,7 @@ function edit_enfermedades(nombre,apellido,cedula,telefono_oficina,telefono_casa
 function editar_enfermedades(){
     $.ajax({
       type : "POST",
-      url : "api/enfermedadess/editar",
+      url : "api/enfermedades/editar",
       data : $('#editar_enfermedades_form').serialize(),
       success : function(json) {
         alert(json.success);
@@ -42,11 +42,11 @@ function editar_enfermedades(){
       }
     });
   }
-  
+
   /**
    * Events
-   *  
-   * @param {*} e 
+   *
+   * @param {*} e
    */
   $('#editar_enfermedades').click(function(e) {
     e.defaultPrevented;

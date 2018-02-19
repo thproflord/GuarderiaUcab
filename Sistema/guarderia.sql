@@ -172,7 +172,7 @@ CREATE TABLE `detalle_factura_2` (
 CREATE TABLE `enfermedad_2` (
   `id_enfermedad` int(11) UNSIGNED NOT NULL,
   `codigo` varchar(11) NOT NULL,
-  `descripcion` varchar(15) NOT NULL
+  `descripcion` varchar(30) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --

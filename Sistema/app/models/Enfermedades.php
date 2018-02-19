@@ -22,14 +22,8 @@ class Enfermedades extends Models implements IModels {
     */
     use DBModel;
 
-    private $nombre;
-    private $apellido;
-    private $cedula;
-    private $tlf_casa;
-    private $tlf_oficina;
-    private $tlf_celular;
-    private $profesion;
-    private $sexo;
+    private $codigo;
+    private $descripcion;
 
     /**
       * Controla los errores de entrada del formulario
@@ -40,27 +34,14 @@ class Enfermedades extends Models implements IModels {
     final private function errors(bool $edit = false) {
       global $http;
 
-      $this->nombre = $http->request->get('nombre');
-      $this->apellido = $http->request->get('apellido');
-      $this->cedula = $http->request->get('cedula');
-      $this->tlf_casa = ($http->request->get('tlf_casa') != ' ') ? $http->request->get('tlf_casa') : null;
-      $this->tlf_oficina = ($http->request->get('tlf_oficina') != ' ') ? $http->request->get('tlf_oficina') : null;
-      $this->tlf_celular = ($http->request->get('tlf_celular') != ' ') ? $http->request->get('tlf_celular') : null;
-      $this->principal = $http->request->get('sexo');
-      $this->profesion = $http->request->get('profesion');
+      $this->codigo = $http->request->get('codig');
+      $this->descripcion = $http->request->get('descripcion');
 
-      if($this->functions->e($this->nombre)){
-        throw new ModelsException('El campo nombre es obligatorio');
+      if($this->functions->e($this->codigo)){
+        throw new ModelsException('El campo Codigo es obligatorio');
       }
-      if($this->functions->e($this->apellido)){
-        throw new ModelsException('El campo apellido es obligatorio');
-      }
-      if($this->functions->e($this->cedula)){
-        throw new ModelsException('El campo cedula es obligatorio');
-      }
-
-      if($this->functions->e($this->profesion) && $this->tipo == 2){
-        throw new ModelsException('Indique una profesión');
+      if($this->functions->e($this->descripcion)){
+        throw new ModelsException('El campo Descripcion es obligatorio');
       }
 
       /*$cedula_exist = $this->db->query_select("SELECT * FROM representantes WHERE cedula_empleado = '$this->cedula'");
@@ -80,9 +61,8 @@ class Enfermedades extends Models implements IModels {
 
         # Insertar elementos
         $this->db->query("INSERT INTO enfermedad_2
-        (nombre,apellido,cedula,tel_casa,tel_ofic,tel_celular,profesion,principal)
-        VALUES ('$this->nombre','$this->apellido','$this->cedula','$this->tlf_casa','$this->tlf_oficina',
-        '$this->tlf_celular','$this->profesion',$this->principal);");
+        (codigo,descripcion)
+        VALUES ('$this->codigo','$this->descripcion');");
 
         return array('success' => 1, 'message' => 'Creado con éxito.');
       } catch(ModelsException $e) {
