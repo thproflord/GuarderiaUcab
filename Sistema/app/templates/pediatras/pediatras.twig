@@ -83,7 +83,7 @@
                   {% endfor %}
                   </tbody>
                 </table>
-                <button type="button" class="btn btn-block btn-primary btn-flat" data-toggle="modal" data-target="#modal_crear_representante"><i class="fa fa-plus-circle"></i> CREAR NUEVO NIÑO</button>
+                <button type="button" class="btn btn-block btn-primary btn-flat" data-toggle="modal" data-target="#modal_crear_pediatra"><i class="fa fa-plus-circle"></i> CREAR NUEVO PEDIATRA</button>
               </div>
             </div>
             <!-- /.box-body -->
@@ -93,8 +93,8 @@
         <!-- /.col -->
       </div>
       <!-- /.row -->
-      {# Creación de producto #}
-      {% include 'representantes/crear' %}
+      {# Creación de pediatra #}
+      {% include 'pediatras/crear' %}
       {% include 'representantes/editar' %}
       {#% include 'colegios/eliminar' %#}
     </section>
@@ -104,7 +104,7 @@
 {% endblock %}
 
 {% block appFooter %}
-<script src="views/app/js/representantes/crear.js"></script>
+<script src="views/app/js/pediatras/crear.js"></script>
 <script src="views/app/js/representantes/editar.js"></script>
 <!-- DataTables -->
 <script src="views/theme/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>

@@ -90,9 +90,22 @@ class Representantes extends Models implements IModels {
       }
     }
 
-    final public function editar(){
-      $this->db->update('representantes', array(
-      ),"cedula=");
+    final public function edit(){
+      try{
+        global $http;
+
+        $this->errors(true);
+        # Actualizar elementos
+        $this->db->query("UPDATE padre_2
+        SET nombre = '$this->nombre', apellido = '$this->apellido', tel_casa = '$this->tlf_casa',
+        tel_ofic = '$this->tlf_oficina', tel_celular = '$this->tlf_celular' ,
+        profesion = '$this->profesion', principal = $this->principal
+        WHERE cedula = '$this->cedula';");
+
+        return array('success' => 1, 'message' => 'Editado con éxito.');
+      } catch(ModelsException $e) {
+        return array('success' => 0, 'message' => $e->getMessage());
+      }
     }
 
     final public function get(bool $multi = true, string $select = '*') {

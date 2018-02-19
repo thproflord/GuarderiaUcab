@@ -24,7 +24,6 @@ class Pediatras extends Models implements IModels {
 
     private $cedula;
     private $nombre;
-    private $id_pediatras;
     private $telefono;
 
     /**
@@ -36,27 +35,18 @@ class Pediatras extends Models implements IModels {
     final private function errors(bool $edit = false) {
       global $http;
 
-      $this->nombre = $http->request->get('cedula');
-      $this->apellido = $http->request->get('apellido');
+      $this->nombre = $http->request->get('nombre');
       $this->cedula = $http->request->get('cedula');
-      $this->tlf_casa = ($http->request->get('tlf_casa') != ' ') ? $http->request->get('tlf_casa') : null;
-      $this->tlf_oficina = ($http->request->get('tlf_oficina') != ' ') ? $http->request->get('tlf_oficina') : null;
-      $this->tlf_celular = ($http->request->get('tlf_celular') != ' ') ? $http->request->get('tlf_celular') : null;
-      $this->principal = $http->request->get('sexo');
-      $this->profesion = $http->request->get('profesion');
+      $this->tlf = $http->request->get('tlf');
 
       if($this->functions->e($this->nombre)){
         throw new ModelsException('El campo nombre es obligatorio');
       }
-      if($this->functions->e($this->apellido)){
-        throw new ModelsException('El campo apellido es obligatorio');
-      }
       if($this->functions->e($this->cedula)){
         throw new ModelsException('El campo cedula es obligatorio');
       }
-
-      if($this->functions->e($this->profesion) && $this->tipo == 2){
-        throw new ModelsException('Indique una profesión');
+      if($this->functions->e($this->tlf)){
+        throw new ModelsException('El campo telefono es obligatorio');
       }
 
       /*$cedula_exist = $this->db->query_select("SELECT * FROM representantes WHERE cedula_empleado = '$this->cedula'");
@@ -76,9 +66,8 @@ class Pediatras extends Models implements IModels {
 
         # Insertar elementos
         $this->db->query("INSERT INTO pediatra_2
-        (nombre,apellido,cedula,tel_casa,tel_ofic,tel_celular,profesion,principal)
-        VALUES ('$this->nombre','$this->apellido','$this->cedula','$this->tlf_casa','$this->tlf_oficina',
-        '$this->tlf_celular','$this->profesion',$this->principal);");
+        (nombre,cedula,telefono)
+        VALUES ('$this->nombre','$this->cedula','$this->tlf');");
 
         return array('success' => 1, 'message' => 'Creado con éxito.');
       } catch(ModelsException $e) {
@@ -86,7 +75,7 @@ class Pediatras extends Models implements IModels {
       }
     }
 
-    final public function editar(){
+    final public function edit(){
       $this->db->update('representantes', array(
       ),"cedula=");
     }
