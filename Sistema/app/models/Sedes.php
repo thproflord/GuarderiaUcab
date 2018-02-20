@@ -51,7 +51,7 @@ class Sedes extends Models implements IModels {
       $this->rif = $http->request->get('rif');
       $this->telefono = $http->request->get('telefono');
       $this->costo = $http->request->get('costo');
-      $this->encargado = $http->request->get('calle');
+      $this->encargado = $http->request->get('encargado');
 
       if($this->functions->e($this->nombre)){
         throw new ModelsException('Por favor introduzca un nombre!');
@@ -88,12 +88,22 @@ class Sedes extends Models implements IModels {
         # Insertar elementos
         $this->db->query("INSERT INTO guarderia_2
         (nombre,id_lugar,id_enc,rif,telefonos,costo)
-        VALUES ('$this->nombre',null,null,'$this->rif','$this->telefono',$this->costo);");
+        VALUES ('$this->nombre',$this->lugar,null,'$this->rif','$this->telefono',$this->costo);");
 
         return array('success' => 1, 'message' => 'Creado con éxito.');
       } catch(ModelsException $e) {
         return array('success' => 0, 'message' => $e->getMessage());
       }
+    }
+
+    /**
+      * Devuelve los lugares
+    **/
+
+    final public function getL(){
+
+      return $this->db->query_select("SELECT * FROM lugar_2;");
+
     }
 
     /**
@@ -106,17 +116,16 @@ class Sedes extends Models implements IModels {
         global $http;
 
         # Obtener el id del elemento que se está editando y asignarlo en $this->id
-        $codigo = $http->request->get('codigo');
+        $codigo = $http->request->get('guarderia');
 
         # Controlar errores de entrada en el formulario
         $this->errors();
 
         # Actualizar elementos
-        $this->db->query("UPDATE sedes_4
-        SET nombre = '$this->nombre', direccion = '$this->direccion', costo_3dias =$this->costo_3dias,
-        costo_5dias = $this->costo_5dias, calle = '$this->calle', urbanizacion = '$this->urbanizacion',
-        fecha_apertura = '$this->fecha_apertura', ci_coord_tecni = '$this->coord_tecnico', ci_coord_admin = '$this->coord_admin'
-        WHERE codigo_sede = $codigo");
+        $this->db->query("UPDATE guarderia_2
+        SET nombre = '$this->nombre', id_lugar = $this->lugar, id_enc =$this->encargado,
+        telefonos = '$this->telefono', costo = $this->costo
+        WHERE id_lugar = $codigo");
 
         return array('success' => 1, 'message' => 'Editado con éxito.');
       } catch(ModelsException $e) {
@@ -167,9 +176,8 @@ class Sedes extends Models implements IModels {
     final public function getCosto(string $criterio="-" ,$select = '*') {
 
       /*Busqueda personalizada*/
-    return $this->db->query_select("SELECT * FROM sedes_4  WHERE $criterio<=$select;");
+      return $this->db->query_select("SELECT * FROM sedes_4  WHERE $criterio<=$select;");
     }
-
 
     /**
       * __construct()

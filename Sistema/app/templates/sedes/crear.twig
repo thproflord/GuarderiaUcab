@@ -14,20 +14,19 @@
                 <label>Nombre</label>
                 <input type="text" class="form-control" placeholder="Nombre..." name="nombre">
                 <label>Lugar</label>
-                <input type="text" class="form-control" placeholder="Dirección..." name="lugar">
+                <select class="form-control select2" name="lugar"  id="lugar" data-placeholder="">
+                    <option disabled selected value></option>
+                {% for r in lugar %}
+                    <option value="{{ r.id_lugar }}">{{ r.nombre }}</option>
+                {% endfor %}
+                </select>
                 <label>Rif</label>
                 <input type="text" class="form-control" placeholder="RIF" name="rif">
                 <label>Telefono</label>
                 <input type="text" class="form-control" placeholder="Telefono" name="telefono">
                 <label>Costo</label>
                 <input type="text" class="form-control" placeholder="Costo" name="costo">
-                <label>Encargado</label>
-                <select class="form-control select2" name="coord_tecnico"  data-placeholder="">
-                    <option disabled selected value></option>
-                {% for t in tecnicos %}
-                    <option value="{{ t.cedula_empleado }}">{{ t.nombre }} {{ t.apellido }}</option>
-                {% endfor %}
-                </select>
+
               </div>
             </form>
             </div>

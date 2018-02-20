@@ -29,6 +29,7 @@ class personalController extends Controllers implements IControllers {
         global $config;
 
         $p = new Model\Personal($router);
+        $g = new Model\Sedes($router);
         switch($this->method) {
           case 'crear':
             echo $this->template->render('personal/crear');
@@ -37,7 +38,8 @@ class personalController extends Controllers implements IControllers {
           break;
           default:
             echo $this->template->render('personal/personal',array(
-              'personal' => $p->get()
+              'personal' => $p->get(),
+              'guarderias' => $g->get()
             ));
           break;
         }

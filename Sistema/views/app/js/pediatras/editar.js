@@ -4,6 +4,10 @@ function edit_pediatra(nombre,telefono,cedula){
     $('#id_cedula').val(cedula);
 }
 
+function prueba(){
+  alert("prueba");
+}
+
 /**
  * Ajax action to api rest
 */
@@ -26,11 +30,11 @@ function editar_pediatra(){
       }
     });
   }
-  
+
   /**
    * Events
-   *  
-   * @param {*} e 
+   *
+   * @param {*} e
    */
   $('#editar_pediatra').click(function(e) {
     e.defaultPrevented;

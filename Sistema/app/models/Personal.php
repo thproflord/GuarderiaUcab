@@ -97,6 +97,18 @@ class Personal extends Models implements IModels {
     }
 
     /**
+      * Obtiene el personal de la guarderia
+      *
+      * @param string $c: codigo de la guarderia que se buscara los empleados
+      *
+      * @return array: devuelve el personal de la guarderia
+    **/
+
+    final public function getPersonal($c) : array {
+
+    }
+
+    /**
       * Edita un elemento de Personal en la tabla ``
       *
       * @return array con información para la api, un valor success y un mensaje.

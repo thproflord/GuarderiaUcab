@@ -3,7 +3,7 @@ function edit_autorizado(nombre,apellido,cedula,telefono){
     $('#id_apellido').val(apellido);
     $('#id_cedula').val(cedula);
     $('#id_telefono').val(telefono);
-    
+
 }
 
 /**
@@ -28,11 +28,11 @@ function editar_autorizado(){
       }
     });
   }
-  
+
   /**
    * Events
-   *  
-   * @param {*} e 
+   *
+   * @param {*} e
    */
   $('#editar_autorizado').click(function(e) {
     e.defaultPrevented;

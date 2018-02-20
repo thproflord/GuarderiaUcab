@@ -29,14 +29,19 @@ class sedesController extends Controllers implements IControllers {
         global $config;
 
         $s = new Model\Sedes($router);
+        $p = new Model\Personal($router);
 
         switch($this->method) {
           case 'crear':
             echo $this->template->render('sedes/crear');
           break;
+          case 'editar':
+            echo $this->template->render('sedes/editar');
           default:
             echo $this->template->render('sedes/sedes', array(
-            'sedes' => $s->get()
+            'sedes' => $s->get(),
+            'personal' => $p->get(),
+            'lugar' => $s->getL()
           ));
           break;
         }

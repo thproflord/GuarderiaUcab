@@ -83,7 +83,7 @@
                           <td>{{ s.telefonos }}</td>
                           <td>{{ s.costo }}</td>
 
-                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_sede" onclick="editar_sede('{{ s.nombre }}',{{ s.codigo_sede }},'{{ s.direccion }}','{{ s.fecha_apertura }}',{{ s.costo_3dias }},{{ s.costo_5dias }},'{{ s.calle }}','{{ s.urbanizacion }}','{{ s.ci_coord_tecni }}','{{ s.ci_coord_admin }}')"><i class="fa fa-edit"></i></a></td>
+                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_sede" onclick="editar_sede('{{ s.nombre }}', '{{ s.id_guarderia }}' ,'{{ s.id_lugar }}' , '{{ s.id_enc }}' , '{{ s.rif }}', '{{ s.telefonos }}' , '{{ s.costo }}')"><i class="fa fa-edit"></i></a></td>
                           <td><a type="button" href="sedes/eliminar/{{ s.codigo_sede }}"><i class="fa fa-trash"></i></a></td>
                       </tr>
                   {% endfor %}
@@ -111,8 +111,8 @@
 
 {% block appFooter %}
 <!-- page script -->
-<script src="views/app/js/sedes/crear.js"> </script>
-<script src="views/app/js/sedes/editar.js"></script>
+<script src="views/app/js/sedes/crear.js"></script>
+<script src="views/app/js/sedes/prueba.js"></script>
 <!-- DataTables -->
 <script src="views/theme/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="views/theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>

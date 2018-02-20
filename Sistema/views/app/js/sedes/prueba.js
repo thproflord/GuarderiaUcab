@@ -1,20 +1,23 @@
-function editar_sede(nombre, codigo,direccion,fecha_apertura,costo_3dias,costo_5dias,calle,urbanizacion,coord_tecnico,coord_admin){
-  $('#nombre_editar').val(nombre);
-  $('#direccion_editar').val(direccion);
-  $('#codigo_editar').val(codigo);
-  $('#costo_3dias_editar').val(costo_3dias);
-  $('#costo_5dias_editar').val(costo_5dias);
-  $('#fecha_apertura_editar').val(fecha_apertura);
-  $('#coord_tecni_editar').val(coord_tecnico).change();
-  $('#coord_admin_editar').val(coord_admin).change();
-  $('#calle_editar').val(calle);
-  $('#urbanizacion_editar').val(urbanizacion);
+function editar_sede(nombre,id_guarderia,lugar,id_enc,rif,telefono,costo){
+  alert(id_enc);
+  $('#nombre').val(nombre);
+  $('#lugar').val(lugar);
+  $('#rif').val(rif);
+  $('#telefono').val(telefono);
+  $('#costo').val(costo);
+  $('#guarderia').val(id_guarderia);
+  $('#enc').val(id_enc);
+}
+
+function prueba(){
+  alert("prueba");
 }
 
 /**
  * Ajax action to api rest
 */
 function editar_sedes(){
+
   $.ajax({
     type : "POST",
     url : "api/sedes/editar",
@@ -36,8 +39,8 @@ function editar_sedes(){
 
 /**
  * Events
- *  
- * @param {*} e 
+ *
+ * @param {*} e
  */
 $('#editar_sede').click(function(e) {
   e.defaultPrevented;

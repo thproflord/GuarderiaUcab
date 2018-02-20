@@ -11,62 +11,53 @@
               <form role="form" id="editar_personal_form">
               <!-- text input -->
               <div class="form-group">
-                <input type="hidden" class="form-control" placeholder="Cedula" name="cedula" id="cedula_editar">
                 <label>Nombre</label>
-                <input type="text" class="form-control" placeholder="Nombre..." name="nombre" id="nombre_editar">
+                <input type="text" class="form-control" placeholder="Nombre..." name="nombre">
                 <label>Apellido</label>
-                <input type="text" class="form-control" placeholder="Apellido..." name="apellido" id="apellido_editar">
-                <label>Teléfono de Casa</label>
-                <input type="tel" class="form-control" placeholder="" name="tlf_casa" id="tlf_casa_editar">
-                <label>Teléfono de Oficina</label>
-                <input type="tel" class="form-control" placeholder="" name="tlf_oficina" id="tlf_oficina_editar">
-                <label>Teléfono Celular</label>
-                <input type="tel" class="form-control" placeholder="" name="tlf_celular" id="tlf_celular_editar">
-                <label>Fecha de Nacimiento</label>
-                <input type="date" class="form-control" placeholder="" name="fecha_nacimiento" id="fecha_nacimiento_editar">
-                <label>Nacionalidad</label>
-                <input type="text" class="form-control" placeholder="Nacionalidad" name="nacionalidad" id="nacionalidad_editar">
+                <input type="text" class="form-control" placeholder="Apellido..." name="apellido">
+                <label>Cedula</label>
+                <input type="text" class="form-control" placeholder="Cedula" name="cedula">
+                <label>Guarderia</label>
+                <select name="guarderia" id="" class="select2 form-control">
+                  <option default disable value></option>
+                  {% for g in guarderias %}
+                  <option value="{{ g.id_guarderia }}">{{ g.nombre }}</option>
+                  {% endfor %}
+                </select>
+                <label>Teléfono</label>
+                <input type="text" class="form-control" placeholder="" name="tlf">
+                <label>Direccion</label>
+                <input type="text" class="form-control" placeholder="" name="direccion">
+                <label>Sueldo</label>
+                <input type="text" class="form-control" placeholder="" name="sueldo">
               </div>
-              <div class="form-group" onchange="mostrarProfesionEditar()">
-                <label>Tipo Empleado</label>
+
+                <label>Nivel de Estudio</label>
                 <div class="radio">
                   <label>
-                    <input type="radio" name="tipo_empleado" id="tipo_empleado1_editar" value="1">
-                    Coordinador Tecnico
+                    <input type="radio" name="tipo_empleado" id="tipo_empleado1" value="bachillerato" checked>
+                    Bachillerato
                   </label>
                 </div>
                 <div class="radio">
                   <label>
-                    <input type="radio" name="tipo_empleado" id="tipo_empleado2_editar" value="2">
-                    Coordinador Administrativo
+                    <input type="radio" name="tipo_empleado" id="tipo_empleado2" value="TSU">
+                     TSU
                   </label>
                 </div>
                 <div class="radio">
                   <label>
-                    <input type="radio" name="tipo_empleado" id="tipo_empleado3_editar" value="0">
-                    Administrador
+                    <input type="radio" name="tipo_empleado" id="tipo_empleado3" value="universitario">
+                    Universitario
                   </label>
                 </div>
-              </div>
-              <div id="profesion_editar" style="display:none">
-                  <label>Profesión</label>
-                  <input type="text" class="form-control" placeholder="Profesión..." name="profesion" id="input_profesion_editar">
+                <div class="radio">
+                  <label>
+                    <input type="radio" name="tipo_empleado" id="tipo_empleado3" value="postgrado">
+                    Postgrado
+                  </label>
                 </div>
-              <div class="form-group">
-                  <label>Tipo Empleado</label>
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="sexo" id="sexo1_editar" value="m">
-                      Masculino
-                    </label>
-                  </div>
-                  <div class="radio">
-                    <label>
-                      <input type="radio" name="sexo" id="sexo2_editar" value="f">
-                      Femenino
-                    </label>
-                  </div>
-              </div>
+
             </form>
             </div>
             <div class="modal-footer">
@@ -79,4 +70,3 @@
       <!-- /.modal-dialog -->
   </div>
   <!-- /.modal -->
-
