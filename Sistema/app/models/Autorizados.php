@@ -99,6 +99,21 @@ class Autorizados extends Models implements IModels {
       }
     }
 
+            /** 
+          * Borra un elemento de Personal en la tabla ``
+          * y luego redirecciona a personal/&success=true
+          *
+          * @return void
+        */
+        final public function delete($id) {
+          global $config;
+          # Borrar el elemento de la base de datos
+          $this->db->query("DELETE FROM autorizado_2 WHERE cedula = '$id'");
+          # Redireccionar a la página principal del controlador
+          $this->functions->redir($config['site']['url'] . 'autorizados/&success=true');
+        }
+
+
     final public function get(bool $multi = true, string $select = '*') {
         return $this->db->query_select("SELECT * FROM autorizado_2;");
     }

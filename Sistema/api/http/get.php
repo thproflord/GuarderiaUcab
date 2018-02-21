@@ -106,10 +106,10 @@ $app->get('/estadisticas/getTopPorteros', function() use($app) {
 });
 
 /*Trae un array de hijos dependiendo del id padre que se pase por parametro*/
-$app->get('/traerhijos/{id}', function($id) use($app) {
+$app->get('/traerhijos/{letra}', function() use($app) {
 $r = new Model\Representantes;   
    
-return $app->json($r->getHijos($id));
+return $app->json($r->getHijos());
         
 });
 

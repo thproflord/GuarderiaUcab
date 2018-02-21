@@ -59,7 +59,7 @@
                           <td>{{ r.codigo }}</td>
                           <td>{{ r.descripcion }}</td>
                           <td><a type="button" data-toggle="modal" data-target="#modal_editar_enfermedades" onclick="edit_enfermedades('{{ r.codigo }}','{{ r.descripcion }}')"><i class="fa fa-edit"></i></a></td>
-                          <td><a type="button" href="enfermedades/eliminar/{{ r.codigo}}"><i class="fa fa-trash"></i></a></td>
+                          <td><a type="button" href="enfermedades/eliminar/{{ r.codigo }}"><i class="fa fa-trash"></i></a></td>
                       </tr>
                   {% endfor %}
                   </tbody>

@@ -74,7 +74,7 @@ class Pediatras extends Models implements IModels {
         
         # Actualizar elementos
         $this->db->query("UPDATE pediatra_2
-        SET nombre = '$this->nombre', telefono  =  '$this->telefono'
+        SET nombre = '$this->nombre', telefono = '$this->telefono'
         WHERE cedula = '$this->cedula'");
 
         return array('success' => 1, 'message' => 'Editado con éxito.');
@@ -82,6 +82,20 @@ class Pediatras extends Models implements IModels {
         return array('success' => 0, 'message' => $e->getMessage());
       }
     }
+
+                /** 
+          * Borra un elemento de Personal en la tabla ``
+          * y luego redirecciona a personal/&success=true
+          *
+          * @return void
+        */
+        final public function delete($id) {
+          global $config;
+          # Borrar el elemento de la base de datos
+          $this->db->query("DELETE FROM pediatra_2 WHERE cedula = '$id'");
+          # Redireccionar a la página principal del controlador
+          $this->functions->redir($config['site']['url'] . 'pediatras/&success=true');
+        }
 
     final public function get(bool $multi = true, string $select = '*') {
         return $this->db->query_select("SELECT * FROM pediatra_2;");

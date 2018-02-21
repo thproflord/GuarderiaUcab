@@ -27,6 +27,7 @@ class Ninos extends Models implements IModels {
     private $sexo;
     private $fecha_nac;
     private $cedula_repre;
+    private $letra;
 
     /**
       * Controla los errores de entrada del formulario
@@ -42,6 +43,7 @@ class Ninos extends Models implements IModels {
       $this->sexo = $http->request->get('sexo');
       $this->fecha_nac = $http->request->get('fecha_nac');
       $this->cedula_repre = $http->request->get('cedula');
+      $this->letra = $http->request->get('letra');
 
       if($this->functions->e($this->nombre)){
         throw new ModelsException('El campo nombre es obligatorio');
@@ -72,8 +74,8 @@ class Ninos extends Models implements IModels {
 
         # Insertar elementos
         $this->db->query("INSERT INTO nino_2
-        (nombre,apellido,sexo,fecha_nac,id_padre)
-        VALUES ('$this->nombre','$this->apellido','$this->sexo','$this->fecha_nac','$this->cedula_repre');");
+        (nombre,apellido,sexo,fecha_nac,id_padre,letra)
+        VALUES ('$this->nombre','$this->apellido','$this->sexo','$this->fecha_nac','$this->cedula_repre','$this->letra');");
 
         return array('success' => 1, 'message' => 'Creado con éxito.');
       } catch(ModelsException $e) {
@@ -92,13 +94,28 @@ class Ninos extends Models implements IModels {
         # Actualizar elementos
         $this->db->query("UPDATE Nino_2
         SET nombre  =  '$this->nombre', apellido = '$this->apellido', fecha_nac  =  '$this->fecha_nac', sexo = '$this->sexo'
-        WHERE id_padre = '$this->cedula_repre'");
+        WHERE id_padre = '$this->cedula_repre' and letra = '$this->letra'");
 
         return array('success' => 1, 'message' => 'Editado con éxito.');
       } catch(ModelsException $e) {
         return array('success' => 0, 'message' => $e->getMessage());
       }
     }
+
+
+                /** 
+          * Borra un elemento de Personal en la tabla ``
+          * y luego redirecciona a personal/&success=true
+          *
+          * @return void
+        */
+        final public function delete($id,$letra) {
+          global $config;
+          # Borrar el elemento de la base de datos
+          $this->db->query("DELETE FROM Nino_2 WHERE id_padre = '$id' and letra = '$letra'");
+          # Redireccionar a la página principal del controlador
+          $this->functions->redir($config['site']['url'] . 'ninos/&success=true');
+        }
 
     final public function get(bool $multi = true, string $select = '*') {
         return $this->db->query_select("SELECT * FROM Nino_2;");

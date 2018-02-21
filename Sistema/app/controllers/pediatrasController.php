@@ -36,7 +36,7 @@ class pediatrasController extends Controllers implements IControllers {
           $r->editar();
         break;
         case 'eliminar':
-          # code...
+          $r->delete($this->isset_id);
         break;
         default:
 

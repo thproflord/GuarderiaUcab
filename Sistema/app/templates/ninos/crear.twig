@@ -19,16 +19,23 @@
             <label>Fecha de nacimiento</label>
             <input type="date" class="form-control" placeholder="Fecha de nacimiento" name="fecha_nac">
 
-            <div class="form-group col-xs-12 col-sm-12 col-md-12">
-                <label>Sexo</label>
-                <input type="radio" id="id_sexo_hombre" name="sexo" value="M">
+            <label>Letra</label>
+            <input type="hidden" class="form-control" placeholder="Letra" name="letra" value="">
+
+            <div class="form-group">
+                <label>Sexo</label> <br>
+                <input type="radio" id="id_sexo_hombre" checked="true" name="sexo" value="M">
                 <label for="id_sexo_hombre">Hombre</label>
-                <input type="radio" id="id_sexo_mujer" checked="true" name="sexo" value="F">
+                <input type="radio" id="id_sexo_mujer" name="sexo" value="F">
                 <label for="id_sexo_mujer">Mujer</label>
             </div>
 
-            <label>Cedula del representante</label>
-            <input type="text" class="form-control" placeholder="Cedula" name="cedula_repre">
+            <label>Representante del niño</label>
+            <select class="select2 form-control" name=""  data-placeholder="Representantes">
+                    {% for c in representante %}
+                    <option value="">Nombre: {{ c.nombre }} - Cedula: {{ c.cedula }}</option>
+                    {% endfor %}
+            </select>
 
           </div>
          </form>

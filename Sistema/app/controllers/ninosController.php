@@ -28,6 +28,7 @@ class ninosController extends Controllers implements IControllers {
       parent::__construct($router);  
       global $config; 
       $r = new Model\Ninos($router);
+      $c = new Model\Representantes();
       switch ($this->method) {
         case 'crear':
           echo $this->template->render('ninos/crear');
@@ -36,15 +37,16 @@ class ninosController extends Controllers implements IControllers {
           $r->editar();
         break;
         case 'eliminar':
-          # code...
+          $r->delete($this->isset_id);
         break;
         default:
           echo $this->template->render('ninos/ninos',array(
-          'Ninos' => $r->get()
+          'Ninos' => $r->get(),
+          'representante' => $c->get()
           ));
           break;
       }
-      
+
     }
 
 }

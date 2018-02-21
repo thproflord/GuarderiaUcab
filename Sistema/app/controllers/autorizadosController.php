@@ -36,7 +36,7 @@ class autorizadosController extends Controllers implements IControllers {
           $r->editar();
         break;
         case 'eliminar':
-          # code...
+          $r->delete($this->isset_id);
         break;
         default:
           echo $this->template->render('autorizados/autorizados',array(

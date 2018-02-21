@@ -36,7 +36,7 @@ class medicinasController extends Controllers implements IControllers {
           $r->editar();
         break;
         case 'eliminar':
-          # code...
+          $r->delete($this->isset_id);
         break;
         default:
           echo $this->template->render('medicinas/medicinas',array(

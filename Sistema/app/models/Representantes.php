@@ -108,6 +108,32 @@ class Representantes extends Models implements IModels {
       }
     }
 
+
+
+            /** 
+          * Borra un elemento de Personal en la tabla ``
+          * y luego redirecciona a personal/&success=true
+          *
+          * @return void
+        */
+        final public function delete($id) {
+          global $config;
+          # Borrar el elemento de la base de datos
+          $this->db->query("DELETE FROM padre_2 WHERE cedula = '$id'");
+          # Redireccionar a la página principal del controlador
+          $this->functions->redir($config['site']['url'] . 'representantes/&success=true');
+        }
+
+      final public function getHijos(){
+
+        return $this->db->query_select(
+          "SELECT COUNT (*)
+           FROM ninos_2
+           WHERE cedula='$this->id_padre';"
+        );
+
+      }
+
     final public function get(bool $multi = true, string $select = '*') {
         return $this->db->query_select("SELECT * FROM padre_2;");
     }

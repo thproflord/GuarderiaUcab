@@ -1,19 +1,20 @@
-function edit_niño(nombre,apellido,cedula,fechanac,sexo){
+function edit_nino(nombre,apellido,cedula,fechanac,sexo, letra){
     $('#id_nombre').val(nombre);
     $('#id_apellido').val(apellido);
     $('#id_cedula').val(cedula);
     $('#id_fechanac').val(fechanac);
     $('#id_sexo').val(sexo);
+    $('#id_letra').val(letra);
 }
 
 /**
  * Ajax action to api rest
 */
-function editar_niño(){
+function editar_nino(){
     $.ajax({
       type : "POST",
-      url : "api/niños/editar",
-      data : $('#editar_niño_form').serialize(),
+      url : "api/ninos/editar",
+      data : $('#editar_nino_form').serialize(),
       success : function(json) {
         alert(json.success);
         alert(json.message);
@@ -34,13 +35,13 @@ function editar_niño(){
    *  
    * @param {*} e 
    */
-  $('#editar_niño').click(function(e) {
+  $('#editar_nino').click(function(e) {
     e.defaultPrevented;
-    editar_niño();
+    editar_nino();
   });
-  $('#editar_niño_form').keypress(function(e) {
+  $('#editar_nino_form').keypress(function(e) {
       e.defaultPrevented;
       if(e.which == 13) {
-          editar_niño();
+          editar_nino();
       }
   });
