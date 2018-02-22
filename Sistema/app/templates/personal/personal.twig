@@ -84,8 +84,8 @@
                           <td>{{ p.telefono }}</td>
                           <td>{{ p.nivel_estudio }}</td>
                           <td>{{ p.sueldo }}</td>
-                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_personal" onclick="editar_personal('{{ p.nombre }}','{{ p.apellido }}','{{ p.cedula_empleado }}','{{ p.telefono_oficina }}','{{ p.telefono_casa }}','{{ p.telefono_celular }}','{{ p.fecha_nacimiento }}','{{ p.nacionalidad }}',{{ p.tipo }},'{{ p.profesion }}','{{ p.sexo }}')"><i class="fa fa-edit"></i></a></td>
-                          <td><a type="button" href="personal/eliminar/{{ p.cedula_empleado }}"><i class="fa fa-trash"></i></a></td>
+                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_personal" onclick="editar_personal('{{ p.id_personal }}','{{ p.nombre }}','{{ p.apellidos }}','{{ p.cedula }}','{{ p.id_guarderia }}','{{ p.direccion }}','{{ p.telefono }}','{{ p.nivel_estudio }}','{{ p.sueldo }}')"><i class="fa fa-edit"></i></a></td>
+                          <td><a type="button" href="personal/eliminar/{{ p.id_personal }}"><i class="fa fa-trash"></i></a></td>
                       </tr>
                   {% endfor %}
                   </tbody>
@@ -115,7 +115,7 @@
 
 {% block appFooter %}
 <script src="views/app/js/personal/crear.js"></script>
-<script src="views/app/js/personal/editar.js"></script>
+<script src="views/app/js/personal/prueba.js"></script>
 <!-- DataTables -->
 <script src="views/theme/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="views/theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
