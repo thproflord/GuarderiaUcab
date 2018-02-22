@@ -59,12 +59,12 @@
                           <td>{{ c.tipo }}</td>
                           <td>{{ c.descripcion }}</td>
                           <td><a type="button" data-toggle="modal" data-target="#comidas" onclick="edit_comidas('{{ c.id_comida }}','{{ c.tipo }}','{{ c.descripcion }}'')"><i class="fa fa-edit"></i></a></td>
-                          <td><a type="button" href="comidas/eliminar/{{ c.id_comida}}"><i class="fa fa-trash"></i></a></td>
+                          <td><a type="button" href="comidas/eliminar/{{ c.id_comida }}"><i class="fa fa-trash"></i></a></td>
                       </tr>
                   {% endfor %}
                   </tbody>
                 </table>
-                <button type="button" class="btn btn-block btn-primary btn-flat" data-toggle="modal" data-target="#modal_crear_medicinas"><i class="fa fa-plus-circle"></i> CREAR NUEVA COMIDA</button>
+                <button type="button" class="btn btn-block btn-primary btn-flat" data-toggle="modal" data-target="#modal_crear_comida"><i class="fa fa-plus-circle"></i> CREAR NUEVA COMIDA</button>
               </div>
             </div>
             <!-- /.box-body -->
@@ -74,8 +74,10 @@
         <!-- /.col -->
       </div>
       <!-- /.row -->
+      </div>
       {# Creación de producto #}
       {#% include 'colegios/eliminar' %#}
+      {% include 'comidas/crear' %}
     </section>
     <!-- /.content -->
   </div>
@@ -83,8 +85,8 @@
 {% endblock %}
 
 {% block appFooter %}
-<script src="views/app/js/medicinas/crear.js"></script>
-<script src="views/app/js/medicinas/editar.js"></script>
+<script src="views/app/js/comidas/crear.js"></script>
+<script src="views/app/js/comidas/editar.js"></script>
 <!-- DataTables -->
 <script src="views/theme/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="views/theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
@@ -128,3 +130,4 @@ location.href = busqueda;
 
 
 {% endblock %}
+

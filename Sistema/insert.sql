@@ -1,6 +1,6 @@
 #Actividades
 INSERT INTO `actividad_2`(`id_actividad`, `codigo`, `nombre`, `transporte`, `costo_trans`, `edad_minima`, `descripcion`) VALUES 
-(1,'A001','Natacion',0,NULL,3,'Natacion para niños');
+(1,'A001','Natacion',0,NULL,3,'Natacion para ninos');
 INSERT INTO `actividad_2`(`id_actividad`, `codigo`, `nombre`, `transporte`, `costo_trans`, `edad_minima`, `descripcion`) VALUES 
 (2,'A002','Musica',0,NULL,3,'Musica primeros pasos');
 INSERT INTO `actividad_2`(`id_actividad`, `codigo`, `nombre`, `transporte`, `costo_trans`, `edad_minima`, `descripcion`) VALUES 
@@ -11,11 +11,11 @@ INSERT INTO `actividad_2`(`id_actividad`, `codigo`, `nombre`, `transporte`, `cos
 (5,'A005','Babygym',1,4500,6,'Ejercitate diviertiendote!');
 
 #Alergias
-INSERT INTO `alergia_2`(`id_alergia`, `codigo`, `descripcion`) VALUES (1,'AL001','Alergía a los lacteos');
-INSERT INTO `alergia_2`(`id_alergia`, `codigo`, `descripcion`) VALUES (2,'AL002','Alergía al polvo');
-INSERT INTO `alergia_2`(`id_alergia`, `codigo`, `descripcion`) VALUES (3,'AL003','Alergía a los gatos');
-INSERT INTO `alergia_2`(`id_alergia`, `codigo`, `descripcion`) VALUES (4,'AL004','Alergía al sol');
-INSERT INTO `alergia_2`(`id_alergia`, `codigo`, `descripcion`) VALUES (5,'AL005','Alergía a los refrescos');
+INSERT INTO `alergia_2`(`id_alergia`, `codigo`, `descripcion`) VALUES (1,'AL001','Alergia a los lacteos');
+INSERT INTO `alergia_2`(`id_alergia`, `codigo`, `descripcion`) VALUES (2,'AL002','Alergia al polvo');
+INSERT INTO `alergia_2`(`id_alergia`, `codigo`, `descripcion`) VALUES (3,'AL003','Alergia a los gatos');
+INSERT INTO `alergia_2`(`id_alergia`, `codigo`, `descripcion`) VALUES (4,'AL004','Alergia al sol');
+INSERT INTO `alergia_2`(`id_alergia`, `codigo`, `descripcion`) VALUES (5,'AL005','Alergia a los refrescos');
 
 #Autorizados
 INSERT INTO `autorizado_2`(`id_autorizado`, `cedula`, `nombre`, `apellido`, `telefono`) VALUES (1,6712151,'Arturo','Garanton',04143017530);
@@ -27,7 +27,7 @@ INSERT INTO `autorizado_2`(`id_autorizado`, `cedula`, `nombre`, `apellido`, `tel
 #Comida
 INSERT INTO `comida_2`(`id_comida`, `tipo`, `descripcion`) VALUES (1,1,'Carne');
 INSERT INTO `comida_2`(`id_comida`, `tipo`, `descripcion`) VALUES (2,1,'Pollo');
-INSERT INTO `comida_2`(`id_comida`, `tipo`, `descripcion`) VALUES (3,1,'Atún');
+INSERT INTO `comida_2`(`id_comida`, `tipo`, `descripcion`) VALUES (3,1,'Atun');
 INSERT INTO `comida_2`(`id_comida`, `tipo`, `descripcion`) VALUES (4,1,'Espinaca');
 INSERT INTO `comida_2`(`id_comida`, `tipo`, `descripcion`) VALUES (5,1,'Mero');
 INSERT INTO `comida_2`(`id_comida`, `tipo`, `descripcion`) VALUES (6,2,'Ensalada mediterranea');
@@ -35,7 +35,7 @@ INSERT INTO `comida_2`(`id_comida`, `tipo`, `descripcion`) VALUES (7,2,'Ensalada
 INSERT INTO `comida_2`(`id_comida`, `tipo`, `descripcion`) VALUES (8,2,'Ensalada rayada');
 INSERT INTO `comida_2`(`id_comida`, `tipo`, `descripcion`) VALUES (9,2,'Ensalada de garbanzos');
 INSERT INTO `comida_2`(`id_comida`, `tipo`, `descripcion`) VALUES (10,2,'Ensalada de zanahorias babys y papa');
-INSERT INTO `comida_2`(`id_comida`, `tipo`, `descripcion`) VALUES (11,3,'Jugo de melón');
+INSERT INTO `comida_2`(`id_comida`, `tipo`, `descripcion`) VALUES (11,3,'Jugo de melon');
 INSERT INTO `comida_2`(`id_comida`, `tipo`, `descripcion`) VALUES (12,3,'Jugo de lechoza');
 INSERT INTO `comida_2`(`id_comida`, `tipo`, `descripcion`) VALUES (13,3,'Jugo de naranja');
 INSERT INTO `comida_2`(`id_comida`, `tipo`, `descripcion`) VALUES (14,3,'Jugo de parchita');
@@ -47,7 +47,7 @@ INSERT INTO `comida_2`(`id_comida`, `tipo`, `descripcion`) VALUES (19,4,'Pasta')
 INSERT INTO `comida_2`(`id_comida`, `tipo`, `descripcion`) VALUES (20,4,'Pure de papa'); 
 
 #Enfermedad
-INSERT INTO `enfermedad_2`(`id_enfermedad`, `codigo`, `descripcion`) VALUES (1,'EN001','Sarampión');
+INSERT INTO `enfermedad_2`(`id_enfermedad`, `codigo`, `descripcion`) VALUES (1,'EN001','Sarampion');
 INSERT INTO `enfermedad_2`(`id_enfermedad`, `codigo`, `descripcion`) VALUES (2,'EN002','Jaquecas');
 INSERT INTO `enfermedad_2`(`id_enfermedad`, `codigo`, `descripcion`) VALUES (3,'EN003','Bronquitis');
 INSERT INTO `enfermedad_2`(`id_enfermedad`, `codigo`, `descripcion`) VALUES (4,'EN004','Otitis');
@@ -68,11 +68,11 @@ INSERT INTO `guarderia_2`(`id_guarderia`,  `id_lugar`,`id_enc`, `rif`, `nombre`,
 INSERT INTO `guarderia_2`(`id_guarderia`,  `id_lugar`,`id_enc`,`rif`, `nombre`, `telefonos`, `costo`) VALUES (5,3,NULL,'V77812434','Sede Barcelona V2',02819219215,120000);
 
 #Horario
-INSERT INTO `horario_2`(`id_horario`, `dia`, `cant_inscritos`) VALUES (1,'Lunes',0);
-INSERT INTO `horario_2`(`id_horario`, `dia`, `cant_inscritos`) VALUES (2,'Martes',0);
-INSERT INTO `horario_2`(`id_horario`, `dia`, `cant_inscritos`) VALUES (3,'Miercoles',0);
-INSERT INTO `horario_2`(`id_horario`, `dia`, `cant_inscritos`) VALUES (4,'Jueves',0);
-INSERT INTO `horario_2`(`id_horario`, `dia`, `cant_inscritos`) VALUES (5,'Viernes',0);
+INSERT INTO `horario_2`(`id_horario`, `dia`) VALUES (1,'Lunes');
+INSERT INTO `horario_2`(`id_horario`, `dia`) VALUES (2,'Martes');
+INSERT INTO `horario_2`(`id_horario`, `dia`) VALUES (3,'Miercoles');
+INSERT INTO `horario_2`(`id_horario`, `dia`) VALUES (4,'Jueves');
+INSERT INTO `horario_2`(`id_horario`, `dia`) VALUES (5,'Viernes');
 
 #Juego
 INSERT INTO `juego_2`(`id_juego`, `codigo`, `descripcion`) VALUES (1,'J001','Jugando con matematicas');
@@ -143,7 +143,7 @@ INSERT INTO menu_2 (id_menu, id_guarderia, numero, dia, semana, costo) VALUES
 INSERT INTO plato_2 (id_plato, codigo, descripcion) VALUES
 (1,'PL001', 'Arroz con pollo, jugo de parchita, ensalada'),
 (2,'PL002', 'Carne molida con tostones, jugo de lechoza, ensalada'),
-(3,'PL003', 'Bisteck con papas fritas,jugo de piña, ensalada'),
+(3,'PL003', 'Bisteck con papas fritas,jugo de pina, ensalada'),
 (4,'PL004', 'Sopa de pollo, jugo mora, ensalada'),
 (5,'PL005', 'Nuggets de pollo y papas al horno, jugo de pera, ensalada'),
 (6,'PL006', 'Sushi, jugo de mango, ensalada'),
@@ -167,8 +167,8 @@ INSERT INTO padre_2 (cedula, nombre, apellido, direccion, email, tel_casa, tel_o
 (1234567883, 'Greg', 'Gomez', 'La Urbina', 'greggomez@hotmail.com',02121234567883,02121234567884,04241234567883, 'musico', 'soltero', 1, 'N'),
 (1234567884, 'Karliam', 'Medina', 'San Antonio de los Altos', 'karliam@hotmail.com',02121234567885,02121234567886,04241234567884, 'cantante', 'soltero', 1, 'N'),
 (1234567885, 'Christian', 'Neira', 'San Juan', 'christian_neira@hotmail.com',02121234567885,02121234567887,04241234567885, 'pintor', 'soltero',1, 'S'),
-(1234567886, 'Pedro', 'De Leon', 'Los Simbolos', 'pedrodeleon@hotmail.com',02121234567886,02121234567888,04241234567886, 'diseñador grafico', 'casado', 1, 'N'),
-(1234567887, 'Pedro', 'Alvarez', 'Santa Monica', 'pedroalvarez@hotmail.com',02121234567887,02121234567889,04241234567888, 'diseñador grafico', 'soltero', 1, 'S');
+(1234567886, 'Pedro', 'De Leon', 'Los Simbolos', 'pedrodeleon@hotmail.com',02121234567886,02121234567888,04241234567886, 'disenador grafico', 'casado', 1, 'N'),
+(1234567887, 'Pedro', 'Alvarez', 'Santa Monica', 'pedroalvarez@hotmail.com',02121234567887,02121234567889,04241234567888, 'disenador grafico', 'soltero', 1, 'S');
 
 INSERT INTO nino_2 (id_nino, id_padre, letra, nombre, apellido, fecha_nac, sexo) VALUES
 (1, 1234567891, 'A', 'Alexander', 'Martinez', '02/02/2002','M'),
@@ -221,49 +221,49 @@ INSERT INTO personal_2 (id_personal, id_guarderia, cedula, nombre, apellidos, di
 (14, 3,  1234567854, 'Monica', 'Maduro', 'petare', 04241234537, 'tsu', 1100000),
 (15, 3,  1234567855, 'Fabiana', 'Puglisi', 'catia', 04241234539, 'universitario', 1800000),
 (16, 4,  1234567891, 'Luis', 'Gomez', 'el paraiso', 04241234521, 'bachillerato', 1500000),
-(17, 4, 1234567892, 'Monica', 'Gomes','la urbina', 04241234532, 'tsu', 1000000),
-(18, 4, 1234567893, 'Carlos', 'Perez', 'la tahona', 04241234535, 'tsu', 900000),
-(19, 4,  1234567894, 'Rafael', 'Jimenez', 'petare', 04241234537, 'tsu', 1100000),
-(20, 4,  1234567895, 'Fabiana', 'Fernadez', 'la trinidad', 04241234539, 'universitario', 2000000),
-(21, 5,  1234567881, 'Luis', 'Gomez', 'el paraiso', 04241234551, 'bachillerato', 1500000),
-(22, 5,  1234567882, 'Monica', 'Gomes','la urbina', 04241234552, 'bachillerato', 1200000),
-(23, 5,  1234567883, 'Carlos', 'Perez', 'la tahona', 04241234555, 'tsu', 900000),
+(17, 4, 1214567892, 'Monica', 'Gomes','la urbina', 04241234532, 'tsu', 1000000),
+(18, 4, 1234327893, 'Carlos', 'Perez', 'la tahona', 04241234535, 'tsu', 900000),
+(19, 4,  1234167894, 'Rafael', 'Jimenez', 'petare', 04241234537, 'tsu', 1100000),
+(20, 4,  1234267895, 'Fabiana', 'Fernadez', 'la trinidad', 04241234539, 'universitario', 2000000),
+(21, 5,  1234367881, 'Luis', 'Gomez', 'el paraiso', 04241234551, 'bachillerato', 1500000),
+(22, 5,  1231567882, 'Monica', 'Gomes','la urbina', 04241234552, 'bachillerato', 1200000),
+(23, 5,  1234267883, 'Carlos', 'Perez', 'la tahona', 04241234555, 'tsu', 900000),
 (24, 5,  1234567884, 'Rafael', 'Jimenez', 'petare', 04241234557, 'tsu', 1100000),
-(25, 5, 1234567885, 'Fabiana', 'Fernadez', 'la trinidad', 04241234559, 'universitario', 2100000);
+(25, 5, 1134567885, 'Fabiana', 'Fernadez', 'la trinidad', 04241234559, 'universitario', 2100000);
 
 INSERT INTO sintoma_2 (id_sintoma, codigo, descripcion) VALUES
 (1, 'SI001', 'Dolor de cabeza'),
 (2, 'SI002', 'Diarrea'),
 (3, 'SI003', 'irritabilidad'),
 (4, 'SI004', 'Fatiga'),
-(5, 'SI005', 'Apatía');
+(5, 'SI005', 'Apatia');
 
 INSERT INTO inscripcion_2 (id_inscripcion, id_nino, id_guarderia, ano, consecutivo, cont_horas_extra, hora_desde, hora_hasta, fecha_insc) VALUES
 (1, 1, 1, 2018, 1, 1, 7, 9, '18/02/2018'),
-(2, 2, 1, 2018, 1, 0, 9, 11, '17/02/2018'),
-(3, 3, 1, 2018, 1, 0, 11, 13, '16/02/2018'),
-(4, 4, 1, 2018, 1, 0, 13, 15, '19/01/2018'),
-(5, 5, 1, 2018, 1, 0, 15, 17, '13/02/2018'),
-(6, 6, 2, 2018, 1, 1, 7, 9, '27/02/2018'),
-(7, 7, 2, 2018, 1, 1, 9, 11, '26/02/2018'),
-(8, 8, 2, 2018, 1, 1, 11, 13, '25/02/2018'),
-(9, 9, 2, 2018, 1, 1, 13, 15, '24/01/2018'),
-(10, 10, 2, 2018, 1, 1, 15, 17, '23/02/2018'),
+(2, 2, 1, 2018, 1, 0, 7, 9, '17/02/2018'),
+(3, 3, 1, 2018, 1, 0, 8, 12, '16/02/2018'),
+(4, 4, 1, 2018, 1, 0, 12, 6, '19/01/2018'),
+(5, 5, 1, 2018, 1, 0, 12, 6, '13/02/2018'),
+(6, 6, 2, 2018, 1, 1, 7, 13, '27/02/2018'),
+(7, 7, 2, 2018, 1, 1, 9, 4, '26/02/2018'),
+(8, 8, 2, 2018, 1, 1, 11, 4, '25/02/2018'),
+(9, 9, 2, 2018, 1, 1, 1, 6, '24/01/2018'),
+(10, 10, 2, 2018, 1, 1, 3, 5, '23/02/2018'),
 (11, 11, 3, 2017, 1, 0, 7, 9, '08/12/2017'),
-(12, 12, 3, 2017, 1, 0, 9, 11, '07/12/2017'),
-(13, 13, 3, 2017, 1, 0, 11, 13, '06/12/2017'),
-(14, 14, 3, 2017, 1, 0, 13, 15, '05/01/2017'),
-(15, 15, 3, 2017, 1, 0, 15, 17, '04/12/2017'),
-(16, 16, 4, 2018, 1, 0, 11, 13, '13/01/2018'),
+(12, 12, 3, 2017, 1, 0, 7, 9, '07/12/2017'),
+(13, 13, 3, 2017, 1, 0, 7, 9, '06/12/2017'),
+(14, 14, 3, 2017, 1, 0, 12, 6, '05/01/2017'),
+(15, 15, 3, 2017, 1, 0,12, 6, '04/12/2017'),
+(16, 16, 4, 2018, 1, 0, 1, 6, '13/01/2018'),
 (17, 17, 4, 2018, 1, 1, 9, 11, '12/01/2018'),
-(18, 18, 4, 2018, 1, 1, 11, 13, '15/01/2018'),
-(19, 19, 4, 2018, 1, 1, 13, 15, '11/01/2018'),
-(20, 20, 4, 2018, 1, 1, 15, 17, '10/02/2018'),
+(18, 18, 4, 2018, 1, 1, 11, 5, '15/01/2018'),
+(19, 19, 4, 2018, 1, 1, 1, 5, '11/01/2018'),
+(20, 20, 4, 2018, 1, 1, 1, 5, '10/02/2018'),
 (21, 21, 5, 2017, 1, 1, 7, 9, '09/12/2017'),
 (22, 22, 5, 2017, 1, 1, 10, 12, '03/12/2017'),
-(23, 23, 5, 2017, 1, 0, 11, 13, '05/12/2017'),
-(24, 24, 5, 2017, 1, 0, 13, 15, '01/01/2017'),
-(25, 25, 5, 2017, 1, 0, 16, 18, '02/12/2017');
+(23, 23, 5, 2017, 1, 0, 11, 4, '05/12/2017'),
+(24, 24, 5, 2017, 1, 0, 1, 3, '01/01/2017'),
+(25, 25, 5, 2017, 1, 0, 4, 6, '02/12/2017');
 
 INSERT INTO mensualidad_2 (id_mensualidad, id_inscripcion, consecutivo, monto) VALUES
 (1, 1, 1, 100000),
@@ -293,3 +293,204 @@ INSERT INTO pago_insc_mens_2 (id_pim, id_inscripcion, id_mensualidad, numero, fe
 (8, 8, NULL, 1, '11/02/2018 ', 1, 'transferencia', 100000,123, 0, 90000),
 (9, 9,NULL, 1, '10/02/2018', 1, 'cheque', 100000,123, 123, 90000),
 (10, 10, NULL, 1, '09/02/2018', 1, 'transferencia', 100000,0, 123, 90000);
+
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (1,1234567891,NULL,1,7,9,'Lunes',1);
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (2,1234567891,NULL,2,7,9,'Lunes',0);
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (3,1234567892,NULL,3,8,12,'Martes',1);
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (4,1234567895,NULL,4,12,6,'Miercoles',1);
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (5,1234567895,NULL,5,12,6,'Miercoles',0);
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (6,1234567885,NULL,6,7,1,'Lunes',1);
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (7,1234567887,NULL,7,9,3,'Miercoles',0);
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (8,1234567893,NULL,8,11,4,'Miercoles',1);
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (9,1234567883,NULL,9,1,6,'Jueves',1);
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (10,1234567882,NULL,10,3,5,'Jueves',1);
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (11,1234567896,NULL,11,3,5,'Viernes',0);
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (12,1234567891,NULL,12,7,9,'Lunes',1);
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (13,1234567891,NULL,13,7,9,'Lunes',1);
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (14,1234567895,NULL,14,12,6,'Miercoles',1);
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (15,1234567895,NULL,15,12,6,'Miercoles',1);
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (16,1234567883,NULL,16,1,6,'Jueves',1);
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (17,1234567881,NULL,17,9,11,'Martes',0);
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (18,1234567897,NULL,18,11,5,'Miercoles',1);
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (19,1234567898,NULL,19,1,5,'Viernes',1);
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (20,1234567898,NULL,20,1,5,'Viernes',1);
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (21,1234567892,NULL,21,7,8,'Miercoles',1);
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (22,1234567895,NULL,22,12,6,'Miercoles',1);
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (23,1234567893,NULL,23,11,4,'Jueves',1);
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (24,1234567884,NULL,24,1,3,'Martes',1);
+INSERT INTO `asistencia_2`(`id_asistencia`, `id_padre`, `id_autorizado`, `id_inscripcion`, `hora_llegada`, `hora_salida`, `dia`, `comio`) VALUES (25,1234567885,NULL,25,4,5,'Lunes',1);
+
+INSERT INTO `factura_2`(`id_factura`, `id_inscripcion`, `semana`, `num_transferencia`) VALUES (1,1,1,8975421312);
+INSERT INTO `factura_2`(`id_factura`, `id_inscripcion`, `semana`, `num_transferencia`) VALUES (2,3,4,78522162712);
+INSERT INTO `factura_2`(`id_factura`, `id_inscripcion`, `semana`, `num_transferencia`) VALUES (3,5,15,343831111);
+INSERT INTO `factura_2`(`id_factura`, `id_inscripcion`, `semana`, `num_transferencia`) VALUES (4,4,12,2285443721);
+INSERT INTO `factura_2`(`id_factura`, `id_inscripcion`, `semana`, `num_transferencia`) VALUES (5,12,13,1937471118);
+INSERT INTO `factura_2`(`id_factura`, `id_inscripcion`, `semana`, `num_transferencia`) VALUES (6,18,18,19822774231);
+INSERT INTO `factura_2`(`id_factura`, `id_inscripcion`, `semana`, `num_transferencia`) VALUES (7,11,30,62728182551);
+INSERT INTO `factura_2`(`id_factura`, `id_inscripcion`, `semana`, `num_transferencia`) VALUES (8,20,31,38872611554);
+INSERT INTO `factura_2`(`id_factura`, `id_inscripcion`, `semana`, `num_transferencia`) VALUES (9,25,32,17472819312);
+INSERT INTO `factura_2`(`id_factura`, `id_inscripcion`, `semana`, `num_transferencia`) VALUES (10,16,47,12228173911);
+
+INSERT INTO `detalle_factura_2`(`id_factura`, `id_menu`, `fechapago`, `monto`) VALUES (1,1,'06/01/2018',50000);
+INSERT INTO `detalle_factura_2`(`id_factura`, `id_menu`, `fechapago`, `monto`) VALUES (2,1,'18/01/2018',55000);
+INSERT INTO `detalle_factura_2`(`id_factura`, `id_menu`, `fechapago`, `monto`) VALUES (3,2,'17/04/2018',60000);
+INSERT INTO `detalle_factura_2`(`id_factura`, `id_menu`, `fechapago`, `monto`) VALUES (4,4,'01/03/2018',55000);
+INSERT INTO `detalle_factura_2`(`id_factura`, `id_menu`, `fechapago`, `monto`) VALUES (5,5,'08/03/2018',58000);
+INSERT INTO `detalle_factura_2`(`id_factura`, `id_menu`, `fechapago`, `monto`) VALUES (6,3,'09/06/2018',70000);
+INSERT INTO `detalle_factura_2`(`id_factura`, `id_menu`, `fechapago`, `monto`) VALUES (7,2,'10/09/2018',150000);
+INSERT INTO `detalle_factura_2`(`id_factura`, `id_menu`, `fechapago`, `monto`) VALUES (8,5,'18/09/2018',160000);
+INSERT INTO `detalle_factura_2`(`id_factura`, `id_menu`, `fechapago`, `monto`) VALUES (9,3,'24/09/2018',160000);
+INSERT INTO `detalle_factura_2`(`id_factura`, `id_menu`, `fechapago`, `monto`) VALUES (10,1,'24/12/2018',180000);
+
+INSERT INTO `exp_laboral_2`(`id_explaboral`, `id_personal`, `descripcion`) VALUES (1,1,'Educacion pre-escolar en colegio Madre Matilde');
+INSERT INTO `exp_laboral_2`(`id_explaboral`, `id_personal`, `descripcion`) VALUES (2,3,'Guia en campamento Mi guarimba');
+INSERT INTO `exp_laboral_2`(`id_explaboral`, `id_personal`, `descripcion`) VALUES (3,5,'Educacion pre-escolar en colegio Simon Bolivar');
+INSERT INTO `exp_laboral_2`(`id_explaboral`, `id_personal`, `descripcion`) VALUES (4,8,'Guia en campamento Guarandor');
+INSERT INTO `exp_laboral_2`(`id_explaboral`, `id_personal`, `descripcion`) VALUES (5,12,'Educacion basica en colegio La Salle');
+INSERT INTO `exp_laboral_2`(`id_explaboral`, `id_personal`, `descripcion`) VALUES (6,16,'Educacion basica en colegio Madre Matilde');
+INSERT INTO `exp_laboral_2`(`id_explaboral`, `id_personal`, `descripcion`) VALUES (7,9,'Educacion pre-escolar en colegio La concepcion');
+INSERT INTO `exp_laboral_2`(`id_explaboral`, `id_personal`, `descripcion`) VALUES (8,18,'Guia en campamento La Escondida');
+INSERT INTO `exp_laboral_2`(`id_explaboral`, `id_personal`, `descripcion`) VALUES (9,21,'Educacion pre-escolar en colegio San Antonio');
+INSERT INTO `exp_laboral_2`(`id_explaboral`, `id_personal`, `descripcion`) VALUES (10,25,'Educacion basica en colegio Cervantes');
+
+INSERT INTO `guarderia_actividad_2`(`id_ga`, `id_guarderia`, `id_actividad`, `id_personal`, `cupomin`, `cupomax`) VALUES (1,1,1,1,2,10);
+INSERT INTO `guarderia_actividad_2`(`id_ga`, `id_guarderia`, `id_actividad`, `id_personal`, `cupomin`, `cupomax`) VALUES (2,1,3,5,3,7);
+INSERT INTO `guarderia_actividad_2`(`id_ga`, `id_guarderia`, `id_actividad`, `id_personal`, `cupomin`, `cupomax`) VALUES (3,2,4,10,7,15);
+INSERT INTO `guarderia_actividad_2`(`id_ga`, `id_guarderia`, `id_actividad`, `id_personal`, `cupomin`, `cupomax`) VALUES (4,2,5,8,2,15);
+INSERT INTO `guarderia_actividad_2`(`id_ga`, `id_guarderia`, `id_actividad`, `id_personal`, `cupomin`, `cupomax`) VALUES (5,3,2,15,1,5);
+INSERT INTO `guarderia_actividad_2`(`id_ga`, `id_guarderia`, `id_actividad`, `id_personal`, `cupomin`, `cupomax`) VALUES (6,3,3,25,3,6);
+INSERT INTO `guarderia_actividad_2`(`id_ga`, `id_guarderia`, `id_actividad`, `id_personal`, `cupomin`, `cupomax`) VALUES (7,4,2,14,2,8);
+INSERT INTO `guarderia_actividad_2`(`id_ga`, `id_guarderia`, `id_actividad`, `id_personal`, `cupomin`, `cupomax`) VALUES (8,4,4,3,6,14);
+INSERT INTO `guarderia_actividad_2`(`id_ga`, `id_guarderia`, `id_actividad`, `id_personal`, `cupomin`, `cupomax`) VALUES (9,5,1,2,2,10);
+INSERT INTO `guarderia_actividad_2`(`id_ga`, `id_guarderia`, `id_actividad`, `id_personal`, `cupomin`, `cupomax`) VALUES (10,5,3,4,3,5);
+
+INSERT INTO `guarderia_horario_actividad_2`(`id_gha`, `id_ga`, `id_horario`, `hora_inicio`, `hora_fin`) VALUES (1,1,1,10,11);
+INSERT INTO `guarderia_horario_actividad_2`(`id_gha`, `id_ga`, `id_horario`, `hora_inicio`, `hora_fin`) VALUES (2,2,1,9,10);
+INSERT INTO `guarderia_horario_actividad_2`(`id_gha`, `id_ga`, `id_horario`, `hora_inicio`, `hora_fin`) VALUES (3,3,2,3,4);
+INSERT INTO `guarderia_horario_actividad_2`(`id_gha`, `id_ga`, `id_horario`, `hora_inicio`, `hora_fin`) VALUES (4,4,5,3,4);
+INSERT INTO `guarderia_horario_actividad_2`(`id_gha`, `id_ga`, `id_horario`, `hora_inicio`, `hora_fin`) VALUES (5,5,4,9,10);
+INSERT INTO `guarderia_horario_actividad_2`(`id_gha`, `id_ga`, `id_horario`, `hora_inicio`, `hora_fin`) VALUES (6,6,3,1,2);
+INSERT INTO `guarderia_horario_actividad_2`(`id_gha`, `id_ga`, `id_horario`, `hora_inicio`, `hora_fin`) VALUES (7,7,3,3,4);
+INSERT INTO `guarderia_horario_actividad_2`(`id_gha`, `id_ga`, `id_horario`, `hora_inicio`, `hora_fin`) VALUES (8,8,1,9,10);
+INSERT INTO `guarderia_horario_actividad_2`(`id_gha`, `id_ga`, `id_horario`, `hora_inicio`, `hora_fin`) VALUES (9,9,3,2,3);
+INSERT INTO `guarderia_horario_actividad_2`(`id_gha`, `id_ga`, `id_horario`, `hora_inicio`, `hora_fin`) VALUES (10,10,1,9,10);
+
+INSERT INTO `horario_guarderia_2`(`id_horario`, `id_guarderia`, `hora_inicio`, `hora_fin`, `cant_inscritos`) VALUES 
+(1,1,7,5,5),
+(1,2,6,6,5),
+(2,3,7,5,5),
+(3,4,7,6,5),
+(5,5,8,4,5);
+
+INSERT INTO `horario_inscrip_2`(`id_inscripcion`, `id_gha`, `costo`) VALUES 
+(1,1,130000),
+(3,5,80000),
+(4,3,70000),
+(2,4,65000),
+(7,10,88000),
+(6,9,44000),
+(12,7,60000),
+(20,2,55000),
+(25,6,70000),
+(21,8,80000);
+
+INSERT INTO `nino_alergia_2` (`id_nino`,`id_alergia`) VALUES 
+(1,5),
+(2,3),
+(1,3),
+(3,4),
+(5,2),
+(7,1),
+(8,2),
+(12,5),
+(25,1),
+(22,1);
+
+INSERT INTO `nino_autorizado_2` (`id_nino`,`id_autorizado`) VALUES 
+(1,1),
+(2,2),
+(1,3),
+(3,4),
+(5,5);
+
+INSERT INTO `nino_enfermedad_2` (`id_nino`,`id_enfermedad`,`fechacontagio`) VALUES 
+(24,5,'18/01/2013'),
+(12,1,'19/04/2015'),
+(13,4,'20/02/2016'),
+(3,3,'12/06/2015'),
+(16,2,'13/07/2017'),
+(18,1,'14/12/2016'),
+(15,3,'3/11/2014');
+
+INSERT INTO `nino_juego_2` (`id_nino`,`id_juego`) VALUES 
+(1,5),
+(2,3),
+(1,3),
+(3,4),
+(5,2),
+(7,1),
+(8,2),
+(12,5),
+(25,1),
+(22,1);
+
+ INSERT INTO `nino_pediatra_2` (`id_nino`,`id_pediatra`) VALUES 
+(1,5),
+(2,3),
+(1,3),
+(3,4),
+(5,2),
+(7,1),
+(8,2),
+(12,5),
+(25,1),
+(22,1);
+
+INSERT INTO `nino_medicina_sintoma_2` (`id_sintoma`,`id_medicina`,`id_nino`,`cantidad`) VALUES 
+(1,5,4,'2 Cucharadas'),
+(2,3,2,'1 Pastilla'),
+(1,3,3,'1 Cucharada'),
+(3,4,5,'Media pastilla'),
+(5,2,8,'1 Cucharada'),
+(3,1,12,'1 Pastilla'),
+(4,2,16,'1 Pastilla'),
+(1,5,17,'1 Cucharada'),
+(2,1,24,'1 Pastilla'),
+(2,3,13,'Media Cucharada');
+
+INSERT INTO `pers_capacitado_2`(`id_actividad`, `id_personal`) VALUES 
+(1,5),
+(5,3),
+(2,8),
+(4,9),
+(3,15);
+
+INSERT INTO `plato_comida_2`(`id_comida`, `id_plato`) VALUES 
+(1,1),
+(6,1),
+(11,1),
+(16,1),
+(2,2),
+(7,2),
+(12,2),
+(17,2),
+(3,3),
+(8,3),
+(13,3),
+(18,3);
+
+INSERT INTO `plato_menu_2`(`id_plato`, `id_menu`) VALUES 
+(1,1),
+(2,3),
+(3,6),
+(3,8),
+(4,4),
+(5,11),
+(6,13),
+(7,17),
+(8,18),
+(9,12),
+(10,9);
+
+
+

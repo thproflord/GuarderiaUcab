@@ -42,7 +42,7 @@ class comidasController extends Controllers implements IControllers {
 
             default:
             echo $this->template->render('comidas/comidas',array(  
-                'comida' => $c->get(true) 
+                'comida' => $c->get()
             ));
             break;
         }
