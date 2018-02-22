@@ -12,28 +12,29 @@
               <!-- text input -->
               <div class="form-group">
                 <label>Nombre</label>
-                <input type="text" class="form-control" placeholder="Nombre..." name="nombre">
+                <input type="text" class="form-control" placeholder="Nombre..." name="nombre" id="nombre">
+                <input type="hidden" class="form-control" placeholder="Nombre..." name="codigo" id="personal">
                 <label>Apellido</label>
-                <input type="text" class="form-control" placeholder="Apellido..." name="apellido">
+                <input type="text" class="form-control" placeholder="Apellido..." name="apellido" id="apellido">
                 <label>Cedula</label>
-                <input type="text" class="form-control" placeholder="Cedula" name="cedula">
+                <input type="text" class="form-control" placeholder="Cedula" name="cedula" id="cedula">
                 <label>Guarderia</label>
-                <select name="guarderia" id="" class="select2 form-control">
+                <select name="guarderia" id="guarderia" class="select2 form-control">
                   <option default disable value></option>
                   {% for g in guarderias %}
                   <option value="{{ g.id_guarderia }}">{{ g.nombre }}</option>
                   {% endfor %}
                 </select>
                 <label>Teléfono</label>
-                <input type="text" class="form-control" placeholder="" name="tlf">
+                <input type="text" class="form-control" placeholder="" name="tlf" id="telefono">
                 <label>Direccion</label>
-                <input type="text" class="form-control" placeholder="" name="direccion">
+                <input type="text" class="form-control" placeholder="" name="direccion" id="direccion">
                 <label>Sueldo</label>
-                <input type="text" class="form-control" placeholder="" name="sueldo">
+                <input type="text" class="form-control" placeholder="" name="sueldo" id="sueldo">
               </div>
 
                 <label>Nivel de Estudio</label>
-                <div class="radio">
+                <div class="radio" name="tipo_empleado" id="nivel">
                   <label>
                     <input type="radio" name="tipo_empleado" id="tipo_empleado1" value="bachillerato" checked>
                     Bachillerato

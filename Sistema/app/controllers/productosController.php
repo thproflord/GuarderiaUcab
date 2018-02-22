@@ -15,24 +15,26 @@ use app\models as Model;
 use Ocrend\Kernel\Router\IRouter;
 use Ocrend\Kernel\Controllers\Controllers;
 use Ocrend\Kernel\Controllers\IControllers;
-  
+
 /**
  * Controlador productos/
  *
  * @author Alexander De Azevedo, Sergio García y Greg Gómez <oeneikaphotos@gmail.com>
 */
-  
+
 class productosController extends Controllers implements IControllers {
 
     public function __construct(IRouter $router) {
-        parent::__construct($router);   
+        parent::__construct($router);
         global $config;
-        
+
         $p = new Model\Productos($router);
         $s = new Model\Sedes();
 
         switch($this->method) {
           case 'eliminar':
+            dump($this->method);
+            exit;
             $p->delete();
           break;
           case 'descripcion':

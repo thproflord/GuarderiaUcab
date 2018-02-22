@@ -38,6 +38,7 @@ class Personal extends Models implements IModels {
     private $direccion;
     private $estudio;
     private $sueldo;
+    private $codigo;
 
 
     /**
@@ -116,16 +117,16 @@ class Personal extends Models implements IModels {
     final public function edit() : array {
       try {
         global $http;
-
+        $this->codigo = $http->request->get('codigo');
         # Controlar errores de entrada en el formulario
         $this->errors(true);
 
         # Actualizar elementos
-        $this->db->query("UPDATE empleados_4
-        SET nombre = '$this->nombre', apellido = '$this->apellido', telefono_casa ='$this->tlf_casa',
-        telefono_oficina = '$this->tlf_oficina', telefono_celular = '$this->tlf_celular', nacionalidad = '$this->nacionalidad',
-        tipo = '$this->tipo', fecha_nacimiento = '$this->fecha_nacimiento', sexo = '$this->sexo', profesion = '$this->profesion'
-        WHERE cedula_empleado = '$this->cedula'");
+        $this->db->query("UPDATE personal_2
+        SET nombre = '$this->nombre', apellidos = '$this->apellido', cedula ='$this->cedula',
+        id_guarderia = '$this->guarderia', telefono = '$this->telefono', direccion = '$this->direccion',
+        nivel_estudio = '$this->estudio', sueldo = $this->sueldo
+        WHERE id_personal = $this->codigo ");
 
         return array('success' => 1, 'message' => 'Editado con éxito.');
       } catch(ModelsException $e) {
@@ -139,10 +140,12 @@ class Personal extends Models implements IModels {
       *
       * @return void
     */
-    final public function delete() {
+    final public function delete($emp) {
       global $config;
+
+      global $http;
       # Borrar el elemento de la base de datos
-      $this->db->query("DELETE FROM empleados_4 WHERE cedula_empleado = '$this->id'");
+      $this->db->query("DELETE FROM personal_2 WHERE id_personal = $emp");
       # Redireccionar a la página principal del controlador
       $this->functions->redir($config['site']['url'] . 'personal/&success=true');
     }

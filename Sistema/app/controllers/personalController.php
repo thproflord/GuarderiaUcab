@@ -34,7 +34,9 @@ class personalController extends Controllers implements IControllers {
           case 'crear':
             echo $this->template->render('personal/crear');
           break;
-
+          case 'eliminar':
+            $p->delete($this->isset_id);
+          break;
           break;
           default:
             echo $this->template->render('personal/personal',array(
