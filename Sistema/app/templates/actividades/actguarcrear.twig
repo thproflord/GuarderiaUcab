@@ -1,0 +1,56 @@
+<div class="modal fade" id="modal_crear_activiguar">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Crear Actividades en Guarderias</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form" id="crear_actividades_form">
+          <!-- text input -->
+          <div class="form-group">
+            <label>Guarderias</label>
+            <select class="form-control select2" name="encargado"  data-placeholder="">
+                <option disabled selected value></option>
+            {% for t in guarderia %}
+                <option value="{{ t.id_guarderia }}">{{ t.nombre }}</option>
+            {% endfor %}
+            </select>
+
+            <label>Actividades</label>
+            <select class="form-control select2" name="encargado"  data-placeholder="">
+                <option disabled selected value></option>
+            {% for t in actividad %}
+                <option value="{{ t.id_actividad }}">{{ t.nombre }}</option>
+            {% endfor %}
+            </select>
+
+            <label>Personal</label>
+            <select class="form-control select2" name="encargado"  data-placeholder="">
+                <option disabled selected value></option>
+            {% for t in personal %}
+                <option value="{{ t.id_personal }}">{{ t.nombre }} {{ t.apellidos }}</option>
+            {% endfor %}
+            </select>
+
+            <label>Cupo Minimo</label>
+            <input type="number" class="form-control" placeholder="Edad_Minimo" name="costo_trans">
+
+            <label>Cupo Maximo</label>
+            <input type="number" class="form-control" placeholder="Edad_Maximo" name="edad_minima">
+
+
+          </div>
+         </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+          <button type="button" id="crear_actividades" class="btn btn-primary">Crear Actividades</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

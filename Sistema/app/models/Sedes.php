@@ -125,7 +125,7 @@ class Sedes extends Models implements IModels {
         $this->db->query("UPDATE guarderia_2
         SET nombre = '$this->nombre', id_lugar = $this->lugar, id_enc =$this->encargado,
         telefonos = '$this->telefono', costo = $this->costo
-        WHERE id_lugar = $codigo");
+        WHERE id_guarderia = $codigo");
 
         return array('success' => 1, 'message' => 'Editado con éxito.');
       } catch(ModelsException $e) {

@@ -1,0 +1,55 @@
+<div class="modal fade" id="modal_editar_actividades">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Editar Actividades en Guarderias</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form" id="editar_actividades_form">
+          <!-- text input -->
+          <div class="form-group">
+            <label>Guarderias</label>
+            <select class="form-control select2" name="encargado"  data-placeholder="" id="id_guarderia" >
+                <option disabled selected value></option>
+            {% for t in guarderia %}
+                <option value="{{ t.id_guarderia }}">{{ t.nombre }}</option>
+            {% endfor %}
+            </select>
+
+            <label>Actividades</label>
+            <select class="form-control select2" name="encargado"  data-placeholder="" id="id_actividad">
+                <option disabled selected value></option>
+            {% for t in actividad %}
+                <option value="{{ t.id_actividad }}">{{ t.nombre }}</option>
+            {% endfor %}
+            </select>
+
+            <label>Personal</label>
+            <select class="form-control select2" name="encargado"  data-placeholder="" id="id_personal">
+                <option disabled selected value></option>
+            {% for t in personal %}
+                <option value="{{ t.id_personal }}">{{ t.nombre }} {{ t.apellidos }}</option>
+            {% endfor %}
+            </select>
+
+            <label>Cupo Minimo</label>
+            <input type="number" class="form-control" placeholder="Edad_Minimo" name="cupomin" id="id_cupomin">
+
+            <label>Cupo Maximo</label>
+            <input type="number" class="form-control" placeholder="Edad_Maximo" name="cupomax" id="id_cupomax">
+          </div>
+
+        </form>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+          <button type="button" id="editar_actividades" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->

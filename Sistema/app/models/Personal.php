@@ -61,7 +61,7 @@ class Personal extends Models implements IModels {
 
       if(null !== $http->request->get('actividad')){
         foreach ($http->request->get('actividad') as $act ) {
-          $actividad[] = $act;
+          $this->actividad[] = $act;
         }
       }
 
@@ -82,6 +82,17 @@ class Personal extends Models implements IModels {
 
     }
 
+        /**
+          * Obtiene el ultimo insertado
+          *
+          * @return string: el id del ultimo insertado
+        */
+        final public function getLastInsert() {
+
+            return $this->db->query_select("SELECT id_personal FROM Personal_2 ORDER BY id_personal DESC LIMIT 1;");
+
+        }
+
     /**
       * Crea un elemento de Personal en la tabla ``
       *
@@ -98,6 +109,13 @@ class Personal extends Models implements IModels {
         (nombre,apellidos,cedula,id_guarderia,direccion,telefono,nivel_estudio,sueldo)
         VALUES ('$this->nombre','$this->apellido','$this->cedula',$this->guarderia,'$this->direccion','$this->telefono',
         '$this->estudio', $this->sueldo);");
+        $cod = $this->getLastInsert();
+        $cod = $cod[0]['id_personal'];
+        foreach ($this->actividad as $act ) {
+          $this->db->query("INSERT INTO personal_capacidad_2
+          (tipo,id_personal)
+          VALUES ('$act',$cod.id_personal);");
+        }
 
         return array('success' => 1, 'message' => 'Creado con éxito.');
       } catch(ModelsException $e) {

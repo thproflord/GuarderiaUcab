@@ -28,6 +28,7 @@ class Actividades extends Models implements IModels {
     private $costo_trans;
     private $edad_minima;
     private $descripcion;
+    private $tipo;
 
     /**
       * Controla los errores de entrada del formulario
@@ -44,6 +45,7 @@ class Actividades extends Models implements IModels {
       $this->costo_trans = ($http->request->get('costo_trans') != ' ') ? $http->request->get('costo_trans') : null;
       $this->edad_minima = $http->request->get('edad_minima');
       $this->descripcion = $http->request->get('descripcion');
+      $this->tipo = $http->request->get('tipo_actividad');
 
       if($this->functions->e($this->nombre)){
         throw new ModelsException('El campo nombre es obligatorio');
@@ -72,9 +74,9 @@ class Actividades extends Models implements IModels {
 
         # Insertar elementos
         $this->db->query("INSERT INTO actividad_2
-        (codigo,nombre,transporte,costo_trans,edad_minima,descripcion)
+        (codigo,nombre,transporte,costo_trans,edad_minima,descripcion,tipo)
         VALUES ('$this->codigo','$this->nombre','$this->transporte','$this->costo_trans','$this->edad_minima',
-        '$this->descripcion');");
+        '$this->descripcion','$this->tipo');");
 
         return array('success' => 1, 'message' => 'Creado con éxito.');
       } catch(ModelsException $e) {
@@ -85,14 +87,14 @@ class Actividades extends Models implements IModels {
     final public function edit() : array {
       try {
         global $http;
-        
+
         # Controlar errores de entrada en el formulario
         $this->errors(true);
 
-        
+
         # Actualizar elementos
         $this->db->query("UPDATE actividad_2
-        SET nombre  =  '$this->nombre', transporte = '$this->transporte', costo_trans  =  '$this->costo_trans', edad_minima  =  '$this->edad_minima', descripcion  =  '$this->descripcion'
+        SET nombre  =  '$this->nombre', transporte = '$this->transporte', costo_trans  =  '$this->costo_trans', edad_minima  =  '$this->edad_minima', descripcion  =  '$this->descripcion' , tipo = '$this->tipo'
         WHERE codigo = '$this->codigo'");
 
         return array('success' => 1, 'message' => 'Editado con éxito.');
@@ -102,7 +104,7 @@ class Actividades extends Models implements IModels {
     }
 
 
-        /** 
+        /**
           * Borra un elemento de Personal en la tabla ``
           * y luego redirecciona a personal/&success=true
           *
@@ -118,6 +120,10 @@ class Actividades extends Models implements IModels {
 
     final public function get(bool $multi = true, string $select = '*') {
         return $this->db->query_select("SELECT * FROM actividad_2;");
+    }
+
+    final public function getguar(){
+      return $this->db->query_select("SELECT * FROM guarderia_actividad_2;");
     }
 
     /**
