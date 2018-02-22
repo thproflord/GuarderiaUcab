@@ -823,3 +823,27 @@ $app->post('/sintomas/editar', function() use($app) {
 
   return $app->json($s->edit());   
 });
+
+
+/**
+  * Acción vía ajax de Ninoautorizado en api/ninoautorizado/crear
+  *
+  * @return json
+*/
+$app->post('/ninoautorizado/crear', function() use($app) {
+  $n = new Model\Ninoautorizado; 
+
+  return $app->json($n->add());   
+});
+
+
+/**
+  * Acción vía ajax de Ninoautorizado en api/ninoautorizado/editar
+  *
+  * @return json
+*/
+$app->post('/ninoautorizado/editar', function() use($app) {
+  $n = new Model\Ninoautorizado; 
+
+  return $app->json($n->edit());   
+});

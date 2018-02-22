@@ -126,22 +126,10 @@ class Lugares extends Models implements IModels {
       * @return false|array: false si no hay datos.
       *                      array con los datos.
       */
-    final public function get(string $criterio="-" ,$select = '*',int $selector = 0) {
-
-    /*Busqueda general*/
-      if($criterio=="-"){
-      return $this->db->query_select("SELECT * FROM ciudades_4;");
-    }
-
-      if($selector==1){
-      /*Busqueda personalizada*/
-      $like='%'.$select;
-    return $this->db->query_select("SELECT * FROM ciudades_4 WHERE $criterio LIKE '$like';");
+      final public function get() {
+       return $this->db->query_select("SELECT nombre,id_lugar  FROM lugar_2;");
       }
-
-      return $this->db->query_select("SELECT * FROM ciudades_4 WHERE $criterio='$select';");
-
-    }
+    
 
 
       /**

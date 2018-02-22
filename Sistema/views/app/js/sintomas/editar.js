@@ -1,3 +1,10 @@
+function edit_sintoma(codigo,descripcion){
+  $('#id_codigo').val(codigo);
+  $('#id_descripcion').val(descripcion);
+
+
+}
+
 /**
  * Ajax action to api rest
 */
@@ -5,7 +12,7 @@ function editar_sintoma(){
   $.ajax({
     type : "POST",
     url : "api/sintomas/editar",
-    data : $('#sintomas_form').serialize(),
+    data : $('#editar_sintoma_form').serialize(),
     success : function(json) {
       alert(json.success);
       alert(json.message);

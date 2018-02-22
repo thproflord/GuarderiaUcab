@@ -41,7 +41,7 @@ class Actividades extends Models implements IModels {
       $this->codigo = $http->request->get('codigo');
       $this->nombre = $http->request->get('nombre');
       $this->transporte = $http->request->get('transporte');
-      $this->costo_trans = ($http->request->get('costo_trans') != ' ') ? $http->request->get('costo_trans') : null;
+      $this->costo_trans = ($http->request->get('costo_trans') != '') ? $http->request->get('costo_trans') : null;
       $this->edad_minima = $http->request->get('edad_minima');
       $this->descripcion = $http->request->get('descripcion');
 

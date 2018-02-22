@@ -53,22 +53,9 @@ class Sedes extends Models implements IModels {
       $this->costo = $http->request->get('costo');
       $this->encargado = $http->request->get('encargado');
 
-      if($this->functions->e($this->nombre)){
-        throw new ModelsException('Por favor introduzca un nombre!');
-      }
-      /*
-      if($this->functions->e($this->lugar)){
-        throw new ModelsException('Por favor introduzca un Lugar!');
-      }*/
-      if($this->functions->e($this->rif)){
-        throw new ModelsException('Por favor introduzca un RIF!');
-      }
-      if($this->functions->e($this->telefono)){
-        throw new ModelsException('Por favor introduzca un telefono!');
-      }
-      if($this->functions->e($this->costo)){
-        throw new ModelsException('Por favor introduzca un Costo!');
-      }
+      if($this->functions->e($this->nombre,$this->lugar,$this->rif,$this->telefono,$this->costo,$this->encargado)){
+        throw new ModelsException("Todos los campos son obligatorios");
+      };
 
       # throw new ModelsException('¡Esto es un error!');
     }
@@ -88,7 +75,7 @@ class Sedes extends Models implements IModels {
         # Insertar elementos
         $this->db->query("INSERT INTO guarderia_2
         (nombre,id_lugar,id_enc,rif,telefonos,costo)
-        VALUES ('$this->nombre',$this->lugar,null,'$this->rif','$this->telefono',$this->costo);");
+        VALUES ('$this->nombre',$this->lugar,$this->encargado,'$this->rif','$this->telefono',$this->costo);");
 
         return array('success' => 1, 'message' => 'Creado con éxito.');
       } catch(ModelsException $e) {
@@ -114,18 +101,14 @@ class Sedes extends Models implements IModels {
     final public function edit() : array {
       try {
         global $http;
-
-        # Obtener el id del elemento que se está editando y asignarlo en $this->id
-        $codigo = $http->request->get('guarderia');
-
         # Controlar errores de entrada en el formulario
         $this->errors();
-
+        
         # Actualizar elementos
         $this->db->query("UPDATE guarderia_2
         SET nombre = '$this->nombre', id_lugar = $this->lugar, id_enc =$this->encargado,
         telefonos = '$this->telefono', costo = $this->costo
-        WHERE id_lugar = $codigo");
+        WHERE rif = '$this->rif'");
 
         return array('success' => 1, 'message' => 'Editado con éxito.');
       } catch(ModelsException $e) {
@@ -140,9 +123,9 @@ class Sedes extends Models implements IModels {
       * @return void
     */
     final public function delete() {
-      global $config;
+      global $config; 
       # Borrar el elemento de la base de datos
-      $this->db->query("DELETE FROM sedes_4 WHERE codigo_sede = $this->id");
+      $this->db->query("DELETE FROM guarderia_2 WHERE id_guarderia = $this->id");
       # Redireccionar a la página principal del controlador
       $this->functions->redir($config['site']['url'] . 'sedes/&success=true');
     }
@@ -157,11 +140,14 @@ class Sedes extends Models implements IModels {
       * @return false|array: false si no hay datos.
       *                      array con los datos.
       */
-    final public function get(string $criterio="-" ,$select = '*'){
-
-      return $this->db->query_select("SELECT * FROM guarderia_2;");
-
-    }
+    final public function get(){
+      
+      return $this->db->query_select("SELECT g2.*, p2.nombre as pnombre, p2.apellidos as apellido, l2.nombre AS lnombre
+      FROM guarderia_2 g2
+      LEFT JOIN personal_2 p2 ON g2.id_enc = p2.id_personal
+      INNER JOIN lugar_2 l2 ON g2.id_lugar=l2.id_lugar;");
+     }
+  
 
     /**
       * Obtiene elementos de la tabla "Sedes"

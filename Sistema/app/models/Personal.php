@@ -161,7 +161,10 @@ class Personal extends Models implements IModels {
       *                      array con los datos.
       */
     final public function get(string $criterio="-" ,$select = '*') {
-        return $this->db->query_select("SELECT * FROM personal_2;");
+        return $this->db->query_select("SELECT p2.* , g2.nombre as gnomb
+        FROM personal_2 p2 
+        INNER JOIN guarderia_2 g2 ON p2.id_guarderia=g2.id_guarderia;"
+        );
     /*Busqueda general
       if($criterio=="-"){
       return $this->db->query_select("SELECT * FROM empleados_4;");

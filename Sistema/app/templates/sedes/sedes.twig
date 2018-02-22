@@ -22,13 +22,12 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        SEDES
-        <small>Guarderia</small>
+        Guarderias
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li><a href="#">Sedes</a></li>
-        <li class="active">Listado de Sedes</li>
+        <li><a href="#">Guarderias</a></li>
+        <li class="active">Listado de Guarderias</li>
       </ol>
     </section>
 
@@ -38,7 +37,7 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Listado de Sedes</h3>
+              <h3 class="box-title">Listado de Guarderias</h3>
             </div>
             <!-- /.box-header -->
             <div class="box-body">
@@ -77,14 +76,14 @@
                   {% for s in sedes %}
                       <tr>
                           <td>{{ s.nombre }} </td>
-                          <td>{{ s.id_lugar }}</td>
-                          <td>{{ s.id_enc }}</td>
-                          <td>{{ s.rif }}</td>
+                          <td>{{ s.lnombre }}</td>
+                          <td>{{ s.pnombre }} {{ s.apellido }}</td>
+                          <td>V.{{ s.rif }}</td>
                           <td>{{ s.telefonos }}</td>
-                          <td>{{ s.costo }}</td>
+                          <td>{{ s.costo|number_format(2,',','.')}} BsF</td>
 
-                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_sede" onclick="editar_sede('{{ s.nombre }}', '{{ s.id_guarderia }}' ,'{{ s.id_lugar }}' , '{{ s.id_enc }}' , '{{ s.rif }}', '{{ s.telefonos }}' , '{{ s.costo }}')"><i class="fa fa-edit"></i></a></td>
-                          <td><a type="button" href="sedes/eliminar/{{ s.codigo_sede }}"><i class="fa fa-trash"></i></a></td>
+                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_sede" onclick="edit_sede('{{ s.nombre }}', '{{ s.id_guarderia }}' ,'{{ s.id_lugar }}' , '{{ s.id_enc }}' , '{{ s.rif }}', '{{ s.telefonos }}' , '{{ s.costo }}')"><i class="fa fa-edit"></i></a></td>
+                          <td><a type="button" href="sedes/eliminar/{{ s.id_guarderia }}"><i class="fa fa-trash"></i></a></td>
                       </tr>
                   {% endfor %}
                   </tbody>
@@ -112,7 +111,7 @@
 {% block appFooter %}
 <!-- page script -->
 <script src="views/app/js/sedes/crear.js"></script>
-<script src="views/app/js/sedes/prueba.js"></script>
+<script src="views/app/js/sedes/editar.js"></script>
 <!-- DataTables -->
 <script src="views/theme/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="views/theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>

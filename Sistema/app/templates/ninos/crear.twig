@@ -33,14 +33,14 @@
             <label>Representante del niño (Principal)</label>
             <select class="select2 form-control" name="cedula"  data-placeholder="Representantes">
                     {% for c in representante %}
-                    <option value="{{ c.cedula }}">Nombre: {{ c.nombre }} - Cedula: {{ c.cedula }}</option>
+                    <option value="{{ c.cedula }}">Nombre y Apellido: {{ c.nombre }} {{ c.apellido }}- Cedula: {{ c.cedula }}</option>
                     {% endfor %}
             </select>
 
             <label>Representante del niño (Opcional)</label>
             <select class="select2 form-control" name="cedula2"  data-placeholder="Representantes">
                     {% for c in representante %}
-                    <option value="{{ c.cedula }}">Nombre: {{ c.nombre }} - Cedula: {{ c.cedula }}</option>
+                    <option value="{{ c.cedula }}">Nombre y Apellido : {{ c.nombre }} {{ c.apellido }} - Cedula: {{ c.cedula }}</option>
                     {% endfor %}
             </select>
 

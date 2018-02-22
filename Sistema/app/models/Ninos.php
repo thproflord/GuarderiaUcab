@@ -46,6 +46,7 @@ class Ninos extends Models implements IModels {
       $this->cedula_repre2 = $http->request->get('cedula2');
       $this->enfermedades = $http->request->get('enfermedades');
       $this->juegos = $http->request->get('juegos');
+      $this->autorizados = $http->request->get('autorizados');
 
       if($this->functions->e($this->nombre)){
         throw new ModelsException('El campo nombre es obligatorio');
@@ -84,6 +85,19 @@ class Ninos extends Models implements IModels {
           $enfermedad->execute(array($id_enfermedad));
         }
        $enfermedad->closeCursor();
+      } 
+    }
+
+    final private function insertNewAutorizados(int $id) {
+      # Si hay proveedores
+      if(null != $this->autorizados) {
+        # Insertar de nuevo esas relaciones
+        $autorizado = $this->db->prepare("INSERT INTO nino_autorizado_2 (id_nino,id_autorizado)
+        VALUES ('id',?);");
+        foreach($this->autorizados as $id_autorizado){
+          $enfermedad->execute(array($id_autorizado));
+        }
+       $autorizado->closeCursor();
       } 
     }
 
@@ -140,6 +154,8 @@ class Ninos extends Models implements IModels {
         # Insertar en Inventario
         $this->insertNewJuegos($id_nino);
 
+        #Insertar autorizados
+        $this->insertnew($id_nino);
         return array('success' => 1, 'message' => 'Creado con éxito.');
       } catch(ModelsException $e) {
         return array('success' => 0, 'message' => $e->getMessage());

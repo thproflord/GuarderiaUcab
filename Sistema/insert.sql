@@ -59,13 +59,14 @@ INSERT INTO `lugar_2`(`id_lugar`, `id_lugar_padre`, `nombre`, `tipo`) VALUES (2,
 INSERT INTO `lugar_2`(`id_lugar`, `id_lugar_padre`, `nombre`, `tipo`) VALUES (3,NULL,'Barcelona',2);
 INSERT INTO `lugar_2`(`id_lugar`, `id_lugar_padre`, `nombre`, `tipo`) VALUES (4,NULL,'Valencia',2);
 INSERT INTO `lugar_2`(`id_lugar`, `id_lugar_padre`, `nombre`, `tipo`) VALUES (5,NULL,'Zulia',1);
+INSERT INTO `lugar_2`(`id_lugar`, `id_lugar_padre`, `nombre`, `tipo`) VALUES (6,NULL,'Caracas',2);
 
 #Guarderia
-INSERT INTO `guarderia_2`(`id_guarderia`, `id_lugar`,`id_enc`, `rif`, `nombre`, `telefonos`, `costo`) VALUES (1,2,NULL,'V87659123','Sede Barquisimeto',02129767840,100000);
-INSERT INTO `guarderia_2`(`id_guarderia`,  `id_lugar`,`id_enc`, `rif`, `nombre`, `telefonos`, `costo`) VALUES (2,3,NULL,'V77812432','Sede Barcelona',028129854222,120000);
-INSERT INTO `guarderia_2`(`id_guarderia`,  `id_lugar`,`id_enc`, `rif`, `nombre`, `telefonos`, `costo`) VALUES (3,5,NULL,'V912452131','Sede Zulia',02627881422,350000);
-INSERT INTO `guarderia_2`(`id_guarderia`,  `id_lugar`,`id_enc`, `rif`, `nombre`, `telefonos`, `costo`) VALUES (4,4,NULL,'V124551678','Sede Valencia',02419972152,200000);
-INSERT INTO `guarderia_2`(`id_guarderia`,  `id_lugar`,`id_enc`,`rif`, `nombre`, `telefonos`, `costo`) VALUES (5,3,NULL,'V77812434','Sede Barcelona V2',02819219215,120000);
+INSERT INTO `guarderia_2`(`id_guarderia`, `id_lugar`,`id_enc`, `rif`, `nombre`, `telefonos`, `costo`) VALUES (1,2,NULL,'87659123','Sede Barquisimeto',02129767840,100000);
+INSERT INTO `guarderia_2`(`id_guarderia`,  `id_lugar`,`id_enc`, `rif`, `nombre`, `telefonos`, `costo`) VALUES (2,3,NULL,'77812432','Sede Barcelona',028129854222,120000);
+INSERT INTO `guarderia_2`(`id_guarderia`,  `id_lugar`,`id_enc`, `rif`, `nombre`, `telefonos`, `costo`) VALUES (3,5,NULL,'912452131','Sede Zulia',02627881422,350000);
+INSERT INTO `guarderia_2`(`id_guarderia`,  `id_lugar`,`id_enc`, `rif`, `nombre`, `telefonos`, `costo`) VALUES (4,4,NULL,'124551678','Sede Valencia',02419972152,200000);
+INSERT INTO `guarderia_2`(`id_guarderia`,  `id_lugar`,`id_enc`,`rif`, `nombre`, `telefonos`, `costo`) VALUES (5,3,NULL,'77812434','Sede Barcelona V2',02819219215,120000);
 
 #Horario
 INSERT INTO `horario_2`(`id_horario`, `dia`) VALUES (1,'Lunes');
