@@ -119,7 +119,7 @@ ALTER TABLE `horario_inscrip_2`
 --
 ALTER TABLE `inscripcion_2`
   ADD PRIMARY KEY (`id_inscripcion`),
-  ADD KEY `id_ni�o` (`id_nino`),
+  ADD KEY `id_nino` (`id_nino`),
   ADD KEY `id_guarderia` (`id_guarderia`);
 
 --

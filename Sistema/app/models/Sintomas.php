@@ -38,7 +38,7 @@ class Sintomas extends Models implements IModels {
       *
       * @throws ModelsException
     */
-    final private function errors() {
+    final private function errors(bool $edit = false) {
         global $http;
         $this->codigo = $http->request->get('codigo');
         $this->descripcion = $http->request->get('descripcion');
@@ -80,16 +80,12 @@ class Sintomas extends Models implements IModels {
       try {
         global $http;
 
-        # Obtener el id del elemento que se está editando y asignarlo en $this->id
-        $this->setId($http->request->get('id_sintoma'),'No se puede editar el elemento.'); 
-                  
         # Controlar errores de entrada en el formulario
-        $this->errors();
+        $this->errors(true);
 
         # Actualizar elementos
-        $this->db->update('sintomas_2',array(
-					'test' => $http->request->get('test')
-        ),"id_sintoma='$this->id'",'LIMIT 1');
+        $this->db->query("UPDATE sintomas_2 SET
+        descripcion='$this->descripcion';");
 
         return array('success' => 1, 'message' => 'Editado con éxito.');
       } catch(ModelsException $e) {
