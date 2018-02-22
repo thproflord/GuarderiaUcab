@@ -114,7 +114,7 @@ class Personal extends Models implements IModels {
         foreach ($this->actividad as $act ) {
           $this->db->query("INSERT INTO personal_capacidad_2
           (tipo,id_personal)
-          VALUES ('$act',$cod.id_personal);");
+          VALUES ('$act',$cod);");
         }
 
         return array('success' => 1, 'message' => 'Creado con éxito.');

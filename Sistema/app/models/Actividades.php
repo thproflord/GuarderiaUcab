@@ -119,11 +119,13 @@ class Actividades extends Models implements IModels {
         }
 
     final public function get(bool $multi = true, string $select = '*') {
-        return $this->db->query_select("SELECT * FROM actividad_2;");
+        return $this->db->query_select("SELECT * FROM actividad_2 a;");
     }
 
     final public function getguar(){
-      return $this->db->query_select("SELECT * FROM guarderia_actividad_2;");
+      return $this->db->query_select("SELECT a.id_ga, a.id_guarderia, a.id_actividad, a.id_personal,
+        a.cupomin, a.cupomax, p.nombre as 'personal', g.nombre as 'guarderia', ac.nombre as 'actividad' FROM guarderia_actividad_2 a, personal_2 p, guarderia_2 g, actividad_2 ac
+        where a.id_personal = p.id_personal and a.id_guarderia = g.id_guarderia and a.id_actividad = ac.id_actividad;");
     }
 
     /**
