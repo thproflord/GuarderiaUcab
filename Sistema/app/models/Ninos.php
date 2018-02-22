@@ -68,7 +68,7 @@ class Ninos extends Models implements IModels {
     }
 
         /**
-     * Inserta proveedores elegidos en el formulario para el producto.
+     * Inserta Enfermedades elegidos en el formulario para el Nino.
      * 
      * @param int $id_producto : Id del producto
      * 
@@ -89,7 +89,7 @@ class Ninos extends Models implements IModels {
 
 
             /**
-     * Inserta proveedores elegidos en el formulario para el producto.
+     * Inserta Juegos elegidos en el formulario para el Nino.
      * 
      * @param int $id_producto : Id del producto
      * 
