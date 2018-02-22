@@ -29,20 +29,16 @@ class asistenciaController extends Controllers implements IControllers {
       
       global $config;
       $r = new Model\Asistencia($router);
+      $c = new Model\Autorizados();
       switch ($this->method) {
         case 'crear':
           echo $this->template->render('asistencia/crear');
         break;
-        case 'editar':
-          $r->editar();
-        break;
-        case 'eliminar':
-          # code...
-        break;
         default:
 
           echo $this->template->render('asistencia/asistencia',array(
-          'asistencia' => $r->get()
+          'asistencia' => $r->get(),
+          'autorizado' => $c->get()
           ));
           break;
       }

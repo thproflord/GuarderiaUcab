@@ -55,6 +55,10 @@ class Autorizados extends Models implements IModels {
         throw new ModelsException('El campo telefono es obligatorio');
       }
 
+      $cedula_exist = $this->db->query_select("SELECT * FROM autorizado_2 WHERE cedula = '$this->cedula'");
+          if(false!==$cedula_exist && !$edit){
+            throw new ModelsException('El numero de cedula ya existe');
+          }
     }
 
     final public function add(){
