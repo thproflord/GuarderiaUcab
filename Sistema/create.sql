@@ -1,20 +1,3 @@
-	-- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Feb 19, 2018 at 01:04 AM
--- Server version: 5.7.14
--- PHP Version: 7.0.10
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
 
 --
 -- Database: `guarderia`
@@ -33,7 +16,9 @@ CREATE TABLE `actividad_2` (
   `transporte` tinyint(2) UNSIGNED NOT NULL,
   `costo_trans` float UNSIGNED DEFAULT NULL,
   `edad_minima` int(11) UNSIGNED NOT NULL,
-  `descripcion` varchar(26) NOT NULL
+  `descripcion` varchar(26) NOT NULL,
+  `tipo` varchar(15) NOT NULL,
+  CONSTRAINT check_tipo CHECK (tipo in ('Arte', 'Matematica', 'Literatura', 'Deporte',' Manualidades'))
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
@@ -173,7 +158,7 @@ CREATE TABLE `guarderia_actividad_2` (
   `id_ga` int(11) UNSIGNED NOT NULL,
   `id_guarderia` int(11) UNSIGNED NOT NULL,
   `id_actividad` int(11) UNSIGNED NOT NULL,
-  `id_personal` int(11) UNSIGNED NOT NULL,	
+  `id_personal` int(11) UNSIGNED NOT NULL,
   `cupomin` int(10) UNSIGNED NOT NULL,
   `cupomax` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -557,4 +542,3 @@ CREATE TABLE `sintoma_2` (
   `codigo` varchar(15) NOT NULL,
   `descripcion` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-

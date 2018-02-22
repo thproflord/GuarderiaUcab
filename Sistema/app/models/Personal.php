@@ -39,6 +39,7 @@ class Personal extends Models implements IModels {
     private $estudio;
     private $sueldo;
     private $codigo;
+    private $actividad = [];
 
 
     /**
@@ -58,6 +59,12 @@ class Personal extends Models implements IModels {
       $this->estudio = $http->request->get('tipo_empleado');
       $this->sueldo = $http->request->get('sueldo');
 
+      if(null !== $http->request->get('actividad')){
+        foreach ($http->request->get('actividad') as $act ) {
+          $actividad[] = $act;
+        }
+      }
+
       if($this->functions->e($this->nombre)){
         throw new ModelsException('El campo nombre es obligatorio');
       }
@@ -70,6 +77,7 @@ class Personal extends Models implements IModels {
       if($this->functions->e($this->sueldo)){
         throw new ModelsException('Debe tener un sueldo');
       }
+
 
 
     }
