@@ -1,10 +1,9 @@
-function edit_nino(nombre,apellido,cedula,fechanac,sexo, letra){
+function edit_nino(nombre,apellido,codigo,fechanac,sexo){
     $('#id_nombre').val(nombre);
     $('#id_apellido').val(apellido);
-    $('#id_cedula').val(cedula);
+    $('#id_codigo').val(codigo);
     $('#id_fechanac').val(fechanac);
     $('#id_sexo').val(sexo);
-    $('#id_letra').val(letra);
 }
 
 /**

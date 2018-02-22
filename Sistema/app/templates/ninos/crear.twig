@@ -30,10 +30,31 @@
                 <label for="id_sexo_mujer">Mujer</label>
             </div>
 
-            <label>Representante del niño</label>
-            <select class="select2 form-control" name=""  data-placeholder="Representantes">
+            <label>Representante del niño (Principal)</label>
+            <select class="select2 form-control" name="cedula"  data-placeholder="Representantes">
                     {% for c in representante %}
-                    <option value="">Nombre: {{ c.nombre }} - Cedula: {{ c.cedula }}</option>
+                    <option value="{{ c.cedula }}">Nombre: {{ c.nombre }} - Cedula: {{ c.cedula }}</option>
+                    {% endfor %}
+            </select>
+
+            <label>Representante del niño (Opcional)</label>
+            <select class="select2 form-control" name="cedula2"  data-placeholder="Representantes">
+                    {% for c in representante %}
+                    <option value="{{ c.cedula }}">Nombre: {{ c.nombre }} - Cedula: {{ c.cedula }}</option>
+                    {% endfor %}
+            </select>
+
+            <label>Enfermedades</label>
+            <select class="select2 form-control" name="enfermedades[]"  data-placeholder="Enfermedades" multiple="multiple">
+                    {% for e in enfermedades %}
+                    <option value="{{ e.id_enfermedad }}"> {{ e.descripcion }}</option>
+                    {% endfor %}
+            </select>
+
+            <label>Juegos</label>
+            <select class="select2 form-control" name="juegos[]"  data-placeholder="Juegos" multiple="multiple">
+                    {% for j in juegos %}
+                    <option value="{{ j.id_juego }}"> {{ j.descripcion }}</option>
                     {% endfor %}
             </select>
 

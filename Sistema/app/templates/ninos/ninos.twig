@@ -77,14 +77,14 @@
                   <tbody>
                   {% for r in Ninos %}
                       <tr>
-                          <td>{{ r.letra }}{{ r.id_padre }}</td>
+                          <td>{{ r.codigo_nino }}</td>
                           <td>{{ r.id_padre }}</td>
                           <td>{{ r.nombre }}</td>
                           <td>{{ r.apellido }}</td>
                           <td>{{ r.fecha_nac }}</td>
                           <td>{{ r.sexo }}</td>
-                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_nino" onclick="edit_nino('{{ r.nombre }}','{{ r.apellido }}','{{ r.id_padre }}','{{ r.fecha_nac }}','{{ r.sexo }}')"><i class="fa fa-edit"></i></a></td>
-                          <td><a type="button" href="ninos/eliminar/{{ r.id_padre }}"><i class="fa fa-trash"></i></a></td>
+                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_nino" onclick="edit_nino('{{ r.nombre }}','{{ r.apellido }}','{{ r.codigo_nino }}','{{ r.fecha_nac }}','{{ r.sexo }}')"><i class="fa fa-edit"></i></a></td>
+                          <td><a type="button" href="ninos/eliminar/{{ r.codigo_nino }}"><i class="fa fa-trash"></i></a></td>
                       </tr>
                   {% endfor %}
                   </tbody>

@@ -118,10 +118,24 @@ class Representantes extends Models implements IModels {
         */
         final public function delete($id) {
           global $config;
-          # Borrar el elemento de la base de datos
+
+           # Borrar el elemento de la base de datos
+          $hijos = $this->db->query_select(
+          "SELECT COUNT(*) as total
+           FROM nino_2
+           WHERE id_padre=$id;"
+          );
+          $hijos = $hijos[0]['total'];
+
+          if ($hijos == 0){
+             # Borrar el elemento de la base de datos
           $this->db->query("DELETE FROM padre_2 WHERE cedula = '$id'");
           # Redireccionar a la página principal del controlador
           $this->functions->redir($config['site']['url'] . 'representantes/&success=true');
+          }
+          else{
+            $this->functions->redir($config['site']['url'] . 'representantes/&success=true');}
+         
         }
 
       final public function getHijos(){
