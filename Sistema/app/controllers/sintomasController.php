@@ -15,33 +15,34 @@ use app\models as Model;
 use Ocrend\Kernel\Router\IRouter;
 use Ocrend\Kernel\Controllers\Controllers;
 use Ocrend\Kernel\Controllers\IControllers;
-
+  
 /**
- * Controlador personal/
+ * Controlador sintomas/
  *
- * @author Alexander De Azevedo, Sergio García y Greg Gómez <oeneikaphotos@gmail.com>
+ * @author Ramon García, Fernando Gomes y Alexander De Azevedo <oeneikaphotos@gmail.com>
 */
-
-class personalController extends Controllers implements IControllers {
+  
+class sintomasController extends Controllers implements IControllers {
 
     public function __construct(IRouter $router) {
-        parent::__construct($router);
+        parent::__construct($router);   
         global $config;
+        
+        $s = new Model\Sintomas($router);
 
-        $p = new Model\Personal($router);
-        $g = new Model\Sedes($router);
         switch($this->method) {
           case 'crear':
-            echo $this->template->render('personal/crear');
+            echo $this->template->render('sintomas/crear');
+          break;
+          case 'editar':
+            $s->edit();
           break;
           case 'eliminar':
-            $p->delete($this->isset_id);
-          break;
+            $s->delete();
           break;
           default:
-            echo $this->template->render('personal/personal',array(
-              'personal' => $p->get(),
-              'guarderias' => $g->get()
+            echo $this->template->render('sintomas/sintomas',array(
+              'data' => $s->get()
             ));
           break;
         }

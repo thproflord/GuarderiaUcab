@@ -57,9 +57,11 @@ class Comidas extends Models implements IModels {
         }
       }
   
-      final public function editar(){
-        $this->db->update('comida_2', array(
-        ),"id_comida=");
+      final public function edit(){
+        $this->db->query("UPDATE comida_2 
+        SET tipo = $this->tipo,
+        descripcion = '$this->descripcion'
+        WHERE id_comida= $this->id_comida");
       }
   
       final public function get(bool $multi  = true, string $select = '*') {

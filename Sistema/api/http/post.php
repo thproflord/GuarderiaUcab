@@ -798,3 +798,28 @@ $app->post('/pediatras/editar', function() use($app) {
     *
     * @return json
 */
+
+
+
+/**
+  * Acción vía ajax de Sintomas en api/sintomas/crear
+  *
+  * @return json
+*/
+$app->post('/sintomas/crear', function() use($app) {
+  $s = new Model\Sintomas; 
+
+  return $app->json($s->add());   
+});
+
+
+/**
+  * Acción vía ajax de Sintomas en api/sintomas/editar
+  *
+  * @return json
+*/
+$app->post('/sintomas/editar', function() use($app) {
+  $s = new Model\Sintomas; 
+
+  return $app->json($s->edit());   
+});

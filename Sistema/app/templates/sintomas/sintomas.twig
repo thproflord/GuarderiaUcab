@@ -24,13 +24,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Comidas
+        Sintomas
         <small>Guarderia</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li><a href="#">Comidas</a></li>
-        <li class="active">Listado de Comidas</li>
+        <li><a href="#"></a></li>
+        <li class="active">Listado de Sintomas</li>
       </ol>
     </section>
 
@@ -40,31 +40,31 @@
         <div class="col-xs-12">
           <div class="box">
             <div class="box-header">
-              <h3 class="box-title">Listado de Comidas</h3>
+              <h3 class="box-title">Listado de Sintomas</h3>
             </div>
-
+            <!-- /.box-header -->
+            <div class="box-body">
               <div class="table-responsive">
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>Tipo</th>
-                    <th>Descripción</th>
+                    <th>Codigo</th>
+                    <th>Descripcion</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
-
                   </thead>
                   <tbody>
-                  {% for c in comida %}
+                  {% for r in data %}
                       <tr>
-                          <td>{{ c.tipo }}</td>
-                          <td>{{ c.descripcion }}</td>
-                          <td><a type="button" data-toggle="modal" data-target="#comidas" onclick="edit_comidas('{{ c.id_comida }}','{{ c.tipo }}','{{ c.descripcion }}'')"><i class="fa fa-edit"></i></a></td>
-                          <td><a type="button" href="comidas/eliminar/{{ c.id_comida }}"><i class="fa fa-trash"></i></a></td>
+                          <td>{{ r.codigo }}</td>
+                          <td>{{ r.descripcion }}</td>
+                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_sintoma" onclick="edit_sintoma('{{ r.codigo }}','{{ r.descripcion }}')"><i class="fa fa-edit"></i></a></td>
+                          <td><a type="button" href="sintomas/eliminar/{{ r.codigo }}"><i class="fa fa-trash"></i></a></td>
                       </tr>
                   {% endfor %}
                   </tbody>
                 </table>
-                <button type="button" class="btn btn-block btn-primary btn-flat" data-toggle="modal" data-target="#modal_crear_comida"><i class="fa fa-plus-circle"></i> CREAR NUEVA COMIDA</button>
+                <button type="button" class="btn btn-block btn-primary btn-flat" data-toggle="modal" data-target="#modal_crear_sintoma  "><i class="fa fa-plus-circle"></i> CREAR NUEVO SINTOMA</button>
               </div>
             </div>
             <!-- /.box-body -->
@@ -74,10 +74,9 @@
         <!-- /.col -->
       </div>
       <!-- /.row -->
-      </div>
-      {# Creación de producto #}
+      {% include 'sintomas/crear' %}
+      {% include 'sintomas/editar' %}
       {#% include 'colegios/eliminar' %#}
-      {% include 'comidas/crear' %}
     </section>
     <!-- /.content -->
   </div>
@@ -85,8 +84,8 @@
 {% endblock %}
 
 {% block appFooter %}
-<script src="views/app/js/comidas/crear.js"></script>
-<script src="views/app/js/comidas/editar.js"></script>
+<script src="views/app/js/sintomas/crear.js"></script>
+<script src="views/app/js/sintomas/editar.js"></script>
 <!-- DataTables -->
 <script src="views/theme/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="views/theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
@@ -130,4 +129,3 @@ location.href = busqueda;
 
 
 {% endblock %}
-
