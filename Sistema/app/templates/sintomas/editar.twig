@@ -1,22 +1,30 @@
-{% extends 'overall/layout' %}
-{% block appBody %}
-    <div class="container">
-        <form role="form" id="sintomas_form">
-<input type="hidden" name="id_sintoms" value="{{ data.id_sintoms }}" />
-
-
-<div class="form-group">
-    <label>Test</label>
-    <input class="form-control" type="text" name="test" id="id_test" value="{{ data.test }}" placeholder="Test" />
-</div>
-
-
-            <div class="form-group">
-                <button type="button" class="btn btn-primary" id="sintomas">Enviar</button>
-            </div>
+<div class="modal fade" id="modal_editar_sintoma">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Editar Sintomas</h4>
+        </div>
+        <div class="modal-body">
+          <form role="form" id="editar_sintoma_form">
+          <!-- text input -->
+          <div class="form-group">
+                <label>Descripcion</label>
+                <input type="text" class="form-control" placeholder="Descripcion" name="descripcion" id="id_descripcion">
+                <input type="hidden" class="form-control" placeholder="Codigo" name="codigo" id="id_codigo">
+          </div>
+       
         </form>
-    </div>
-{% endblock %}
-{% block appFooter %}
-    <script src="views/app/js/sintomas/editar.js"></script>
-{% endblock %}
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
+          <button type="button" id="editar_sintoma" class="btn btn-primary">Guardar Cambios</button>
+        </div>
+      </div>
+      <!-- /.modal-content -->
+  </div>
+  <!-- /.modal-dialog -->
+</div>
+<!-- /.modal -->
+

@@ -58,7 +58,7 @@
                       <tr>
                           <td>{{ r.codigo }}</td>
                           <td>{{ r.descripcion }}</td>
-                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_sintomas" onclick="edit_sintomas('{{ r.codigo }}','{{ r.descripcion }}')"><i class="fa fa-edit"></i></a></td>
+                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_sintoma" onclick="edit_sintoma('{{ r.codigo }}','{{ r.descripcion }}')"><i class="fa fa-edit"></i></a></td>
                           <td><a type="button" href="sintomas/eliminar/{{ r.codigo }}"><i class="fa fa-trash"></i></a></td>
                       </tr>
                   {% endfor %}

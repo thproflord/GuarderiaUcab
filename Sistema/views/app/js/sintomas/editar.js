@@ -1,7 +1,7 @@
 /**
  * Ajax action to api rest
 */
-function sintomas(){
+function editar_sintoma(){
   $.ajax({
     type : "POST",
     url : "api/sintomas/editar",
@@ -26,13 +26,13 @@ function sintomas(){
  *  
  * @param {*} e 
  */
-$('#sintomas').click(function(e) {
+$('#editar_sintoma').click(function(e) {
   e.defaultPrevented;
-  sintomas();
+  editar_sintoma();
 });
-$('#sintomas_form').keypress(function(e) {
+$('#editar_sintoma_form').keypress(function(e) {
     e.defaultPrevented;
     if(e.which == 13) {
-        sintomas();
+        editar_sintoma();
     }
 });

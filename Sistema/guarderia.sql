@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 22, 2018 at 01:58 AM
+-- Generation Time: Feb 22, 2018 at 03:22 AM
 -- Server version: 5.7.14
 -- PHP Version: 7.0.10
 
@@ -1062,6 +1062,17 @@ INSERT INTO `personal_2` (`id_personal`, `id_guarderia`, `cedula`, `nombre`, `ap
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `personal_capacidad_2`
+--
+
+CREATE TABLE `personal_capacidad_2` (
+  `id_personal` int(11) UNSIGNED NOT NULL,
+  `tipo` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pers_capacitado_2`
 --
 
@@ -1187,7 +1198,8 @@ INSERT INTO `sintoma_2` (`id_sintoma`, `codigo`, `descripcion`) VALUES
 (2, 'SI002', 'Diarrea'),
 (3, 'SI003', 'irritabilidad'),
 (4, 'SI004', 'Fatiga'),
-(5, 'SI005', 'Apatia');
+(5, 'SI005', 'Apatia'),
+(6, 'SI006', 'Nausea');
 
 --
 -- Indexes for dumped tables
@@ -1440,6 +1452,12 @@ ALTER TABLE `personal_2`
   ADD KEY `id_guarderia` (`id_guarderia`);
 
 --
+-- Indexes for table `personal_capacidad_2`
+--
+ALTER TABLE `personal_capacidad_2`
+  ADD KEY `id_personal` (`id_personal`);
+
+--
 -- Indexes for table `pers_capacitado_2`
 --
 ALTER TABLE `pers_capacitado_2`
@@ -1592,7 +1610,7 @@ ALTER TABLE `personal_2`
 -- AUTO_INCREMENT for table `sintoma_2`
 --
 ALTER TABLE `sintoma_2`
-  MODIFY `id_sintoma` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_sintoma` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --
@@ -1756,6 +1774,12 @@ ALTER TABLE `parentesco_2`
 --
 ALTER TABLE `personal_2`
   ADD CONSTRAINT `personal_2_ibfk_1` FOREIGN KEY (`id_guarderia`) REFERENCES `guarderia_2` (`id_guarderia`);
+
+--
+-- Constraints for table `personal_capacidad_2`
+--
+ALTER TABLE `personal_capacidad_2`
+  ADD CONSTRAINT `personal_capacidad_2_ibfk_1` FOREIGN KEY (`id_personal`) REFERENCES `personal_2` (`id_personal`) ON DELETE NO ACTION ON UPDATE NO ACTION;
 
 --
 -- Constraints for table `pers_capacitado_2`
