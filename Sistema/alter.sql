@@ -245,7 +245,7 @@ ALTER TABLE `personal_2`
 -- Indexes for table `personal_capacidad_2`
 --
 ALTER TABLE `personal_capacidad_2`
-  ADD PRIMARY KEY `id_personal` (`id_personal`);
+  ADD PRIMARY KEY `id_personal` (`id_perca`);
 
 --
 -- Indexes for table `pers_capacitado_2`
@@ -401,6 +401,9 @@ ALTER TABLE `personal_2`
 --
 ALTER TABLE `sintoma_2`
   MODIFY `id_sintoma` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+ALTER TABLE `personal_capacidad_2`
+  MODIFY `id_perca` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --

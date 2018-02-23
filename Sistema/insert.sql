@@ -476,46 +476,46 @@ INSERT INTO `nino_medicina_sintoma_2` (`id_sintoma`, `id_medicina`, `id_nino`, `
 (2, 1, 24, '1 Pastilla'),
 (2, 3, 13, 'Media Cucharada');
 
-INSERT INTO `personal_capacitado_2` (`id_personal`, `tipo`) VALUES
-(1, 'Matematica'),
-(5, 'Arte'),
-(2, 'Manualidades'),
-(4, 'Deportivas'),
-(3, 'Literatura');
+    INSERT INTO `personal_capacidad_2` (`id_personal`, `tipo`) VALUES
+    (1, 'Matematica'),
+    (5, 'Arte'),
+    (2, 'Manualidades'),
+    (4, 'Deportivas'),
+    (3, 'Literatura');
 
-INSERT INTO `pers_capacitado_2` (`id_actividad`, `id_personal`) VALUES
-(1, 5),
-(5, 3),
-(2, 8),
-(4, 9),
-(3, 15);
+    INSERT INTO `pers_capacitado_2` (`id_actividad`, `id_personal`) VALUES
+    (1, 5),
+    (5, 3),
+    (2, 8),
+    (4, 9),
+    (3, 15);
 
-INSERT INTO `plato_comida_2` (`id_comida`, `id_plato`) VALUES
-(1, 1),
-(6, 1),
-(11, 1),
-(16, 1),
-(2, 2),
-(7, 2),
-(12, 2),
-(17, 2),
-(3, 3),
-(8, 3),
-(13, 3),
-(18, 3);
+    INSERT INTO `plato_comida_2` (`id_comida`, `id_plato`) VALUES
+    (1, 1),
+    (6, 1),
+    (11, 1),
+    (16, 1),
+    (2, 2),
+    (7, 2),
+    (12, 2),
+    (17, 2),
+    (3, 3),
+    (8, 3),
+    (13, 3),
+    (18, 3);
 
-INSERT INTO `plato_menu_2` (`id_plato`, `id_menu`) VALUES
-(1, 1),
-(2, 3),
-(3, 6),
-(3, 8),
-(4, 4),
-(5, 11),
-(6, 13),
-(7, 17),
-(8, 18),
-(9, 12),
-(10, 9);
+    INSERT INTO `plato_menu_2` (`id_plato`, `id_menu`) VALUES
+    (1, 1),
+    (2, 3),
+    (3, 6),
+    (3, 8),
+    (4, 4),
+    (5, 11),
+    (6, 13),
+    (7, 17),
+    (8, 18),
+    (9, 12),
+    (10, 9);
 
 
 

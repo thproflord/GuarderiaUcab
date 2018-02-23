@@ -142,7 +142,7 @@ class Sedes extends Models implements IModels {
       */
     final public function get(string $criterio="-" ,$select = '*'){
 
-      return $this->db->query_select("SELECT g.nombre,g.id_guarderia, g.rif, g.telefonos,g.costo,e.nombre as 'empleado',
+      return $this->db->query_select("SELECT g.nombre,g.id_guarderia, g.rif, g.telefonos,g.costo,e.nombre as 'empleado',e.apellidos as 'apellido'
          e.id_personal, l.id_lugar, l.nombre as 'lugar' FROM guarderia_2 g left outer join personal_2 e on g.id_enc = e.id_personal
          left outer join lugar_2 l on g.id_lugar = l.id_lugar;");
 
