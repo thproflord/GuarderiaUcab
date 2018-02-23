@@ -41,11 +41,15 @@
                   </select>
 
                 <label>Enfermedades</label>
-                  <select class="select2 form-control" name="enfermedades[]"  data-placeholder="Enfermedades" multiple="multiple">
+                  <select class="select2 form-control" name="enfermedades[]" onchange="add_fecha()" data-placeholder="Enfermedades" multiple="multiple">
                           {% for e in enfermedades %}
                           <option value="{{ e.id_enfermedad }}"> {{ e.descripcion }}</option>
                           {% endfor %}
                   </select>
+
+                  <div class="form-group" id="fechas">
+                    
+                   </div>
 
                 <label>Alergias</label>
                   <select class="select2 form-control" name="alergias[]"  data-placeholder="Alergias" multiple="multiple">
@@ -80,10 +84,10 @@
             </div>
             <label>Autorizado</label>
 
-              <select class="select2 form-control" name="autorizados"  data-placeholder="Autorizados">
+              <select class="select2 form-control" name="autorizados[]"  data-placeholder="Autorizados">
                   <option>No tiene autorizados</option>
-                  {% for au in autorizado %}
-                    <option value="{{ au.cedula }}">Nombre: {{ au.nombre }} - C.I: {{ au.cedula }}</option>
+                  {% for z in autorizado %}
+                    <option value="{{ z.id_autorizado }}">Nombre: {{ z.nombre }} - C.I: {{ z.cedula }}</option>
                   {% endfor %}
               </select>
           </div>

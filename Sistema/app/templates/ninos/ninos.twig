@@ -83,7 +83,7 @@
                           <td>{{ r.apellido }}</td>
                           <td>{{ r.fecha_nac }}</td>
                           <td>{{ r.sexo }}</td>
-                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_nino" onclick="edit_nino('{{ r.nombre }}','{{ r.apellido }}','{{ r.letra }}','{{ r.fecha_nac }}','{{ r.sexo }}')"><i class="fa fa-edit"></i></a></td>
+                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_nino" onclick="edit_nino('{{ r.nombre }}','{{ r.apellido }}','{{ r.id_nino }}','{{ r.fecha_nac }}','{{ r.sexo }}')"><i class="fa fa-edit"></i></a></td>
                           <td><a type="button" href="ninos/eliminar/{{ r.letra }}"><i class="fa fa-trash"></i></a></td>
                       </tr>
                   {% endfor %}
