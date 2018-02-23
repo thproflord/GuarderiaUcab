@@ -831,8 +831,7 @@ $app->post('/actividades/actguarcrear', function() use($app) {
   return $app->json($s->addactguar());   
 });
 
-
-/**
+/*
   * Acción vía ajax de Sintomas en api/sintomas/editar
   *
   * @return json

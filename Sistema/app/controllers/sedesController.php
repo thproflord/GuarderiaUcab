@@ -30,18 +30,20 @@ class sedesController extends Controllers implements IControllers {
 
         $s = new Model\Sedes($router);
         $p = new Model\Personal($router);
-
+        $l = new Model\Lugares($router);
         switch($this->method) {
           case 'crear':
-            echo $this->template->render('sedes/crear');
-          break;
-          case 'editar':
-            echo $this->template->render('sedes/editar');
+            echo $this->template->render('sedes/crear',array(
+              'personal' => $p->get()
+            ));
+          break;        
+           case 'eliminar':
+            $s->delete();
           default:
             echo $this->template->render('sedes/sedes', array(
             'sedes' => $s->get(),
             'personal' => $p->get(),
-            'lugar' => $s->getL()
+            'lugar' => $l->get()
           ));
           break;
         }

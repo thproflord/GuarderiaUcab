@@ -1,16 +1,11 @@
-function editar_sede(nombre,id_guarderia,lugar,id_enc,rif,telefono,costo){
-  alert(id_enc);
+function edit_sede(nombre,id_guarderia,lugar,id_enc,rif,telefono,costo){
   $('#nombre').val(nombre);
+  $('#guarderia').val(id_guarderia);
   $('#lugar').val(lugar);
+  $('#enc').val(id_enc);
   $('#rif').val(rif);
   $('#telefono').val(telefono);
   $('#costo').val(costo);
-  $('#guarderia').val(id_guarderia);
-  $('#enc').val(id_enc);
-}
-
-function prueba(){
-  alert("prueba");
 }
 
 /**

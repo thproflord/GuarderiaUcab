@@ -19,6 +19,12 @@
             <label>Cedula</label>
             <input type="text" class="form-control" placeholder="Cedula" name="cedula">
 
+           <label>Direccion</label>
+            <input type="textbox" class="form-control" placeholder="Calle/Av, Edif/Casa, Urbanización," name="direccion">
+
+           <label>Email</label>
+            <input type="text" class="form-control" placeholder="Email" name="email">
+
             <label>Teléfono de Casa</label>
             <input type="tel" class="form-control" placeholder="" name="tlf_casa" data-inputmask="'mask':['(999) 999-9999']" data-mask>
 
@@ -30,6 +36,25 @@
 
             <label>Profesion</label>
             <input type="text" class="form-control" placeholder="" name="profesion" >
+
+               <div class="form-group col-xs-12 col-sm-12 col-md-12">
+                <label>Estado Civil</label>
+                <input type="radio" id="id_soltero" name="edocivil" value="Soltero">
+                <label for="id_soltero">Soltero</label>
+                <input type="radio" id="id_casado" checked="true" name="edocivil" value="Casado">
+                <label for="id_casado">Casado</label>
+                <input type="radio" id="id_divorciado" checked="true" name="edocivil" value="Divorciado">
+                <label for="id_casado">Divorciado</label>  
+
+            </div>
+
+               <div class="form-group col-xs-12 col-sm-12 col-md-12">
+                <label>Vive con el nino</label>
+                <input type="radio" id="id_vivenino1" name="vivenino" value="Si">
+                <label for="id_vivenino1">Si</label>
+                <input type="radio" id="id_vivenino2" checked="true" name="vivenino" value="No">
+                <label for="id_vivenino2">No</label>
+            </div>
 
              <div class="form-group col-xs-12 col-sm-12 col-md-12">
                 <label>Principal</label>

@@ -81,11 +81,12 @@ class Sintomas extends Models implements IModels {
         global $http;
 
         # Controlar errores de entrada en el formulario
-        $this->errors(true);
+        $this->errors();
 
         # Actualizar elementos
-        $this->db->query("UPDATE sintomas_2 SET
-        descripcion='$this->descripcion';");
+        $this->db->query("UPDATE sintoma_2 SET
+        descripcion='$this->descripcion'
+        WHERE codigo='$this->codigo';");
 
         return array('success' => 1, 'message' => 'Editado con éxito.');
       } catch(ModelsException $e) {
@@ -102,9 +103,9 @@ class Sintomas extends Models implements IModels {
     final public function delete() {
       global $config;
       # Borrar el elemento de la base de datos
-      $this->db->delete('sintomas_2',"id_sintoma='$this->id'");
+      $this->db->query("DELETE FROM sintoma_2 WHERE codigo='$this->id' ;");
       # Redireccionar a la página principal del controlador
-      $this->functions->redir($config['site']['url'] . 'sintomas/&success=true');
+      $this->functions->redir($config['site']['url'] . 'sintomas/sintomas');
     }
 
     /**
@@ -117,12 +118,11 @@ class Sintomas extends Models implements IModels {
       * @return false|array: false si no hay datos.
       *                      array con los datos.
     */
-    final public function get(bool $multi = true, string $select = '*') {
+    final public function get(bool $multi = true) {
       if($multi) {
         return $this->db->query_select("SELECT * FROM sintoma_2;");
       }
-
-      return $this->db->query_select("SELECT * FROM sintoma_2 WHERE id_sintoma=$this->id;");
+      return $this->db->query_select("SELECT * FROM sintoma_2 WHERE codigo = $this->codigo;");
     }
 
 

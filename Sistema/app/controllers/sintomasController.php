@@ -38,7 +38,7 @@ class sintomasController extends Controllers implements IControllers {
             $s->edit();
           break;
           case 'eliminar':
-            $s->delete();
+            $s->delete($this->isset_id);
           break;
           default:
             echo $this->template->render('sintomas/sintomas',array(

@@ -72,6 +72,9 @@
                     <th>Teléfono Oficina</th>
                     <th>Teléfono Casa</th>
                     <th>Teléfono Celular</th>
+                    <th>Direccion</th>
+                    <th>Edo. Civil</th>
+                    <th>Vive con el nino</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
 
@@ -86,6 +89,9 @@
                           <td>{{ r.tel_ofic }}</td>
                           <td>{{ r.tel_casa }}</td>
                           <td>{{ r.tel_celular }}</td>
+                          <td>{{ r.direccion }}</td>
+                          <td>{{ r.email }}</td>
+                          <td>{{ r.vivenino }}</td>
                           <td><a type="button" data-toggle="modal" data-target="#modal_editar_representante" onclick="edit_representante('{{ r.nombre }}','{{ r.apellido }}','{{ r.cedula }}','{{ r.tel_ofic }}','{{ r.tel_casa }}','{{ r.tel_celular }}','{{ r.sexo }}','{{ r.direccion }}','{{ r.profesion }}')"><i class="fa fa-edit"></i></a></td>
                           <td><a type="button" href="representantes/eliminar/{{ r.cedula }}"><i class="fa fa-trash"></i></a></td>
                       </tr>

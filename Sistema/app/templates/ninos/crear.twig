@@ -10,54 +10,82 @@
           <form role="form" id="crear_nino_form">
           <!-- text input -->
           <div class="form-group">
-            <label>Nombre</label>
-            <input type="text" class="form-control" placeholder="Nombre" name="nombre">
 
-            <label>Apellido</label>
-            <input type="text" class="form-control" placeholder="Apellido" name="apellido">
-
-            <label>Fecha de nacimiento</label>
-            <input type="date" class="form-control" placeholder="Fecha de nacimiento" name="fecha_nac">
-
-            <label>Letra</label>
-            <input type="hidden" class="form-control" placeholder="Letra" name="letra" value="">
-
-            <div class="form-group">
-                <label>Sexo</label> <br>
-                <input type="radio" id="id_sexo_hombre" checked="true" name="sexo" value="M">
-                <label for="id_sexo_hombre">Hombre</label>
-                <input type="radio" id="id_sexo_mujer" name="sexo" value="F">
-                <label for="id_sexo_mujer">Mujer</label>
+            <div class="row">
+              <div class="col-lg-6">
+                <label>Nombre</label>
+                  <input type="text" class="form-control" placeholder="Nombre" name="nombre">
+                   <label>Fecha de nacimiento</label>
+                   <input type="date" class="form-control" placeholder="Fecha de nacimiento" name="fecha_nac">
+              </div>
+              <div class="col-lg-6">
+                <label>Apellido</label>
+                  <input type="text" class="form-control" placeholder="Apellido" name="apellido">
+                  <label style="margin-bottom: 10px;">Sexo</label> <br>
+                  <input type="radio" id="id_sexo_hombre" checked="true" name="sexo" value="M">
+                  <label for="id_sexo_hombre">Hombre</label>
+                  <input type="radio" id="id_sexo_mujer" name="sexo" value="F">
+                  <label for="id_sexo_mujer">Mujer</label>
+              </div>
             </div>
 
-            <label>Representante del niño (Principal)</label>
-            <select class="select2 form-control" name="cedula"  data-placeholder="Representantes">
-                    {% for c in representante %}
-                    <option value="{{ c.cedula }}">Nombre: {{ c.nombre }} - Cedula: {{ c.cedula }}</option>
-                    {% endfor %}
-            </select>
+            <input type="hidden" class="form-control" placeholder="Letra" name="letra" value="">
 
-            <label>Representante del niño (Opcional)</label>
-            <select class="select2 form-control" name="cedula2"  data-placeholder="Representantes">
-                    {% for c in representante %}
-                    <option value="{{ c.cedula }}">Nombre: {{ c.nombre }} - Cedula: {{ c.cedula }}</option>
-                    {% endfor %}
-            </select>
+            <div class="row">
+              <div class="col-lg-6">
+                <label>Representante (Principal)</label>
+                  <select class="select2 form-control" name="cedula"  data-placeholder="Representantes">
+                          {% for c in representante %}
+                          <option value="{{ c.cedula }}">Nombre: {{ c.nombre }} - C.I: {{ c.cedula }}</option>
+                          {% endfor %}
+                  </select>
 
-            <label>Enfermedades</label>
-            <select class="select2 form-control" name="enfermedades[]"  data-placeholder="Enfermedades" multiple="multiple">
-                    {% for e in enfermedades %}
-                    <option value="{{ e.id_enfermedad }}"> {{ e.descripcion }}</option>
-                    {% endfor %}
-            </select>
+                <label>Enfermedades</label>
+                  <select class="select2 form-control" name="enfermedades[]"  data-placeholder="Enfermedades" multiple="multiple">
+                          {% for e in enfermedades %}
+                          <option value="{{ e.id_enfermedad }}"> {{ e.descripcion }}</option>
+                          {% endfor %}
+                  </select>
 
-            <label>Juegos</label>
-            <select class="select2 form-control" name="juegos[]"  data-placeholder="Juegos" multiple="multiple">
-                    {% for j in juegos %}
-                    <option value="{{ j.id_juego }}"> {{ j.descripcion }}</option>
-                    {% endfor %}
-            </select>
+                <label>Alergias</label>
+                  <select class="select2 form-control" name="alergias[]"  data-placeholder="Alergias" multiple="multiple">
+                          {% for a in alergias %}
+                          <option value="{{ a.id_alergia }}"> {{ a.descripcion }}</option>
+                          {% endfor %}
+                  </select>
+              </div>
+              <div class="col-lg-6">
+                <label>Representante (Secundario)</label>
+                <select class="select2 form-control" name="cedula2"  data-placeholder="Representantes">
+                        <option value="0">No tiene autorizados</option>
+                        {% for c in representante %}
+                        <option value="{{ c.cedula }}">Nombre: {{ c.nombre }} - C.I: {{ c.cedula }}</option>
+                        {% endfor %}
+                </select>
 
+                <label>Medicamentos</label>
+                  <select class="select2 form-control" name="medicinas[]"  data-placeholder="Medicinas" multiple="multiple">
+                          {% for m in medicinas %}
+                          <option value="{{ m.id_medicina }}"> {{ m.descripcion }}</option>
+                          {% endfor %}
+                  </select>
+
+                  <label>Juegos</label>
+                  <select class="select2 form-control" name="juegos[]"  data-placeholder="Juegos" multiple="multiple">
+                          {% for j in juegos %}
+                          <option value="{{ j.id_juego }}"> {{ j.descripcion }}</option>
+                          {% endfor %}
+                  </select>
+              </div>
+            </div>
+            <label>Autorizado</label>
+
+              <select class="select2 form-control" name="autorizados"  data-placeholder="Autorizados">
+                  <option>No tiene autorizados</option>
+                  {% for au in autorizado %}
+                    <option value="{{ au.cedula }}">Nombre: {{ au.nombre }} - C.I: {{ au.cedula }}</option>
+                  {% endfor %}
+              </select>
           </div>
          </form>
         </div>

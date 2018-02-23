@@ -5,21 +5,20 @@
             <div class="modal-header">
               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span></button>
-              <h4 class="modal-title">Editar Sede</h4>
+              <h4 class="modal-title">Editar Guarderias</h4>
             </div>
             <div class="modal-body">
               <form role="form" id="editar_sede_form">
               <!-- text input -->
                 <div class="form-group">
                   <label>Nombre</label>
-                  <input type="text" class="form-control" placeholder="Nombre..." name="nombre" id="nombre">
-                  <input type="hidden" class="form-control" name="guarderia" id="guarderia" >
+                  <input type="text" class="form-control" placeholder="Nombre..." name="nombre" id="id_nombre">
                   <label>Rif</label>
-                  <input type="text" class="form-control" placeholder="RIF" name="rif" id="rif" >
+                  <input type="hidden" class="form-control" placeholder="RIF" name="rif" id="id_rif" >
                   <label>Telefono</label>
-                  <input type="text" class="form-control" placeholder="Telefono" name="telefono" id="telefono">
+                  <input type="text" class="form-control" placeholder="Telefono" name="telefono" id="id_telefono">
                   <label>Costo</label>
-                  <input type="text" class="form-control" placeholder="Costo" name="costo" id="costo">
+                  <input type="text" class="form-control" placeholder="Costo" name="costo" id="id_costo">
                   <label>Encargado</label>
                   <select class="form-control select2" name="encargado"  data-placeholder="">
                       <option disabled selected value></option>
@@ -39,7 +38,7 @@
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
-              <button type="button" id="editar_sede" class="btn btn-primary">editar sede</button>
+              <button type="button" id="editar_sede" class="btn btn-primary">Editar Sede</button>
             </div>
           </div>
           <!-- /.modal-content -->

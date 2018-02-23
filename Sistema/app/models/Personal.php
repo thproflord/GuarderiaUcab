@@ -194,8 +194,10 @@ class Personal extends Models implements IModels {
       *                      array con los datos.
       */
     final public function get(string $criterio="-" ,$select = '*') {
+
         return $this->db->query_select("SELECT p.*, g.nombre as 'guarderia' FROM personal_2 p, guarderia_2 g WHERE
           p.id_guarderia = g.id_guarderia;");
+
     /*Busqueda general
       if($criterio=="-"){
       return $this->db->query_select("SELECT * FROM empleados_4;");

@@ -30,6 +30,9 @@ class Representantes extends Models implements IModels {
     private $tlf_celular;
     private $profesion;
     private $sexo;
+    private $direccion;
+    private $email;
+    private $vivenino;
 
     /**
       * Controla los errores de entrada del formulario
@@ -48,6 +51,9 @@ class Representantes extends Models implements IModels {
       $this->tlf_celular = ($http->request->get('tlf_celular') != ' ') ? $http->request->get('tlf_celular') : null;
       $this->principal = $http->request->get('sexo');
       $this->profesion = $http->request->get('profesion');
+      $this->direccion = $http->request->get('direccion');
+      $this->email = $http->request->get('email'); 
+      $this->vivenino = $http->request->get('vivenino');
 
       if($this->functions->e($this->nombre)){
         throw new ModelsException('El campo nombre es obligatorio');
@@ -80,9 +86,9 @@ class Representantes extends Models implements IModels {
 
         # Insertar elementos
         $this->db->query("INSERT INTO padre_2
-        (nombre,apellido,cedula,tel_casa,tel_ofic,tel_celular,profesion,principal)
-        VALUES ('$this->nombre','$this->apellido','$this->cedula','$this->tlf_casa','$this->tlf_oficina',
-        '$this->tlf_celular','$this->profesion',$this->principal);");
+        (nombre,apellido,cedula,direccion,email,tel_casa,tel_ofic,tel_celular,profesion,principal,vivenino)
+        VALUES ('$this->nombre','$this->apellido','$this->cedula','$this->direccion','$this->email','$this->tlf_casa','$this->tlf_oficina',
+        '$this->tlf_celular','$this->profesion',$this->principal,'$this->vivenino');");
 
         return array('success' => 1, 'message' => 'Creado con éxito.');
       } catch(ModelsException $e) {
@@ -97,9 +103,10 @@ class Representantes extends Models implements IModels {
         $this->errors(true);
         # Actualizar elementos
         $this->db->query("UPDATE padre_2
-        SET nombre = '$this->nombre', apellido = '$this->apellido', tel_casa = '$this->tlf_casa',
+        SET nombre = '$this->nombre', apellido = '$this->apellido',direccion='$this->direccion', tel_casa = '$this->tlf_casa',
         tel_ofic = '$this->tlf_oficina', tel_celular = '$this->tlf_celular' ,
-        profesion = '$this->profesion', principal = $this->principal
+        profesion = '$this->profesion', principal = $this->principal,
+        direccion = '$this->direccion'
         WHERE cedula = '$this->cedula';");
 
         return array('success' => 1, 'message' => 'Editado con éxito.');

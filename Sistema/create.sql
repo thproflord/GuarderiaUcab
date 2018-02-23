@@ -1,10 +1,3 @@
-
---
--- Database: `guarderia`
---
-
--- --------------------------------------------------------
-
 --
 -- Table structure for table `actividad_2`
 --
@@ -17,10 +10,8 @@ CREATE TABLE `actividad_2` (
   `costo_trans` float UNSIGNED DEFAULT NULL,
   `edad_minima` int(11) UNSIGNED NOT NULL,
   `descripcion` varchar(26) NOT NULL,
-  `tipo` varchar(15) NOT NULL,
-  CONSTRAINT check_tipo CHECK (tipo in ('Arte', 'Matematica', 'Literatura', 'Deporte',' Manualidades'))
+  `tipo` varchar(20)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 
 -- --------------------------------------------------------
 
@@ -43,8 +34,8 @@ CREATE TABLE `alergia_2` (
 
 CREATE TABLE `asistencia_2` (
   `id_asistencia` int(11) UNSIGNED NOT NULL,
-  `id_padre` int(11) UNSIGNED NULL,
-  `id_autorizado` int(11) UNSIGNED NULL,
+  `id_padre` int(11) UNSIGNED DEFAULT NULL,
+  `id_autorizado` int(11) UNSIGNED DEFAULT NULL,
   `id_inscripcion` int(11) UNSIGNED NOT NULL,
   `hora_llegada` int(5) UNSIGNED NOT NULL,
   `hora_salida` int(5) UNSIGNED NOT NULL,
@@ -78,7 +69,6 @@ CREATE TABLE `comida_2` (
   `descripcion` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
 -- --------------------------------------------------------
 
 --
@@ -105,7 +95,6 @@ CREATE TABLE `enfermedad_2` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
-
 -- --------------------------------------------------------
 
 --
@@ -128,7 +117,7 @@ CREATE TABLE `factura_2` (
   `id_factura` int(11) UNSIGNED NOT NULL,
   `id_inscripcion` int(11) UNSIGNED NOT NULL,
   `semana` int(11) UNSIGNED NOT NULL,
-  `num_transferencia` BIGINT(11) UNSIGNED NOT NULL
+  `num_transferencia` bigint(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -147,7 +136,6 @@ CREATE TABLE `guarderia_2` (
   `costo` float UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
 -- --------------------------------------------------------
 
 --
@@ -163,6 +151,7 @@ CREATE TABLE `guarderia_actividad_2` (
   `cupomax` int(10) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
 -- --------------------------------------------------------
 
 --
@@ -177,6 +166,7 @@ CREATE TABLE `guarderia_horario_actividad_2` (
   `hora_fin` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
 -- --------------------------------------------------------
 
 --
@@ -188,6 +178,8 @@ CREATE TABLE `horario_2` (
   `dia` varchar(12) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
+
 -- --------------------------------------------------------
 
 --
@@ -198,8 +190,10 @@ CREATE TABLE `horario_guarderia_2` (
   `id_horario` int(11) UNSIGNED NOT NULL,
   `id_guarderia` int(11) UNSIGNED NOT NULL,
   `hora_inicio` int(11) UNSIGNED NOT NULL,
-  `hora_fin` int(11) UNSIGNED NOT NULL
+  `hora_fin` int(11) UNSIGNED NOT NULL,
+  `cant_inscritos` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 -- --------------------------------------------------------
 
@@ -244,6 +238,7 @@ CREATE TABLE `juego_2` (
   `descripcion` varchar(60) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
 -- --------------------------------------------------------
 
 --
@@ -284,8 +279,6 @@ CREATE TABLE `mensualidad_2` (
   `monto` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
-
-
 -- --------------------------------------------------------
 
 --
@@ -317,6 +310,7 @@ CREATE TABLE `nino_2` (
   `sexo` varchar(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
 -- --------------------------------------------------------
 
 --
@@ -327,6 +321,7 @@ CREATE TABLE `nino_alergia_2` (
   `id_nino` int(11) NOT NULL,
   `id_alergia` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 -- --------------------------------------------------------
 
@@ -362,6 +357,7 @@ CREATE TABLE `nino_juego_2` (
   `id_juego` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
 -- --------------------------------------------------------
 
 --
@@ -372,7 +368,7 @@ CREATE TABLE `nino_medicina_sintoma_2` (
   `id_sintoma` int(11) UNSIGNED NOT NULL,
   `id_medicina` int(11) UNSIGNED NOT NULL,
   `id_nino` int(11) NOT NULL,
-  `cantidad` VARCHAR(40) NOT NULL
+  `cantidad` varchar(40) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -385,6 +381,7 @@ CREATE TABLE `nino_pediatra_2` (
   `id_nino` int(11) NOT NULL,
   `id_pediatra` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 -- --------------------------------------------------------
 
@@ -427,7 +424,6 @@ CREATE TABLE `pago_insc_mens_2` (
   `numero_tarjeta` int(10) UNSIGNED DEFAULT NULL,
   `monto_debito` int(10) UNSIGNED DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
 
 -- --------------------------------------------------------
 
@@ -489,6 +485,17 @@ CREATE TABLE `personal_2` (
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `personal_capacidad_2`
+--
+
+CREATE TABLE `personal_capacidad_2` (
+  `id_personal` int(11) UNSIGNED NOT NULL,
+  `tipo` varchar(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `pers_capacitado_2`
 --
 
@@ -509,6 +516,7 @@ CREATE TABLE `plato_2` (
   `descripcion` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+
 -- --------------------------------------------------------
 
 --
@@ -519,6 +527,7 @@ CREATE TABLE `plato_comida_2` (
   `id_comida` int(11) NOT NULL,
   `id_plato` int(11) UNSIGNED NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
 
 -- --------------------------------------------------------
 
@@ -541,4 +550,4 @@ CREATE TABLE `sintoma_2` (
   `id_sintoma` int(11) UNSIGNED NOT NULL,
   `codigo` varchar(15) NOT NULL,
   `descripcion` varchar(40) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB DEFAULT CHARSET=latin1; 
