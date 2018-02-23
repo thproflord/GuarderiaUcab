@@ -154,6 +154,13 @@ class Personal extends Models implements IModels {
         nivel_estudio = '$this->estudio', sueldo = $this->sueldo
         WHERE id_personal = $this->codigo ");
 
+        $this->db->query("DELETE FROM personal_capacidad_2 WHERE id_personal = $this->codigo");
+        foreach ($this->actividad as $act ) {
+          $this->db->query("INSERT INTO personal_capacidad_2
+          (tipo,id_personal)
+          VALUES ('$act',$this->codigo);");
+        }
+
         return array('success' => 1, 'message' => 'Editado con éxito.');
       } catch(ModelsException $e) {
         return array('success' => 0, 'message' => $e->getMessage());
@@ -187,7 +194,8 @@ class Personal extends Models implements IModels {
       *                      array con los datos.
       */
     final public function get(string $criterio="-" ,$select = '*') {
-        return $this->db->query_select("SELECT * FROM personal_2;");
+        return $this->db->query_select("SELECT p.*, g.nombre as 'guarderia' FROM personal_2 p, guarderia_2 g WHERE
+          p.id_guarderia = g.id_guarderia;");
     /*Busqueda general
       if($criterio=="-"){
       return $this->db->query_select("SELECT * FROM empleados_4;");

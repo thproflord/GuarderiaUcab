@@ -1756,7 +1756,7 @@ ALTER TABLE `personal_2`
 -- Constraints for table `personal_capacidad_2`
 --
 ALTER TABLE `personal_capacidad_2`
-  ADD CONSTRAINT `personal_capacidad_2_ibfk_1` FOREIGN KEY (`id_personal`) REFERENCES `personal_2` (`id_personal`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `personal_capacidad_2_ibfk_1` FOREIGN KEY (`id_personal`) REFERENCES `personal_2` (`id_personal`) ON DELETE CASCADE ON UPDATE NO ACTION,
   ADD CONSTRAINT `check_tipo` CHECK (tipo in ('Matematica', 'Literatura', 'Arte', 'Deportiva', 'Manualidades'));
 --
 -- Constraints for table `pers_capacitado_2`

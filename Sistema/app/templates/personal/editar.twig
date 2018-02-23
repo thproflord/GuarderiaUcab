@@ -32,33 +32,66 @@
                 <label>Sueldo</label>
                 <input type="text" class="form-control" placeholder="" name="sueldo" id="sueldo">
               </div>
+              <div class="row">
+                  <!-- Nivel Estudio -->
+                  <div class="col-md-6">
+                  <label>Nivel de Estudio</label>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="tipo_empleado" id="tipo_empleado1" value="bachillerato" checked>
+                      Bachillerato
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="tipo_empleado" id="tipo_empleado2" value="TSU">
+                       TSU
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="tipo_empleado" id="tipo_empleado3" value="universitario">
+                      Universitario
+                    </label>
+                  </div>
+                  <div class="radio">
+                    <label>
+                      <input type="radio" name="tipo_empleado" id="tipo_empleado3" value="postgrado">
+                      Postgrado
+                    </label>
+                  </div>
+                </div>
 
-                <label>Nivel de Estudio</label>
-                <div class="radio" name="tipo_empleado" id="nivel">
-                  <label>
-                    <input type="radio" name="tipo_empleado" id="tipo_empleado1" value="bachillerato" checked>
-                    Bachillerato
-                  </label>
-                </div>
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="tipo_empleado" id="tipo_empleado2" value="TSU">
-                     TSU
-                  </label>
-                </div>
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="tipo_empleado" id="tipo_empleado3" value="universitario">
-                    Universitario
-                  </label>
-                </div>
-                <div class="radio">
-                  <label>
-                    <input type="radio" name="tipo_empleado" id="tipo_empleado3" value="postgrado">
-                    Postgrado
-                  </label>
-                </div>
+                <!--Actividades -->
+                <div class="col-md-6">
+                  <label>Actividades</label>
+                    <div class="form-check ">
+                      <input class="form-check-input" type="checkbox" name="actividad[]" value="Literatura">
+                      <label class="form-check-label" for="defaultCheck1">Literatura</label>
+                    </div>
 
+                    <div class="form-check ">
+                      <input class="form-check-input" type="checkbox" name="actividad[]" value="Arte">
+                      <label class="form-check-label" for="defaultCheck2">Arte</label>
+                    </div>
+
+                    <div class="form-check ">
+                      <input class="form-check-input" type="checkbox" name="actividad[]" value="Matematica">
+                      <label class="form-check-label" for="defaultCheck3">Matematica</label>
+                    </div>
+
+                    <div class="form-check ">
+                      <input class="form-check-input" type="checkbox" name="actividad[]" value="Deportiva">
+                      <label class="form-check-label" for="defaultCheck4">Deportiva</label>
+                    </div>
+
+                    <div class="form-check ">
+                      <input class="form-check-input" type="checkbox" name="actividad[]" value="Manualidades">
+                      <label class="form-check-label" for="defaultCheck4">Manualidades</label>
+                    </div>
+
+                </div>
+              </div>
             </form>
             </div>
             <div class="modal-footer">
