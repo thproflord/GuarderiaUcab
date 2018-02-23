@@ -1,31 +1,3 @@
--- phpMyAdmin SQL Dump
--- version 4.6.4
--- https://www.phpmyadmin.net/
---
--- Host: 127.0.0.1
--- Generation Time: Feb 22, 2018 at 03:22 AM
--- Server version: 5.7.14
--- PHP Version: 7.0.10
-
-SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET time_zone = "+00:00";
-
-
-/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
-/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
-/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
-/*!40101 SET NAMES utf8mb4 */;
-
---
--- Database: `guarderia`
---
-
--- --------------------------------------------------------
-
---
--- Table structure for table `actividad_2`
---
-
 CREATE TABLE `actividad_2` (
   `id_actividad` int(11) UNSIGNED NOT NULL,
   `codigo` varchar(11) NOT NULL,
@@ -1067,6 +1039,7 @@ INSERT INTO `personal_2` (`id_personal`, `id_guarderia`, `cedula`, `nombre`, `ap
 --
 
 CREATE TABLE `personal_capacidad_2` (
+  `id_perca` int(11),
   `id_personal` int(11) UNSIGNED NOT NULL,
   `tipo` varchar(20) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -1456,7 +1429,7 @@ ALTER TABLE `personal_2`
 -- Indexes for table `personal_capacidad_2`
 --
 ALTER TABLE `personal_capacidad_2`
-  ADD PRIMARY KEY `id_personal` (`id_personal`);
+  ADD PRIMARY KEY `id_personal` (`id_perca`);
 
 --
 -- Indexes for table `pers_capacitado_2`
@@ -1613,6 +1586,8 @@ ALTER TABLE `personal_2`
 ALTER TABLE `sintoma_2`
   MODIFY `id_sintoma` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
+ALTER TABLE `personal_capacidad_2`
+  MODIFY `id_perca` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 -- Constraints for dumped tables
 --
 
@@ -1803,7 +1778,3 @@ ALTER TABLE `plato_comida_2`
 ALTER TABLE `plato_menu_2`
   ADD CONSTRAINT `plato_menu_2_ibfk_1` FOREIGN KEY (`id_plato`) REFERENCES `plato_2` (`id_plato`),
   ADD CONSTRAINT `plato_menu_2_ibfk_2` FOREIGN KEY (`id_menu`) REFERENCES `menu_2` (`id_menu`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
