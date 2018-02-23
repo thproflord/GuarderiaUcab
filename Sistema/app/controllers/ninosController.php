@@ -33,7 +33,7 @@ class ninosController extends Controllers implements IControllers {
       $e = new Model\Enfermedades();
       $a = new Model\Alergias();
       $m = new Model\Medicinas();
-      $au = new Model\Autorizados();
+      $z = new Model\Autorizados();
       switch ($this->method) {
         case 'eliminar':
           $r->delete($this->isset_id);
@@ -45,7 +45,7 @@ class ninosController extends Controllers implements IControllers {
           'enfermedades' => $e->get(),
           'alergias' => $a->get(),
           'medicinas' => $m->get(),
-          'autorizado' => $au->get(),
+          'autorizado' => $z->get(),
           'representante' => $c->get()
           ));
           break;

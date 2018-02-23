@@ -19,6 +19,43 @@
                 <input type="tel" class="form-control" placeholder="Fecha de Nacimiento" name="fecha_nac" id="id_fechanac">
                 <label>Sexo</label>
                 <input type="tel" class="form-control" placeholder="Sexo" name="sexo" id="id_sexo">
+                <label>Enfermedades</label>
+                  <select class="select2 form-control" name="enfermedades[]"  data-placeholder="Enfermedades" multiple="multiple">
+                          {% for e in enfermedades %}
+                          <option value="{{ e.id_enfermedad }}"> {{ e.descripcion }}</option>
+                          {% endfor %}
+                </select>
+
+                <label>Alergias</label>
+                  <select class="select2 form-control" name="alergias[]"  data-placeholder="Alergias" multiple="multiple">
+                          {% for a in alergias %}
+                          <option value="{{ a.id_alergia }}"> {{ a.descripcion }}</option>
+                          {% endfor %}
+                  </select>
+
+                <label>Medicamentos</label>
+                  <select class="select2 form-control" name="medicinas[]"  data-placeholder="Medicinas" multiple="multiple">
+                          {% for m in medicinas %}
+                          <option value="{{ m.id_medicina }}"> {{ m.descripcion }}</option>
+                          {% endfor %}
+                </select>
+
+                <label>Juegos</label>
+                <select class="select2 form-control" name="juegos[]"  data-placeholder="Juegos" multiple="multiple">
+                          {% for j in juegos %}
+                          <option value="{{ j.id_juego }}"> {{ j.descripcion }}</option>
+                          {% endfor %}
+                </select>
+
+                <label>Autorizado</label>
+                <select class="select2 form-control" name="autorizados[]"  data-placeholder="Autorizados">
+                  <option>No tiene autorizados</option>
+                  {% for z in autorizado %}
+                    <option value="{{ z.id_autorizado }}">Nombre: {{ z.nombre }} - C.I: {{ z.cedula }}</option>
+                  {% endfor %}
+                </select>
+
+
           </div>
        
         </form>

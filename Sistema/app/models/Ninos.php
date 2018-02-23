@@ -51,7 +51,7 @@ class Ninos extends Models implements IModels {
       $this->juegos = $http->request->get('juegos');
       $this->medicinas = $http->request->get('medicinas');
       $this->alergias = $http->request->get('alergias');
-      $this->autorizados = $http->request->get('autorizados');
+      $this->autorizado = $http->request->get('autorizados');
 
       if($this->functions->e($this->nombre)){
         throw new ModelsException('El campo nombre es obligatorio');
@@ -79,12 +79,12 @@ class Ninos extends Models implements IModels {
      * 
      * @return void
      */
-    final private function insertNewEnfermedades(int $id) {
+    final private function insertNewEnfermedades($id) {
       # Si hay proveedores
       if(null != $this->enfermedades) {
         # Insertar de nuevo esas relaciones
         $enfermedad = $this->db->prepare("INSERT INTO nino_enfermedad_2 (id_nino,id_enfermedad,fechacontagio)
-        VALUES ('$id',?,'hola');");
+        VALUES ('$id',?,'23/02/2017');");
         foreach($this->enfermedades as $id_enfermedad){
           $enfermedad->execute(array($id_enfermedad));
         }
@@ -99,7 +99,7 @@ class Ninos extends Models implements IModels {
      * 
      * @return void
      */
-    final private function insertNewJuegos(int $id) {
+    final private function insertNewJuegos($id) {
       # Si hay juegos
       if(null != $this->juegos) {
         
@@ -119,7 +119,7 @@ class Ninos extends Models implements IModels {
      * 
      * @return void
      */
-    final private function insertNewAlergias(int $id) {
+    final private function insertNewAlergias($id) {
       # Si hay alergias
       if(null != $this->alergias) {
         
@@ -139,12 +139,18 @@ class Ninos extends Models implements IModels {
      * 
      * @return void
      */
-    final private function insertNewAutorizado(int $id) {
-        if (!$this->functions->emp($this->autorizados)){
-        $this->db->query("INSERT INTO nino_autorizado_2
-        (id_nino,id_autorizado)
-        VALUES ('$id','$this->autorizados');");
+    final private function insertNewAutorizado($id) {
+      # Si hay alergias
+      if(null != $this->autorizado) {
+        
+        # Insertar de nuevo esas relaciones
+        $autorizado = $this->db->prepare("INSERT INTO nino_autorizado_2 (id_nino,id_autorizado)
+        VALUES ('$id',?);");
+        foreach($this->autorizado as $id_autorizado){
+          $autorizado->execute(array($id_autorizado));
         }
+       $autorizado->closeCursor();
+      } 
     }
 
             /**
@@ -153,7 +159,7 @@ class Ninos extends Models implements IModels {
      * 
      * @return void
      */
-    final private function insertNewMedicamentos(int $ids, int $id) {
+    final private function insertNewMedicamentos($ids, $id) {
       # Si hay proveedores
       if(null != $this->medicinas) {
         
@@ -215,65 +221,6 @@ class Ninos extends Models implements IModels {
     }
 
 
-       /**
-     * Inserta Enfermedades elegidos en el formulario para el Nino.
-     * 
-     * 
-     * @return void
-     */
-    final private function updateNewEnfermedades(int $id) {
-      # Si hay proveedores
-      if(null != $this->enfermedades) {
-        # Insertar de nuevo esas relaciones
-        $enfermedad = $this->db->prepare("UPDATE INTO nino_enfermedad_2 (id_nino,id_enfermedad,fechacontagio)
-        VALUES ('$id',?,'hola');");
-        foreach($this->enfermedades as $id_enfermedad){
-          $enfermedad->execute(array($id_enfermedad));
-        }
-       $enfermedad->closeCursor();
-      } 
-    }
-
-
-    /**
-     * Inserta Juegos elegidos en el formulario para el Nino.
-     * 
-     * 
-     * @return void
-     */
-    final private function updateNewJuegos(int $id) {
-      # Si hay proveedores
-      if(null != $this->juegos) {
-        
-        # Insertar de nuevo esas relaciones
-        $juegos = $this->db->prepare("UPDATE INTO nino_juego_2 (id_nino,id_juego)
-        VALUES ('$id',?);");
-        foreach($this->juegos as $id_juego){
-          $juegos->execute(array($id_juego));
-        }
-       $juegos->closeCursor();
-      } 
-    }
-
-        /**
-     * Inserta Alergias elegidos en el formulario para el Nino.
-     * 
-     * 
-     * @return void
-     */
-    final private function updateAlergias(int $id) {
-      $alergia = $this->db->prepare(
-        "UPDATE nino_alergia_2
-        SET id_sintoma='$ids', id_nino='$id', cantidad=2
-        WHERE id_alergia=?;");
-      
-      for ($i=0;$i< count($this->medicinas); $i++){
-        $medicamento->execute(array($this->medicamento[$i]));        
-      }
-      $medicamento->closeCursor(); 
-    }
-
-
     final public function edit() : array {
       try {
         global $http;
@@ -281,22 +228,25 @@ class Ninos extends Models implements IModels {
         # Controlar errores de entrada en el formulario
         $this->errors(true);
 
-        $this->setId($http->request->get('id_nino'));
+        $id=$http->request->get('codigo');
 
         $codigo = $http->request->get('codigo');
         # Actualizar elementos
-        $this->db->query("UPDATE Nino_2
+        $this->db->query("UPDATE nino_2
         SET nombre  =  '$this->nombre', apellido = '$this->apellido', fecha_nac  =  '$this->fecha_nac', sexo = '$this->sexo'
-        WHERE codigo_nino='$codigo'");        
+        WHERE letra='$codigo'");      
 
         # Enfermedades de este niño
-        $this->updateNewEnfermedades($id_nino);
+        $this->insertNewEnfermedades($id);
+
+        # Autorizados del niño
+        $this->insertNewAutorizado($id);
 
         # Juegos del niño
-        $this->updateNewJuegos($id_nino);
+        $this->insertNewJuegos($id);
 
         # Alergias del niño
-        $this->updateNewAlergias($id_nino);
+        $this->insertNewAlergias($id);
 
         return array('success' => 1, 'message' => 'Editado con éxito.');
       } catch(ModelsException $e) {
