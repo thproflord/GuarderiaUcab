@@ -57,6 +57,7 @@
               <div class="col-lg-6">
                 <label>Representante (Secundario)</label>
                 <select class="select2 form-control" name="cedula2"  data-placeholder="Representantes">
+                        <option value="0">No tiene autorizados</option>
                         {% for c in representante %}
                         <option value="{{ c.cedula }}">Nombre: {{ c.nombre }} - C.I: {{ c.cedula }}</option>
                         {% endfor %}
@@ -78,7 +79,9 @@
               </div>
             </div>
             <label>Autorizado</label>
-              <select class="select2 form-control" name="autorizado"  data-placeholder="Autorizado">
+
+              <select class="select2 form-control" name="autorizados"  data-placeholder="Autorizados">
+                  <option>No tiene autorizados</option>
                   {% for au in autorizado %}
                     <option value="{{ au.cedula }}">Nombre: {{ au.nombre }} - C.I: {{ au.cedula }}</option>
                   {% endfor %}
