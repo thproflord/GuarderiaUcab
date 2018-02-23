@@ -807,9 +807,9 @@ $app->post('/pediatras/editar', function() use($app) {
   * @return json
 */
 $app->post('/sintomas/crear', function() use($app) {
-  $s = new Model\Sintomas; 
+  $s = new Model\Sintomas;
 
-  return $app->json($s->add());   
+  return $app->json($s->add());
 });
 
 
@@ -819,31 +819,25 @@ $app->post('/sintomas/crear', function() use($app) {
   * @return json
 */
 $app->post('/sintomas/editar', function() use($app) {
-  $s = new Model\Sintomas; 
+  $s = new Model\Sintomas;
 
-  return $app->json($s->edit());   
+  return $app->json($s->edit());
 });
 
+// Actividades Guarderias
+$app->post('/actividades/actguarcrear', function() use($app) {
+  $s = new Model\Actividades;
 
-/**
-  * Acción vía ajax de Ninoautorizado en api/ninoautorizado/crear
+  return $app->json($s->addactguar());   
+});
+
+/*
+  * Acción vía ajax de Sintomas en api/sintomas/editar
   *
   * @return json
 */
-$app->post('/ninoautorizado/crear', function() use($app) {
-  $n = new Model\Ninoautorizado; 
+$app->post('/actividades/actguareditar', function() use($app) {
+  $s = new Model\Actividades;
 
-  return $app->json($n->add());   
-});
-
-
-/**
-  * Acción vía ajax de Ninoautorizado en api/ninoautorizado/editar
-  *
-  * @return json
-*/
-$app->post('/ninoautorizado/editar', function() use($app) {
-  $n = new Model\Ninoautorizado; 
-
-  return $app->json($n->edit());   
+  return $app->json($s->editactguar());
 });

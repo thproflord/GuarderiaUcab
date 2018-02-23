@@ -76,9 +76,9 @@
                   {% for s in sedes %}
                       <tr>
                           <td>{{ s.nombre }} </td>
-                          <td>{{ s.lnombre }}</td>
-                          <td>{{ s.pnombre }} {{ s.apellido }}</td>
-                          <td>V.{{ s.rif }}</td>
+                          <td>{{ s.lugar }}</td>
+                          <td>{{ s.empleado }} {{ s.apellido }}</td>
+                          <td>{{ s.rif }}</td>
                           <td>{{ s.telefonos }}</td>
                           <td>{{ s.costo|number_format(2,',','.')}} BsF</td>
 

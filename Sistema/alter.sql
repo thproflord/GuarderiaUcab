@@ -1,10 +1,3 @@
---
--- Indexes for dumped tables
---
-
---
--- Indexes for table `actividad_2`
---
 ALTER TABLE `actividad_2`
   ADD PRIMARY KEY (`id_actividad`),
   ADD UNIQUE KEY `codigo` (`codigo`);
@@ -80,9 +73,9 @@ ALTER TABLE `guarderia_2`
 --
 ALTER TABLE `guarderia_actividad_2`
   ADD PRIMARY KEY (`id_ga`),
-  ADD  KEY `id_guarderia` (`id_guarderia`),
-  ADD  KEY `id_actividad` (`id_actividad`),
-  ADD  KEY `id_personal` (`id_personal`);
+  ADD KEY `id_guarderia` (`id_guarderia`),
+  ADD KEY `id_actividad` (`id_actividad`),
+  ADD KEY `id_personal` (`id_personal`);
 
 --
 -- Indexes for table `guarderia_horario_actividad_2`
@@ -102,8 +95,6 @@ ALTER TABLE `horario_2`
 -- Indexes for table `horario_guarderia_2`
 --
 ALTER TABLE `horario_guarderia_2`
-  ADD UNIQUE KEY `horainicio` (`horainicio`),
-  ADD UNIQUE KEY `horafin` (`horafin`),
   ADD KEY `id_horario` (`id_horario`),
   ADD KEY `id_guarderia` (`id_guarderia`);
 
@@ -226,8 +217,8 @@ ALTER TABLE `pago_insc_mens_2`
 --
 ALTER TABLE `pago_multa_2`
   ADD PRIMARY KEY (`id_pago`),
-  ADD KEY (`id_asistencia`),
-  ADD UNIQUE KEY `num_transferencia` (`num_transferencia`);
+  ADD UNIQUE KEY `num_transferencia` (`num_transferencia`),
+  ADD KEY `id_asistencia` (`id_asistencia`);
 
 --
 -- Indexes for table `parentesco_2`
@@ -249,6 +240,12 @@ ALTER TABLE `pediatra_2`
 ALTER TABLE `personal_2`
   ADD PRIMARY KEY (`id_personal`),
   ADD KEY `id_guarderia` (`id_guarderia`);
+
+--
+-- Indexes for table `personal_capacidad_2`
+--
+ALTER TABLE `personal_capacidad_2`
+  ADD PRIMARY KEY `id_personal` (`id_personal`);
 
 --
 -- Indexes for table `pers_capacitado_2`
@@ -303,7 +300,7 @@ ALTER TABLE `alergia_2`
 -- AUTO_INCREMENT for table `asistencia_2`
 --
 ALTER TABLE `asistencia_2`
-  MODIFY `id_asistencia` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_asistencia` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
 --
 -- AUTO_INCREMENT for table `autorizado_2`
 --
@@ -323,12 +320,12 @@ ALTER TABLE `enfermedad_2`
 -- AUTO_INCREMENT for table `exp_laboral_2`
 --
 ALTER TABLE `exp_laboral_2`
-  MODIFY `id_explaboral` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_explaboral` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `factura_2`
 --
 ALTER TABLE `factura_2`
-  MODIFY `id_factura` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_factura` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `guarderia_2`
 --
@@ -338,7 +335,7 @@ ALTER TABLE `guarderia_2`
 -- AUTO_INCREMENT for table `guarderia_actividad_2`
 --
 ALTER TABLE `guarderia_actividad_2`
-  MODIFY `id_ga` int(11) UNSIGNED NOT NULL AUTO_INCREMENT;
+  MODIFY `id_ga` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT for table `horario_2`
 --
@@ -403,7 +400,7 @@ ALTER TABLE `personal_2`
 -- AUTO_INCREMENT for table `sintoma_2`
 --
 ALTER TABLE `sintoma_2`
-  MODIFY `id_sintoma` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id_sintoma` int(11) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- Constraints for dumped tables
 --
@@ -439,7 +436,8 @@ ALTER TABLE `factura_2`
 --
 ALTER TABLE `guarderia_2`
   ADD CONSTRAINT `guarderia_2_ibfk_1` FOREIGN KEY (`id_lugar`) REFERENCES `lugar_2` (`id_lugar`),
-  ADD CONSTRAINT `guarderia_2_ibfk_2` FOREIGN KEY (`id_enc`) REFERENCES `personal_2` (`id_personal`);
+  ADD CONSTRAINT `guarderia_2_ibfk_2` FOREIGN KEY (`id_enc`) REFERENCES `personal_2` (`id_personal`),
+  ADD CONSTRAINT `check_tipo` CHECK (tipo in ('Matematica', 'Literatura', 'Arte', 'Deportiva', 'Manualidades'));
 
 --
 -- Constraints for table `guarderia_actividad_2`
@@ -467,7 +465,8 @@ ALTER TABLE `horario_guarderia_2`
 --
 ALTER TABLE `horario_inscrip_2`
   ADD CONSTRAINT `horario_inscrip_2_ibfk_1` FOREIGN KEY (`id_inscripcion`) REFERENCES `inscripcion_2` (`id_inscripcion`),
-  ADD CONSTRAINT `horario_inscrip_2_ibfk_2` FOREIGN KEY (`id_gha`) REFERENCES `guarderia_horario_actividad_2` (`id_gha`),
+  ADD CONSTRAINT `horario_inscrip_2_ibfk_2` FOREIGN KEY (`id_gha`) REFERENCES `guarderia_horario_actividad_2` (`id_gha`);
+
 --
 -- Constraints for table `inscripcion_2`
 --
@@ -542,17 +541,17 @@ ALTER TABLE `nino_pediatra_2`
   ADD CONSTRAINT `nino_pediatra_2_ibfk_1` FOREIGN KEY (`id_nino`) REFERENCES `nino_2` (`id_nino`);
 
 --
--- Constraints for table `pago_multa_2`
---
-ALTER TABLE `pago_insc_mens_2`
-  ADD CONSTRAINT `pago_multa_2_ibfk_1` FOREIGN KEY (`id_asistencia`) REFERENCES `asistencia_2` (`id_asistencia`),
-
---
 -- Constraints for table `pago_insc_mens_2`
 --
 ALTER TABLE `pago_insc_mens_2`
   ADD CONSTRAINT `pago_insc_mens_2_ibfk_1` FOREIGN KEY (`id_inscripcion`) REFERENCES `inscripcion_2` (`id_inscripcion`),
   ADD CONSTRAINT `pago_insc_mens_2_ibfk_2` FOREIGN KEY (`id_mensualidad`) REFERENCES `mensualidad_2` (`id_mensualidad`);
+
+--
+-- Constraints for table `pago_multa_2`
+--
+ALTER TABLE `pago_multa_2`
+  ADD CONSTRAINT `pago_multa_2_ibfk_1` FOREIGN KEY (`id_asistencia`) REFERENCES `asistencia_2` (`id_asistencia`);
 
 --
 -- Constraints for table `parentesco_2`
@@ -567,6 +566,12 @@ ALTER TABLE `parentesco_2`
 ALTER TABLE `personal_2`
   ADD CONSTRAINT `personal_2_ibfk_1` FOREIGN KEY (`id_guarderia`) REFERENCES `guarderia_2` (`id_guarderia`);
 
+--
+-- Constraints for table `personal_capacidad_2`
+--
+ALTER TABLE `personal_capacidad_2`
+  ADD CONSTRAINT `personal_capacidad_2_ibfk_1` FOREIGN KEY (`id_personal`) REFERENCES `personal_2` (`id_personal`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `check_tipo` CHECK (tipo in ('Matematica', 'Literatura', 'Arte', 'Deportiva', 'Manualidades'));
 --
 -- Constraints for table `pers_capacitado_2`
 --
@@ -587,8 +592,3 @@ ALTER TABLE `plato_comida_2`
 ALTER TABLE `plato_menu_2`
   ADD CONSTRAINT `plato_menu_2_ibfk_1` FOREIGN KEY (`id_plato`) REFERENCES `plato_2` (`id_plato`),
   ADD CONSTRAINT `plato_menu_2_ibfk_2` FOREIGN KEY (`id_menu`) REFERENCES `menu_2` (`id_menu`);
-
-/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
-/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
-/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
-

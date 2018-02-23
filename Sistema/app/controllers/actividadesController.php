@@ -26,9 +26,11 @@ class actividadesController extends Controllers implements IControllers {
 
     public function __construct(IRouter $router) {
       parent::__construct($router);
-      
+
       global $config;
       $r = new Model\Actividades($router);
+      $g = new Model\Sedes($router);
+      $p = new Model\Personal($router);
       switch ($this->method) {
         case 'crear':
           echo $this->template->render('actividades/crear');
@@ -37,7 +39,18 @@ class actividadesController extends Controllers implements IControllers {
           $r->editar();
         break;
         case 'eliminar':
-          # code...
+          $r->delete($this->isset_id);
+        break;
+        case 'ActGuarderia':
+          echo $this->template->render('actividades/ActGuarderia',array(
+            'actguar' => $r->getguar(),
+            'actividad' => $r->get(),
+            'guarderia' => $g->get(),
+            'personal' => $p->get()
+          ));
+        break;
+        case 'editaractguar':
+          echo $this->template->render('actividades/actguareditar');
         break;
         default:
 

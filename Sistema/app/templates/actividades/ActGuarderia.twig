@@ -24,13 +24,13 @@
     <!-- Content Header (Page header) -->
     <section class="content-header">
       <h1>
-        Actividades
+        Actividades en Guarderias
         <small>Guarderia</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
-        <li><a href="#">Actividades</a></li>
-        <li class="active">Listado de Actividades</li>
+        <li><a href="actividades/">Actividades</a></li>
+        <li class="active">Consulta de Actividades</li>
       </ol>
     </section>
 
@@ -48,32 +48,30 @@
                 <table id="example2" class="table table-bordered table-hover">
                   <thead>
                   <tr>
-                    <th>codigo</th>
-                    <th>nombre</th>
-                    <th width="10%">transporte</th>
-                    <th width="10%">costo_trans</th>
-                    <th width="10%">edad_minima</th>
-                    <th>descripcion</th>
+                    <th>Guarderia</th>
+                    <th>Actividad</th>
+                    <th width="10%">Personal</th>
+                    <th width="10%">Cupo Minimo</th>
+                    <th width="10%">Cupo Maximo</th>
                     <th>Editar</th>
                     <th>Eliminar</th>
 
                   </thead>
                   <tbody>
-                  {% for r in actividades %}
+                  {% for r in actguar %}
                       <tr>
-                          <td>{{ r.codigo }}</td>
-                          <td>{{ r.nombre }}</td>
-                          <td>{{ r.transporte }}</td>
-                          <td>{{ r.costo_trans }}</td>
-                          <td>{{ r.edad_minima }}</td>
-                          <td>{{ r.descripcion }}</td>
-                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_actividades" onclick="edit_actividades('{{ r.codigo }}','{{ r.nombre }}','{{ r.transporte }}','{{ r.costo_trans }}','{{ r.edad_minima }}','{{ r.descripcion }}')"><i class="fa fa-edit"></i></a></td>
-                          <td><a type="button" href="actividades/eliminar/{{ r.codigo }}"><i class="fa fa-trash"></i></a></td>
+                          <td>{{ r.guarderia }}</td>
+                          <td>{{ r.actividad }}</td>
+                          <td>{{ r.personal }}</td>
+                          <td>{{ r.cupomin }}</td>
+                          <td>{{ r.cupomax }}</td>
+                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_actividades" onclick="edit_actividades('{{ r.id_guarderia }}','{{ r.id_actividad }}','{{ r.id_personal }}','{{ r.cupomin }}','{{ r.cupomax }}')"><i class="fa fa-edit"></i></a></td>
+                          <td><a type="button" href="actividades/eliminar/{{ r.id_ga }}"><i class="fa fa-trash"></i></a></td>
                       </tr>
                   {% endfor %}
                   </tbody>
                 </table>
-                <button type="button" class="btn btn-block btn-primary btn-flat" data-toggle="modal" data-target="#modal_crear_actividades"><i class="fa fa-plus-circle"></i> CREAR NUEVO ACTIVIDADES</button>
+                <button type="button" class="btn btn-block btn-primary btn-flat" data-toggle="modal" data-target="#modal_crear_activiguar"><i class="fa fa-plus-circle"></i> CREAR NUEVO ACTIVIDADES</button>
               </div>
             </div>
             <!-- /.box-body -->
@@ -84,8 +82,8 @@
       </div>
       <!-- /.row -->
       {# Creación de producto #}
-      {% include 'actividades/crear' %}
-      {% include 'actividades/editar' %}
+      {% include 'actividades/actguarcrear' %}
+      {% include 'actividades/actguareditar' %}
       {#% include 'colegios/eliminar' %#}
     </section>
     <!-- /.content -->
@@ -95,7 +93,7 @@
 
 {% block appFooter %}
 <script src="views/app/js/actividades/crear.js"></script>
-<script src="views/app/js/actividades/editar.js"></script>
+<script src="views/app/js/actividades/editaractguar.js"></script>
 <!-- DataTables -->
 <script src="views/theme/bower_components/datatables.net/js/jquery.dataTables.min.js"></script>
 <script src="views/theme/bower_components/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>

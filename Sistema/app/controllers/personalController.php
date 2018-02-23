@@ -27,9 +27,12 @@ class personalController extends Controllers implements IControllers {
     public function __construct(IRouter $router) {
         parent::__construct($router);
         global $config;
+        global $http;
 
         $p = new Model\Personal($router);
         $g = new Model\Sedes($router);
+
+
         switch($this->method) {
           case 'crear':
             echo $this->template->render('personal/crear');

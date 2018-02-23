@@ -108,7 +108,7 @@ class Sedes extends Models implements IModels {
         $this->db->query("UPDATE guarderia_2
         SET nombre = '$this->nombre', id_lugar = $this->lugar, id_enc =$this->encargado,
         telefonos = '$this->telefono', costo = $this->costo
-        WHERE rif = '$this->rif'");
+        WHERE id_guarderia = $codigo");
 
         return array('success' => 1, 'message' => 'Editado con éxito.');
       } catch(ModelsException $e) {
@@ -140,14 +140,13 @@ class Sedes extends Models implements IModels {
       * @return false|array: false si no hay datos.
       *                      array con los datos.
       */
-    final public function get(){
-      
-      return $this->db->query_select("SELECT g2.*, p2.nombre as pnombre, p2.apellidos as apellido, l2.nombre AS lnombre
-      FROM guarderia_2 g2
-      LEFT JOIN personal_2 p2 ON g2.id_enc = p2.id_personal
-      INNER JOIN lugar_2 l2 ON g2.id_lugar=l2.id_lugar;");
-     }
-  
+    final public function get(string $criterio="-" ,$select = '*'){
+
+      return $this->db->query_select("SELECT g.nombre,g.id_guarderia, g.rif, g.telefonos,g.costo,e.nombre as 'empleado',e.apellidos as 'apellido',
+         e.id_personal, l.id_lugar, l.nombre as 'lugar' FROM guarderia_2 g,personal_2 e, lugar_2 l
+         where g.id_enc = e.id_personal and g.id_lugar = l.id_lugar ;");
+
+    }
 
     /**
       * Obtiene elementos de la tabla "Sedes"

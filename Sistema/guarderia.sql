@@ -33,7 +33,8 @@ CREATE TABLE `actividad_2` (
   `transporte` tinyint(2) UNSIGNED NOT NULL,
   `costo_trans` float UNSIGNED DEFAULT NULL,
   `edad_minima` int(11) UNSIGNED NOT NULL,
-  `descripcion` varchar(26) NOT NULL
+  `descripcion` varchar(26) NOT NULL,
+  `tipo` varchar(20)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -698,31 +699,31 @@ CREATE TABLE `nino_2` (
 --
 
 INSERT INTO `nino_2` (`id_nino`, `id_padre`, `letra`, `nombre`, `apellido`, `fecha_nac`, `sexo`) VALUES
-(1, 1234567891, 'A', 'Alexander', 'Martinez', '02/02/2002', 'M'),
-(2, 1234567891, 'B', 'Brayan', 'Martinez', '02/02/2004', 'M'),
-(3, 1234567892, 'A', 'Carlos', 'Martinez', '02/03/2004', 'M'),
-(4, 1234567895, 'A', 'Fatima', 'Medina', '27/11/2003', 'F'),
-(5, 1234567895, 'B', 'Fabiana', 'Medina', '13/12/2003', 'F'),
-(6, 1234567885, 'A', 'Luis', 'Neira', '02/02/2002', 'M'),
-(7, 1234567887, 'A', 'Pedro', 'Alvarez', '02/02/2004', 'M'),
-(8, 1234567893, 'A', 'Karliedis', 'Morales', '02/03/2004', 'F'),
-(9, 1234567883, 'A', 'Fanny', 'Gomez', '27/09/2003', 'F'),
-(10, 1234567882, 'A', 'Alexandra', 'Medina', '13/12/2003', 'F'),
-(11, 1234567896, 'A', 'Saccha', 'Ilarraza', '01/02/2002', 'F'),
-(12, 1234567891, 'C', 'Brayan', 'Martinez', '02/02/2004', 'M'),
-(13, 1234567891, 'D', 'Carlos', 'Martinez', '05/03/2004', 'M'),
-(14, 1234567895, 'C', 'Fatima', 'Medina', '23/06/2004', 'F'),
-(15, 1234567895, 'D', 'Fabiana', 'Medina', '19/10/2005', 'F'),
-(16, 1234567883, 'B', 'Luis', 'Gomez', '02/02/2002', 'M'),
-(17, 1234567881, 'A', 'Pedro', 'De Azevedo', '02/02/2004', 'M'),
-(18, 1234567897, 'A', 'Karliedis', 'Goncalves', '09/03/2004', 'F'),
-(19, 1234567898, 'A', 'Monica', 'Medina', '27/09/2004', 'F'),
-(20, 1234567898, 'B', 'Alexandra', 'Medina', '13/12/2003', 'F'),
-(21, 1234567892, 'B', 'Saccha', 'Martinez', '01/02/2002', 'F'),
-(22, 1234567893, 'A', 'Eduardo', 'Morales', '08/02/2004', 'M'),
-(23, 1234567896, 'B', 'Carlos', 'Ilarraza', '05/03/2003', 'M'),
-(24, 1234567894, 'A', 'Fatima', 'Perez', '21/06/2004', 'F'),
-(25, 1234567894, 'B', 'Fabiana', 'Perez', '19/10/2005', 'F');
+(1, 1234567891, 'A1234567891', 'Alexander', 'Martinez', '02/02/2002', 'Masculino'),
+(2, 1234567891, 'B1234567891', 'Brayan', 'Martinez', '02/02/2004', 'Masculino'),
+(3, 1234567892, 'A1234567892', 'Carlos', 'Martinez', '02/03/2004', 'Masculino'),
+(4, 1234567895, 'A1234567895', 'Fatima', 'Medina', '27/11/2003', 'Femenino'),
+(5, 1234567895, 'B1234567895', 'Fabiana', 'Medina', '13/12/2003', 'Femenino'),
+(6, 1234567885, 'A1234567885', 'Luis', 'Neira', '02/02/2002', 'Masculino'),
+(7, 1234567887, 'A1234567887', 'Pedro', 'Alvarez', '02/02/2004', 'Masculino'),
+(8, 1234567893, 'A1234567893', 'Karliedis', 'Morales', '02/03/2004', 'Femenino'),
+(9, 1234567883, 'A1234567883', 'Fanny', 'Gomez', '27/09/2003', 'Femenino'),
+(10, 1234567882, 'A1234567882', 'Alexandra', 'Medina', '13/12/2003', 'Femenino'),
+(11, 1234567896, 'A1234567896', 'Saccha', 'Ilarraza', '01/02/2002', 'Femenino'),
+(12, 1234567891, 'C1234567891', 'Brayan', 'Martinez', '02/02/2004', 'Masculino'),
+(13, 1234567891, 'D1234567891', 'Carlos', 'Martinez', '05/03/2004', 'Masculino'),
+(14, 1234567895, 'C1234567895', 'Fatima', 'Medina', '23/06/2004', 'Femenino'),
+(15, 1234567895, 'D1234567895', 'Fabiana', 'Medina', '19/10/2005', 'Femenino'),
+(16, 1234567883, 'B1234567883', 'Luis', 'Gomez', '02/02/2002', 'Masculino'),
+(17, 1234567881, 'A1234567881', 'Pedro', 'De Azevedo', '02/02/2004', 'Masculino'),
+(18, 1234567897, 'A1234567897', 'Karliedis', 'Goncalves', '09/03/2004', 'Femenino'),
+(19, 1234567898, 'A1234567898', 'Monica', 'Medina', '27/09/2004', 'Femenino'),
+(20, 1234567898, 'B1234567898', 'Alexandra', 'Medina', '13/12/2003', 'Femenino'),
+(21, 1234567892, 'B1234567892', 'Saccha', 'Martinez', '01/02/2002', 'Femenino'),
+(22, 1234567893, 'A1234567893', 'Eduardo', 'Morales', '08/02/2004', 'Masculino'),
+(23, 1234567896, 'B1234567896', 'Carlos', 'Ilarraza', '05/03/2003', 'Masculino'),
+(24, 1234567894, 'A1234567894', 'Fatima', 'Perez', '21/06/2004', 'Femenino'),
+(25, 1234567894, 'B1234567894', 'Fabiana', 'Perez', '19/10/2005', 'Femenino');
 
 -- --------------------------------------------------------
 
@@ -1455,7 +1456,7 @@ ALTER TABLE `personal_2`
 -- Indexes for table `personal_capacidad_2`
 --
 ALTER TABLE `personal_capacidad_2`
-  ADD KEY `id_personal` (`id_personal`);
+  ADD PRIMARY KEY `id_personal` (`id_personal`);
 
 --
 -- Indexes for table `pers_capacitado_2`
@@ -1646,7 +1647,8 @@ ALTER TABLE `factura_2`
 --
 ALTER TABLE `guarderia_2`
   ADD CONSTRAINT `guarderia_2_ibfk_1` FOREIGN KEY (`id_lugar`) REFERENCES `lugar_2` (`id_lugar`),
-  ADD CONSTRAINT `guarderia_2_ibfk_2` FOREIGN KEY (`id_enc`) REFERENCES `personal_2` (`id_personal`);
+  ADD CONSTRAINT `guarderia_2_ibfk_2` FOREIGN KEY (`id_enc`) REFERENCES `personal_2` (`id_personal`),
+  ADD CONSTRAINT `check_tipo` CHECK (tipo in ('Matematica', 'Literatura', 'Arte', 'Deportiva', 'Manualidades'));
 
 --
 -- Constraints for table `guarderia_actividad_2`
@@ -1779,8 +1781,8 @@ ALTER TABLE `personal_2`
 -- Constraints for table `personal_capacidad_2`
 --
 ALTER TABLE `personal_capacidad_2`
-  ADD CONSTRAINT `personal_capacidad_2_ibfk_1` FOREIGN KEY (`id_personal`) REFERENCES `personal_2` (`id_personal`) ON DELETE NO ACTION ON UPDATE NO ACTION;
-
+  ADD CONSTRAINT `personal_capacidad_2_ibfk_1` FOREIGN KEY (`id_personal`) REFERENCES `personal_2` (`id_personal`) ON DELETE NO ACTION ON UPDATE NO ACTION,
+  ADD CONSTRAINT `check_tipo` CHECK (tipo in ('Matematica', 'Literatura', 'Arte', 'Deportiva', 'Manualidades'));
 --
 -- Constraints for table `pers_capacitado_2`
 --
