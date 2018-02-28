@@ -1,23 +1,7 @@
-function edit_comida(nombre,apellido,cedula,telefono_oficina,telefono_casa,telefono_celular,sexo,direccion,parentesco,profesion){
-    $('#id_nombre').val(nombre);
-    $('#id_apellido').val(apellido);
-    $('#id_cedula').val(cedula);
-    $('#id_tlf_oficina').val(telefono_oficina);
-    $('#id_tlf_casa').val(telefono_casa);
-    $('#id_tlf_celular').val(telefono_celular);
-    $('#id_direccion').val(direccion);
-    $('#id_parentesco').val(parentesco);
-    $('#id_profesion').val(profesion);
-
-    
-
-    if(sexo == 'm'){
-        $("#id_sexo_hombre_edit").prop("checked",true);
-    }
-    else {
-        $("#id_sexo_mujer_edit").prop("checked",true);
-    }
-    
+function edit_comida(comida,tipo,descripcion){
+    $('#id_comida').val(comida);
+    $('#id_tipo').val(tipo);
+    $('#id_descripcion').val(descripcion);
 }
 
 /**

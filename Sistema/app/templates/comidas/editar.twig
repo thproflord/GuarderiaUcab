@@ -1,34 +1,35 @@
-<div class="modal fade" id="modal_crear_comida">
+<div class="modal fade" id="modal_editar_comida">
     <div class="modal-dialog">
       <div class="modal-content">
         <div class="modal-header">
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span></button>
-          <h4 class="modal-title">Crear Comidas</h4>
+          <h4 class="modal-title">Editar un Alimento</h4>
         </div>
         <div class="modal-body">
-          <form role="form" id="crear_comida_form">
+          <form role="form" id="editar_comida_form">
           <!-- text input -->
           <div class="form-group">
 
-            <label>Tipo de comida</label>
-             <select class="select2 form-control" name="tipo"  data-placeholder="Tipos de comida">
+                <input type="hidden" class="form-control" name="codigo" id="id_comida">
+                <label>Tipo de Alimento</label>
+                <select class="select2 form-control" name="tipo"  data-placeholder="Tipo de alimento" id="id_tipo">
                           <option value="1">Proteina</option>
                           <option value="2">Ensalada</option>
                           <option value="3">Jugo</option>
                           <option value="4">Carbohidrato</option/>
-             </select>
-
-            <label>Descripcion</label>
-            <input type="text" class="form-control" placeholder="Descripcion" name="descripcion">
-          
+                </select>
+                               
+                <label>Descripcion</label>
+                <input type="text" class="form-control" placeholder="Descripcion" name="descripcion" id="id_descripcion">
           </div>
-         </form>
+       
+        </form>
         </div>
         <div class="modal-footer">
           <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Cerrar</button>
-          <button type="button" id="crear_comida" class="btn btn-primary">Crear Comida</button>
-        </div>  
+          <button type="button" id="editar_comida" class="btn btn-primary">Guardar Cambios</button>
+        </div>
       </div>
       <!-- /.modal-content -->
   </div>

@@ -793,6 +793,31 @@ $app->post('/pediatras/editar', function() use($app) {
     return $app->json($u->edit());
 });
 
+
+/**
+    * Accion via Ajax para agregar comida
+    *
+    * @return json
+*/
+
+$app->post('/comidas/crear', function() use($app) {
+  $u = new Model\Comidas;
+
+  return $app->json($u->add());
+});
+
+/**
+    * Accion via Ajax para editar comida
+    *
+    * @return json
+*/
+
+$app->post('/comidas/editar', function() use($app) {
+  $u = new Model\Comidas;
+
+  return $app->json($u->edit());
+});
+
 /**
     * Recuperar contraseña perdida
     *

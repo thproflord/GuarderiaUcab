@@ -25,7 +25,7 @@
     <section class="content-header">
       <h1>
         Comidas
-        <small>Guarderia</small>
+        <small>Comidas que ofrece la guarderia</small>
       </h1>
       <ol class="breadcrumb">
         <li><a href="#"><i class="fa fa-dashboard"></i> Inicio</a></li>
@@ -58,7 +58,7 @@
                       <tr>
                           <td>{{ c.tipo }}</td>
                           <td>{{ c.descripcion }}</td>
-                          <td><a type="button" data-toggle="modal" data-target="#comidas" onclick="edit_comidas('{{ c.id_comida }}','{{ c.tipo }}','{{ c.descripcion }}'')"><i class="fa fa-edit"></i></a></td>
+                          <td><a type="button" data-toggle="modal" data-target="#modal_editar_comida" onclick="edit_comida('{{ c.id_comida }}','{{ c.tipo }}','{{ c.descripcion }}')"><i class="fa fa-edit"></i></a></td>
                           <td><a type="button" href="comidas/eliminar/{{ c.id_comida }}"><i class="fa fa-trash"></i></a></td>
                       </tr>
                   {% endfor %}
@@ -76,7 +76,7 @@
       <!-- /.row -->
       </div>
       {# Creación de producto #}
-      {#% include 'colegios/eliminar' %#}
+      {% include 'comidas/editar' %}
       {% include 'comidas/crear' %}
     </section>
     <!-- /.content -->

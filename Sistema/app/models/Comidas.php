@@ -35,10 +35,14 @@ class Comidas extends Models implements IModels {
         $this->tipo = $http->request->get('tipo');
         $this->descripcion = $http->request->get('descripcion');
 
-        if ($this->functins->e($this->tipo,$this->descripcion)){
-            throw new ModelsException('Todos los campos son requeridos');
+        if ($this->functions->e($this->tipo)){
+            throw new ModelsException("El tipo de comida es obligatorio");
         }
-    }
+        if ($this->functions->e($this->descripcion)){
+            throw new ModelsException("La descripcion es obligatoria");
+        }    
+        }
+    
     final public function add(){
         try {
           global $http;
@@ -61,9 +65,15 @@ class Comidas extends Models implements IModels {
         $this->db->query("UPDATE comida_2 
         SET tipo = $this->tipo,
         descripcion = '$this->descripcion'
-        WHERE id_comida= $this->id_comida");
+        WHERE id_comida= $this->id");
       }
-  
+      
+      final public function delete($id){
+        global $config;
+          $this->db->query("DELETE FROM comida_2 WHERE id_comida=$id;");
+
+          $this->functions->redir($config['site']['url'] . 'comidas/&success=true');
+      }
       final public function get(bool $multi  = true, string $select = '*') {
           return $this->db->query_select("SELECT * FROM comida_2;");
       }

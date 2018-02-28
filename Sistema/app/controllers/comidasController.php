@@ -29,19 +29,13 @@ class comidasController extends Controllers implements IControllers {
 
         $c = new Model\Comidas($router);
         switch($this->method){
-            case 'crear':
-            echo $this->template->render('comidas/crear');
-            break;
-            
-            case 'editar':
-            echo $this->template->render('comidas/editar');
-            break;
-            
             case 'eliminar':
+             $c->delete($this->isset_id);  
             break;
 
             default:
             echo $this->template->render('comidas/comidas',array(  
+                
                 'comida' => $c->get()
             ));
             break;
